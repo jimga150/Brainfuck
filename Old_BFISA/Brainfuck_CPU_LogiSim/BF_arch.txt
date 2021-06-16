@@ -1,0 +1,32 @@
+commands:
+>	ptr++
+<	ptr--
++	M[ptr] <- M[ptr] + 1
+-	M[ptr] <- M[ptr] - 1
+[	if (!M[ptr]) PC <- <address of complimentary closing bracket>
+]	if (M[ptr]) PC <- <address of complimentary opening bracket>
+.	Output <- M[ptr]
+,	M[ptr] <- Input
+
+Opcodes:	
+>	000
+<	001
++	010
+-	011
+[	100
+]	101
+.	110
+,	111
+
+How is the '[' command gonna work?
+solution: make a read-in bus of length n+3, where n is the length of the memory pointer (ptr). if the '[' command is invoked, then the read-in from (n-4 downto 0) is copied to the PC instead of the increment
+
+Opcode	ModPtr	ptr_op	Mem_op	ReadMem	W_Mem	Memsrc	Const	Jump
+000	
+001
+010
+011
+100
+101
+110
+111

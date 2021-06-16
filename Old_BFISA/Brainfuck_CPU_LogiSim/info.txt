@@ -1,0 +1,31 @@
+>	000	00000
+<	001	20001
++	010	40002
+-	011	60003
+[	100	[16address]4
+]	101	[16address]5
+.	110	00006
+,	111	00007
+
+factor: (time for LogiSim) = (83530)*(time for C parser)
+
+min RAM needed: 2K (IDT 972-7164S20TPG)
+--13 bit wide address, 16 bit ptr register (3 MSBs ignored) 
+two separate 8 bit registers to handle arithmetic (IDT 972-5962-9222203MRA 
+
+min ROM needed: 1K instructions 
+(log_2(1024) = 10, 10+3 = 13 bits at least, 16 bits = 13 bits of address space, 2^13 = 8K)
+(Greenliant 804-GLS27SF010-70PHE x2, load first 8 bits into one and next into another @same address)
+--16 bit PC
+
+data word length: 	B=8
+PC width: 		PC=13
+Ptr width:		PW=13
+
+parts:
+RAM: 		IDT 972-7164S20TPG			1
+ROM: 		Greenliant 804-GLS27SF010-70PHE 	2
+Registers: 	TI 595-SN74ABT(3/5)74AN			5
+Multiplexers: 	TI 595-CD74HC157E x(PW+PC+B=34)		12
+Adders:  						10
+Tristate Buffers: 					4

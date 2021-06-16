@@ -1,0 +1,49 @@
+[-]>[-]>[-]> 	//Set first three cells to [0, 0, 0] (ends on mem index 3, which is unknown)
+
+[		//Start main program loop
+    [		//Start secondary program loop
+        [	//while current cell is non-zero
+            [-]	//clear it
+            >	//move on
+        ]
+		//If an already-zeroed cell is found (when this section of code is reached), then check the next two cells as well for zero-ness.
+		//If that cell is also zero, assume we have wrapped around to the start of the address space and move on to the program.
+		//we can at least assume that the last three cells are zeroed, so those can be used for arithmetic.
+		//from here on out, the cells are referred to as follows:
+		//  0  0  0  0  ?  ?
+		//  ^  ^  ^  ^  ^  ^
+		//  |  |  |  |  |  n+2 (checking to be zero)
+		//  |  |  |  |  n+1 (checking to be zero)
+		//  |  |  |  n (we know its zero because the last loop just broke)
+		//  |  |  n-1 (we know its zero because either it is cell 2 (from the first line), or it was just zeroed by the last loop) 
+		//  |  n-2   (we know its zero because its either one of the three cells that were zeroed on the first line, or it was zeroed by the last loop)
+		//  n-3 (see above)
+
+        >	//move to cell n+1
+    ]		//If cell n+1 is non-zero, loop back to the clearing loop.
+
+		//NEW state of affairs: we are currently on cell n+1, and here's what the cells look like.
+		//  0  0  0  0  0  ?
+		//  ^  ^  ^  ^  ^  ^
+		//  |  |  |  |  |  n+2 (checking to be zero)
+		//  |  |  |  |  n+1 (checking to be zero)
+		//  |  |  |  n (we know its zero because the last loop just broke)
+		//  |  |  n-1 (we know its zero because either it is cell 2 (from the first line), or it was just zeroed by the last loop) 
+		//  |  n-2   (we know its zero because its either one of the three cells that were zeroed on the first line, or it was zeroed by the last loop)
+		//  n-3 (see above)
+		
+		//So, we just repeat the last nonsense with the new unknown cell.
+    >		//move to cell n+2
+]		//If cell n+1 is non-zero, loop back to the clearing loop.
+<<		//Move back to cell n, which we now know to be memory address 0
+
+		//And now all program memory is cleared, and the memory pointer is set to the start of program memory.
+		//UNLESS! three bytes in a row were initialized to 0 (this has a 1 in 2048 chance of happening in an 8182x8 SRAM)
+
+The uncommented program:
+
+[-]>[-]>[-]>[[[[-]>]>]>]<<
+
+Looks pretty
+
+		

@@ -1,0 +1,29 @@
+LED notes:
+RED:
+	Digikey 160-1066-ND, Lite-On LTA-1000HR
+	A=0.096*V-0.1576
+	>= 85 Ohm resistors
+	0.036 Amps
+	2.01666 Volts
+
+GREEN:
+	Digikey 160-1067-ND, Lite-On LTA-1000G
+	A=0.075*v-0.1375
+	>= 95 Ohm resistors
+	0.03 Amps
+	2.2333 Volts
+
+YELLOW:
+
+	Digikey 160-1068-ND, Lite-On LTA-1000Y
+	A=0.075*v-0.1375
+	>= 95 Ohm resistors
+	0.03 Amps
+	2.2333 Volts
+
+BLUE: 
+	Digikey 1497-1079-5-ND, SunLED XGCBDX10D
+	A=0.0277*v-0.0714
+	>= 45 Ohm resistors
+	0.03 Amps
+	3.661 Volts

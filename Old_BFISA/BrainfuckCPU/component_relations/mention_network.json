@@ -1,0 +1,180 @@
+{
+    "nodes": [
+        {
+            "name": "Jump Logic/PC",
+            "id": "JPC",
+            "colour": "#008142",
+            "party": "Yeet"
+        },
+        {
+            "name": "ROM",
+            "id": "ROM",
+            "colour": "#F08142",
+            "party": "Yogunted"
+        },
+        {
+            "name": "Clock Regulator",
+            "id": "CLKR",
+            "colour": "#00FFcc",
+            "party": "Yatended"
+        },
+        {
+            "name": "Control Logic",
+            "id": "CTRL",
+            "colour": "#0081CC",
+            "party": "Y'aal"
+        },
+        {
+            "name": "Pointer/ALU",
+            "id": "PTRALU",
+            "colour": "#443377",
+            "party": "Yart"
+        },
+        {
+            "name": "RAM",
+            "id": "RAM",
+            "colour": "#0000FF",
+            "party": "Y0t"
+        },
+        {
+            "name": "ALU",
+            "id": "ALU",
+            "colour": "#FF0042",
+            "party": "ehpehpehpeh"
+        },
+        {
+            "name": "Output",
+            "id": "Out",
+            "colour": "#DEADBE",
+            "party": "Deadbeef"
+        },
+        {
+            "name": "Input",
+            "id": "In",
+            "colour": "#FEEDBE",
+            "party": "FEED ME"
+        },
+        {
+            "name": "Input Valid",
+            "id": "InVal",
+            "colour": "#133700",
+            "party": "Leet"
+        },
+        {
+            "name": "Clock",
+            "id": "CLK",
+            "colour": "#C10CCC",
+            "party": "Clocc"
+        },
+        {
+            "name": "Reset Button",
+            "id": "RST",
+            "colour": "#0000FF",
+            "party": "Kill it with fire"
+        }
+    ],
+    "links": [
+        {
+            "value": 1,
+            "source": "CLKR",
+            "target": "JPC"
+        },
+        {
+            "value": 1,
+            "source": "CLKR",
+            "target": "ALU"
+        },
+        {
+            "value": 1,
+            "source": "CLKR",
+            "target": "PTRALU"
+        },
+        {
+            "value": 2,
+            "source": "CTRL",
+            "target": "PTRALU"
+        },
+        {
+            "value": 2,
+            "source": "CTRL",
+            "target": "JPC"
+        },
+        {
+            "value": 1,
+            "source": "CTRL",
+            "target": "CLKR"
+        },
+        {
+            "value": 4,
+            "source": "CTRL",
+            "target": "ALU"
+        },
+        {
+            "value": 29,
+            "source": "JPC",
+            "target": "ROM"
+        },
+        {
+            "value": 3,
+            "source": "ROM",
+            "target": "CTRL"
+        },
+        {
+            "value": 13,
+            "source": "PTRALU",
+            "target": "RAM"
+        },
+        {
+            "value": 10,
+            "source": "RAM",
+            "target": "ALU"
+        },
+        {
+            "value": 1,
+            "source": "ALU",
+            "target": "JPC"
+        },
+        {
+            "value": 8,
+            "source": "ALU",
+            "target": "Out"
+        }
+        ,
+        {
+            "value": 7,
+            "source": "In",
+            "target": "ALU"
+        },
+        {
+            "value": 1,
+            "source": "InVal",
+            "target": "CLKR"
+        }
+        ,
+        {
+            "value": 1,
+            "source": "CLK",
+            "target": "CLKR"
+        },
+        {
+            "value": 1,
+            "source": "RST",
+            "target": "JPC"
+        },
+        {
+            "value": 1,
+            "source": "RST",
+            "target": "PTRALU"
+        },
+        {
+            "value": 1,
+            "source": "RST",
+            "target": "ALU"
+        },
+        {
+            "value": 1,
+            "source": "RST",
+            "target": "Out"
+        }
+    ]
+}

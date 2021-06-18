@@ -38,7 +38,8 @@ end debounce_pulse_gen;
 
 architecture Structural of debounce_pulse_gen is
 
-    signal rstn, dbc_result, pulse_reg : std_logic;
+    signal rstn, dbc_result : std_logic;
+    signal pulse_reg : std_logic := '0';
 
 begin
 

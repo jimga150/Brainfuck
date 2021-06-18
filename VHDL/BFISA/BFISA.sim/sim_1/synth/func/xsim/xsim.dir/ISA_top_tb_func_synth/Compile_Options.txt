@@ -1,0 +1,1 @@
+-wto "57b9abab7a3b4c8abedc991da5a92385" --incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "ISA_top_tb_func_synth" "xil_defaultlib.ISA_top_tb" -log "elaborate.log" 

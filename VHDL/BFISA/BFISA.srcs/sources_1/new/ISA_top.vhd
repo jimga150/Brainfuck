@@ -99,7 +99,7 @@ begin
         Q => ptr_out
     );
     
-    ptr_signed_one(0) <= not ptrop;
+    ptr_signed_one(0) <= '1';
     gen_ptr_signed_one: for i in 1 to 15 generate
         ptr_signed_one(i) <= ptrop;
     end generate gen_ptr_signed_one;
@@ -113,7 +113,7 @@ begin
     --so when the clock is low, you bypass the pointer register
     RAM_addr <= ptr_out when RAM_addr_switch = '1' else ptr_next;
     
-    mem_signed_one(0) <= not memop;
+    mem_signed_one(0) <= '1';
     gen_mem_signed_one: for i in 1 to 7 generate
         mem_signed_one(i) <= memop;
     end generate gen_mem_signed_one;
@@ -124,6 +124,7 @@ begin
     port map(
         addr => RAM_addr,
         clk => clk,
+        rst => rst,
         ce => ce,
         we => modmem,
         data_in => RAM_data_in,

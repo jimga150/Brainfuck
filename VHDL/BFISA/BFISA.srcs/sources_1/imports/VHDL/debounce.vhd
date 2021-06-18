@@ -38,14 +38,14 @@ ENTITY debounce IS
 END debounce;
 
 ARCHITECTURE logic OF debounce IS
-  SIGNAL flipflops   : STD_LOGIC_VECTOR(1 DOWNTO 0); --input flip flops
+  SIGNAL flipflops   : STD_LOGIC_VECTOR(1 DOWNTO 0) := "00"; --input flip flops
   SIGNAL counter_set : STD_LOGIC;                    --sync reset to zero
 BEGIN
 
   counter_set <= flipflops(0) xor flipflops(1);  --determine when to start/reset counter
   
   PROCESS(clk, reset_n)
-    VARIABLE count :  INTEGER RANGE 0 TO clk_freq*stable_time/1000;  --counter for timing
+    VARIABLE count :  INTEGER RANGE 0 TO clk_freq*stable_time/1000 := 0;  --counter for timing
   BEGIN
     IF(reset_n = '0') THEN                        --reset
       flipflops(1 DOWNTO 0) <= "00";                 --clear input flipflops

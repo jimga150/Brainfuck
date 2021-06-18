@@ -48,5 +48,22 @@ architecture Behavioral of decoder is
 
 begin
 
+    ptrop <= opcode(0);
+    
+    memop <= opcode(0);
+    
+    loopback <= opcode(0);
+    
+    memsrc <= opcode(2);
+    
+    modptr <= not (opcode(1) or opcode(2));
+    
+    jump <= (not opcode(1)) and opcode(2);
+    
+    outp <= opcode(1) and opcode(2) and (not opcode(0));
+    
+    modmem <= (opcode(1) and (not opcode(2))) or (opcode(0) and opcode(1));
+    
+    hold <= opcode(0) and opcode(1) and opcode(2);
 
 end Behavioral;

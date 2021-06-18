@@ -40,7 +40,7 @@ architecture Behavioral of rom is
 
 begin
 
-	rom_proc : process (addr)
+	hello_world : process (addr)
 	begin
 		case (addr) is
 			when "0000000000000001" => data_out <= "0000000000000001";
@@ -133,6 +133,6 @@ begin
 			when "0000000001101010" => data_out <= "1111111111111111";
 			when others => data_out <= (others => '0');
 		end case;
-	end process rom_proc;
+	end process hello_world;
 	
 end Behavioral;

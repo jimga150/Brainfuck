@@ -24,7 +24,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -33,7 +33,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity ram is
     Port ( addr : in STD_LOGIC_VECTOR (15 downto 0);
-           we, oe, clk : in STD_LOGIC;
+           we, ce, oe, clk : in STD_LOGIC := '1';
            data_in : in STD_LOGIC_VECTOR (7 downto 0);
            data_out : out STD_LOGIC_VECTOR (7 downto 0));
 end ram;
@@ -69,22 +69,20 @@ BEGIN
    -----------------------------------------------------------------------------
    -- Here the input registers are defined                                    --
    -----------------------------------------------------------------------------
-   InputRegs : PROCESS (Clock , Tick , Address , DataIn , WE , OE )
+   InputRegs : PROCESS (clk)
    BEGIN
-      IF (Clock'event AND (Clock = '1')) THEN
-         IF (Tick = '1') THEN
-             s_DataInReg        <= DataIn;
-             s_Address_reg      <= Address;
+      IF (rising_edge(clk) and ce = '1') THEN
+        s_DataInReg        <= data_in;
+             s_Address_reg      <= addr;
              s_WEReg            <= WE;
              s_OEReg            <= OE;
-         END IF;
       END IF;
    END PROCESS InputRegs;
 
-   TickPipeReg : PROCESS(Clock)
+   TickPipeReg : PROCESS(clk)
    BEGIN
-      IF (Clock'event AND (Clock = '1')) THEN
-          s_TickDelayLine(0)          <= Tick;
+      IF (rising_edge(clk) and ce = '1') THEN
+          s_TickDelayLine(0)          <= '1';
           s_TickDelayLine(2 DOWNTO 1) <= s_TickDelayLine(1 DOWNTO 0);
       END IF;
    END PROCESS TickPipeReg;
@@ -92,9 +90,9 @@ BEGIN
    -----------------------------------------------------------------------------
    -- Here the actual memorie(s) is(are) defined                              --
    -----------------------------------------------------------------------------
-   Mem : PROCESS( Clock , s_we, s_DataInReg, s_Address_reg)
+   Mem : PROCESS(clk)
    BEGIN
-      IF (Clock'event AND (Clock = '1')) THEN
+      IF (rising_edge(clk) and ce = '1') THEN
             IF (s_we = '1') THEN
                s_mem_contents(to_integer(unsigned(s_Address_reg))) <= s_DataInReg;
             END IF;
@@ -105,11 +103,11 @@ BEGIN
    -----------------------------------------------------------------------------
    -- Here the output register is defined                                     --
    -----------------------------------------------------------------------------
-   Res : PROCESS( Clock , s_oe, s_ram_data_out)
+   Res : PROCESS(clk)
    BEGIN
-      IF (Clock'event AND (Clock = '1')) THEN
+      IF (rising_edge(clk) and ce = '1') THEN
          IF (s_oe = '1') THEN
-           DataOut <= s_ram_data_out;
+           data_out <= s_ram_data_out;
          END IF;
       END IF;
    END PROCESS Res;

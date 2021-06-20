@@ -40,12 +40,35 @@ end ISA_top;
 
 architecture Structural of ISA_top is
 
+    COMPONENT dist_mem_gen_0
+      PORT (
+        a : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        d : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        clk : IN STD_LOGIC;
+        we : IN STD_LOGIC;
+        spo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+      );
+    END COMPONENT;
+    
+    COMPONENT blk_mem_gen_0
+      PORT (
+        clka : IN STD_LOGIC;
+        ena : IN STD_LOGIC;
+        wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        addra : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        dina : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        douta : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+      );
+    END COMPONENT;
+
     --control signals
     signal ptrop, memop, loopback, memsrc, modptr, jump, outp, modmem, hold : std_logic;
 
-    signal PC_clock_en, PC_jump_sel, RAM_addr_switch, cell_zero, ptr_ce : std_logic;
+    signal PC_clock_en, PC_jump_sel, RAM_addr_switch, cell_zero, ptr_ce, RAM_ce : std_logic;
     signal new_PC_addr, PC_out, PC_jump_addr, ROM_out, ptr_out, ptr_next, ptr_signed_one, RAM_addr : std_logic_vector(15 downto 0);
     signal RAM_data_in, RAM_data_out, mem_signed_one : std_logic_vector(7 downto 0);
+    
+    signal bram_we : std_logic_vector(0 downto 0);
 
 begin
 
@@ -120,16 +143,39 @@ begin
     
     RAM_data_in <= key when memsrc = '1' else std_logic_vector(unsigned(RAM_data_out) + unsigned(mem_signed_one));
     
-    work_mem: entity work.ram
+--    work_mem: entity work.ram
+--    port map(
+--        addr => RAM_addr,
+--        clk => clk,
+--        rst => rst,
+--        ce => ce,
+--        we => modmem,
+--        data_in => RAM_data_in,
+--        data_out => RAM_data_out
+--    );
+
+    RAM_ce <= modmem and ce;
+
+    work_mem : dist_mem_gen_0
     port map(
-        addr => RAM_addr,
+        a => RAM_addr(7 downto 0),
         clk => clk,
-        rst => rst,
-        ce => ce,
-        we => modmem,
-        data_in => RAM_data_in,
-        data_out => RAM_data_out
+        we => RAM_ce,
+        d => RAM_data_in,
+        spo => RAM_data_out
     );
+
+--    bram_we(0) <= modmem;
+
+--    work_mem : blk_mem_gen_0 
+--      PORT MAP (
+--        clka => clk,
+--        ena => ce,
+--        wea => bram_we,
+--        addra => RAM_addr(7 downto 0),
+--        dina => RAM_data_in,
+--        douta => RAM_data_out
+--      );
     
     cell_zero <= '1' when RAM_data_out = x"00" else '0';
     

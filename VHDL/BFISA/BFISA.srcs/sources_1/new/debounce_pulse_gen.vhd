@@ -33,6 +33,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity debounce_pulse_gen is
     Port ( btn_in, clk, rst : in STD_LOGIC;
+            count : out std_logic_vector(7 downto 0);
            pulse : out STD_LOGIC);
 end debounce_pulse_gen;
 
@@ -50,6 +51,7 @@ begin
         clk => clk,
         reset_n => rstn,
         button => btn_in,
+        count_out => count,
         result => dbc_result
     );
 

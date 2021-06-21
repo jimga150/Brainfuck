@@ -60,6 +60,8 @@ architecture Structural of ISA_top is
         douta : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
       );
     END COMPONENT;
+    
+    constant RAM_bits : integer := 10;
 
     --control signals
     signal ptrop, memop, loopback, memsrc, modptr, jump, outp, modmem, hold : std_logic;
@@ -144,8 +146,9 @@ begin
     RAM_data_in <= key when memsrc = '1' else std_logic_vector(unsigned(RAM_data_out) + unsigned(mem_signed_one));
     
     work_mem: entity work.ram
+    generic map(addr_bits => RAM_bits)
     port map(
-        addr => RAM_addr(7 downto 0),
+        addr => RAM_addr(RAM_bits-1 downto 0),
         clk => clk,
         rst => rst,
         we => RAM_ce,

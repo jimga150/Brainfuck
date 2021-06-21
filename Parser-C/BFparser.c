@@ -316,6 +316,12 @@ int main(int argc, char* argv[]){
 	
 	fprintf(stdout, "Memory used: %ld\n", (long)(max_mem_index-memory+1));
 	fprintf(stdout, "# instructions: %lu\n", inst_count);
+	
+#ifdef EN_TIME
+	fprintf(stdout, "(%lu inst/sec)\n", 
+		(unsigned long)(inst_count/((double)Timer.Elapsed/ (double)CLOCKS_PER_SEC)));
+#endif
+
 	fprintf(stdout, "# of times memory resized: %d\n", times_resized);
 	fprintf(stdout, "# of memory accesses: %d\n", memory_accesses);
 	fprintf(stdout, "%% of instructions that access memory: %0.1f%%\n", ((float)memory_accesses*100)/((float)inst_count));

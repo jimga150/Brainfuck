@@ -68,7 +68,7 @@ begin
     charPosition <= (horzCoord - position.x)/FONT_WIDTH + 1;
     charCode <= character'pos(displayText(charPosition));
     -- charCode*16: first row of the char
-    fontAddress <= charCode*16+(vertCoord - position.y);
+    fontAddress <= charCode*FONT_HEIGHT+(vertCoord - position.y);
 
 
 	fontRom: entity work.Font_Rom

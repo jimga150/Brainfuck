@@ -44,8 +44,8 @@ end display_output;
 
 architecture Structural of display_output is
 
-    constant num_char_rows : integer := 4;
-    constant num_char_cols : integer := 158;
+    constant num_char_rows : integer := 3;
+    constant num_char_cols : integer := 6;
     constant num_chars : integer := num_char_rows*num_char_cols;
     
     signal row_int, col_int : integer;
@@ -107,23 +107,10 @@ begin
         n_sync => open
      );
 
---    textElement: entity work.Pixel_On_Text_multiline
---    generic map (
---        num_char_rows => num_char_rows,
---        num_char_cols => num_char_cols
---    )
---    port map(
---        clk => clk,
---        displayText => text_array,
---        position => (10, 10),
---        horzCoord => col_int,
---        vertCoord => row_int,
---        pixel => pixel_bit 
---    );
-
-    textElement: entity work.Pixel_On_Text
+    textElement: entity work.Pixel_On_Text_multiline
     generic map (
-        textLength => num_chars
+        num_char_rows => num_char_rows,
+        num_char_cols => num_char_cols
     )
     port map(
         clk => clk,
@@ -133,6 +120,19 @@ begin
         vertCoord => row_int,
         pixel => pixel_bit 
     );
+
+--    textElement: entity work.Pixel_On_Text
+--    generic map (
+--        textLength => num_chars
+--    )
+--    port map(
+--        clk => clk,
+--        displayText => text_array,
+--        position => (10, 10),
+--        horzCoord => col_int,
+--        vertCoord => row_int,
+--        pixel => pixel_bit 
+--    );
     
     gen_pixel: for i in 0 to 11 generate
         pixel(i) <= pixel_bit;

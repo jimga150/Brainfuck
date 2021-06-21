@@ -30,11 +30,12 @@ use work.commonPak.all;
 entity Pixel_On_Text_multiline is
 	generic(
 	   -- needed for init displayText, the default value 11 is just a random number
-       textLength: integer := 11
+       num_char_rows : integer := 3;
+       num_char_cols : integer := 6
 	);
 	port (
 		clk: in std_logic;
-		displayText: in string (1 to textLength) := (others => NUL);
+		displayText: in string (1 to num_char_rows*num_char_cols) := (others => nul);
 		-- top left corner of the text
 		position: in point_2d := (0, 0);
 		-- current pixel postion
@@ -49,12 +50,18 @@ end Pixel_On_Text_multiline;
 architecture Behavioral of Pixel_On_Text_multiline is
 
 	signal fontAddress: integer range 0 to 127*FONT_HEIGHT := 0;
+	
 	-- A row of bit in a charactor, we check if our current (x,y) is 1 in char row
 	signal charBitInRow: std_logic_vector(FONT_WIDTH-1 downto 0) := (others => '0');
+	
 	-- char in ASCII code
 	signal charCode:integer range 0 to 127 := 0;
-	-- the position(column) of a charactor in the given text
-	signal charPosition:integer range 1 to textLength := 1;
+	
+	-- the position of a charactor in the given text
+	signal charCol : integer range 1 to num_char_cols := 1;
+	signal charRow : integer range 1 to num_char_rows := 1;
+	signal charPosition : integer range 1 to num_char_rows*num_char_cols := 1;
+	
 	-- the bit position(column) in a charactor
 	signal bitPosition:integer range 0 to FONT_WIDTH - 1 := 0;
 	
@@ -65,10 +72,17 @@ begin
     -- (horz_reg - position.x): x positionin the top left of the whole text
     bitPosition <= (horz_reg(0) - position.x) mod FONT_WIDTH;
     
-    charPosition <= (horzCoord - position.x)/FONT_WIDTH + 1;
+    -- zero indexed
+    charCol <= (horzCoord - position.x)/FONT_WIDTH;
+    charRow <= (vertCoord - position.y)/FONT_HEIGHT;
+    
+    -- one-indexed
+    charPosition <= charRow*num_char_cols + charCol + 1;
+    
     charCode <= character'pos(displayText(charPosition));
+    
     -- charCode*16: first row of the char
-    fontAddress <= charCode*16+(vertCoord - position.y);
+    fontAddress <= charCode*FONT_HEIGHT+((vertCoord - position.y) mod FONT_HEIGHT);
 
 
 	fontRom: entity work.Font_Rom
@@ -96,12 +110,12 @@ begin
             inYRange := false;
             pixel <= '0';
             -- If current pixel is in the horizontal range of text
-            if horz_reg(0) >= position.x and horz_reg(0) < position.x + (FONT_WIDTH * textlength) then
+            if horz_reg(0) >= position.x and horz_reg(0) < position.x + (FONT_WIDTH * num_char_cols) then
                 inXRange := true;
             end if;
             
             -- If current pixel is in the vertical range of text
-            if vert_reg(0) >= position.y and vert_reg(0) < position.y + FONT_HEIGHT then
+            if vert_reg(0) >= position.y and vert_reg(0) < position.y + (FONT_HEIGHT * num_char_rows) then
                 inYRange := true;
             end if;
             

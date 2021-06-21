@@ -45,7 +45,7 @@ end display_output;
 architecture Structural of display_output is
 
     constant num_char_rows : integer := 3;
-    constant num_char_cols : integer := 6;
+    constant num_char_cols : integer := 158;
     constant num_chars : integer := num_char_rows*num_char_cols;
     
     signal row_int, col_int : integer;

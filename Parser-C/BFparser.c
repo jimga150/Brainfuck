@@ -145,7 +145,7 @@ int main(int argc, char* argv[]){
 
 	int looplevel = 0;
 	for(i=0; i<char_count; i++){
-		//printf("Loop level: %d\n", looplevel);
+		//printf("%d: Loop level: %d\n", i, looplevel);
 		switch(prog[i]){
 			case '[':
 				levels[i] = ++looplevel;

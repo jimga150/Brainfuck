@@ -131,7 +131,7 @@ begin
     
     ptr_next <= std_logic_vector(unsigned(ptr_out) + unsigned(ptr_signed_one));
     
-    RAM_addr_switch <= (not modptr) or clk;
+    RAM_addr_switch <= (not modptr);
     
     --on instructions where the pointer is NOT modified (ie. the result of the last cycle's pointer modification matters)
     --we have to advance the pointer result by a cycle in order to jump a pipeline stage in the RAM

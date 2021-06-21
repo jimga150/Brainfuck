@@ -30,17 +30,16 @@ use work.commonPak.all;
 entity Pixel_On_Text_multiline is
 	generic(
 	   -- needed for init displayText, the default value 11 is just a random number
-       num_char_rows : integer := 4;
-       num_char_cols : integer := 158
+       textLength: integer := 11
 	);
 	port (
 		clk: in std_logic;
-		displayText: in string (1 to num_char_rows*num_char_cols) := (others => NUL);
+		displayText: in string (1 to textLength) := (others => NUL);
 		-- top left corner of the text
 		position: in point_2d := (0, 0);
 		-- current pixel postion
-		horzCoord: in integer;
-		vertCoord: in integer;
+		horzCoord: in integer := 0;
+		vertCoord: in integer := 0;
 		
 		pixel: out std_logic := '0'
 	);
@@ -49,48 +48,27 @@ end Pixel_On_Text_multiline;
 
 architecture Behavioral of Pixel_On_Text_multiline is
 
-    type string_array_type is array (1 to num_char_rows) of string(1 to num_char_cols);
-    signal string_array : string_array_type;
-
-	signal fontAddress: integer;
+	signal fontAddress: integer range 0 to 127*FONT_HEIGHT := 0;
 	-- A row of bit in a charactor, we check if our current (x,y) is 1 in char row
-	signal charBitInRow: std_logic_vector(FONT_WIDTH-1 downto 0);
+	signal charBitInRow: std_logic_vector(FONT_WIDTH-1 downto 0) := (others => '0');
 	-- char in ASCII code
-	signal charCode: integer;
+	signal charCode:integer range 0 to 127 := 0;
 	-- the position(column) of a charactor in the given text
-	signal charXpos, charYpos: integer := 1;
+	signal charPosition:integer range 1 to textLength := 1;
 	-- the bit position(column) in a charactor
-	signal bitPosition: integer;
+	signal bitPosition:integer range 0 to FONT_WIDTH - 1 := 0;
 	
-	signal current_line_reg : string(1 to num_char_cols) := (others => nul);
+	type int_array_type is array (1 downto 0) of integer;
+	signal horz_reg, vert_reg : int_array_type := (others => 0);
 	
 begin
-    -- (horzCoord - position.x): x positionin the top left of the whole text
+    -- (horz_reg - position.x): x positionin the top left of the whole text
+    bitPosition <= (horz_reg(0) - position.x) mod FONT_WIDTH;
     
-    -- what character index (1-indexed) we are interested in from the string
-    --vertCoord/FONT_HEIGHT: the number of rows offset we need
-    --num_char_cols*FONT_WIDTH*vertCoord/FONT_HEIGHT: the number of pixels offset the vertical coord would incur if this was otherwise going to be a stright line of chracters
-    --moved to clk process
-    --charPosition <= ((horzCoord + num_char_cols*FONT_WIDTH*vertCoord/FONT_HEIGHT) - position.x)/FONT_WIDTH + 1;
-    
-    -- what bit in the byte we need from the font (the x position of the pixel in the font)
-    bitPosition <= (horzCoord - position.x) mod FONT_WIDTH;
-    
-    -- ASCII code of character from string (moved to clk process)
-    --charCode <= character'pos(displayText(charPosition));
-    
-    -- charCode*FONT_HEIGHT: first row of the char
-    
-    --row number (within font ROM) of the right row from the font from the right character
-    fontAddress <= charCode*FONT_HEIGHT+( (vertCoord mod FONT_HEIGHT) - position.y);
-    
-    charXpos <= (horzCoord - position.x)/FONT_WIDTH;
-    -- 0-indexed
-    charYpos <= (vertCoord - position.y)/FONT_HEIGHT;
-    
-    gen_split_rows: for r in 1 to num_char_rows generate
-        string_array(r) <= displayText((r-1)*num_char_cols + 1 to r*num_char_cols);
-    end generate gen_split_rows;
+    charPosition <= (horzCoord - position.x)/FONT_WIDTH + 1;
+    charCode <= character'pos(displayText(charPosition));
+    -- charCode*16: first row of the char
+    fontAddress <= charCode*16+(vertCoord - position.y);
 
 
 	fontRom: entity work.Font_Rom
@@ -105,23 +83,25 @@ begin
 		variable inYRange: boolean := false;
 	begin
         if rising_edge(clk) then
+        
+            -- add 2 cycle of delay to row/column numbernig to match font rom delay
+            horz_reg(1) <= horzCoord;
+            horz_reg(0) <= horz_reg(1);
             
-            --charPosition <= ((horzCoord + num_char_cols*FONT_WIDTH*vertCoord/FONT_HEIGHT) - position.x)/FONT_WIDTH + 1;
-            current_line_reg <= string_array(charYpos + 1);
-            charCode <= character'pos(current_line_reg(charXpos));
+            vert_reg(1) <= vertCoord;
+            vert_reg(0) <= vert_reg(1);
             
             -- reset
             inXRange := false;
             inYRange := false;
             pixel <= '0';
-            
             -- If current pixel is in the horizontal range of text
-            if horzCoord >= position.x and horzCoord < position.x + (FONT_WIDTH * num_char_cols) then
+            if horz_reg(0) >= position.x and horz_reg(0) < position.x + (FONT_WIDTH * textlength) then
                 inXRange := true;
             end if;
             
             -- If current pixel is in the vertical range of text
-            if vertCoord >= position.y and vertCoord < position.y + (FONT_HEIGHT * num_char_rows) then
+            if vert_reg(0) >= position.y and vert_reg(0) < position.y + FONT_HEIGHT then
                 inYRange := true;
             end if;
             

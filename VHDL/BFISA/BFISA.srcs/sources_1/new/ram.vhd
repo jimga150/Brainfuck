@@ -32,87 +32,31 @@ use IEEE.NUMERIC_STD.ALL;
 --use UNISIM.VComponents.all;
 
 entity ram is
-    Port ( addr : in STD_LOGIC_VECTOR (15 downto 0);
-           we, ce, oe, clk, rst : in STD_LOGIC := '1';
+    generic (addr_bits : integer := 8);
+    Port ( addr : in STD_LOGIC_VECTOR (addr_bits-1 downto 0);
+           we, clk, rst : in STD_LOGIC := '1';
            data_in : in STD_LOGIC_VECTOR (7 downto 0);
-           data_out : out STD_LOGIC_VECTOR (7 downto 0) := (others => '0'));
+           data_out : out STD_LOGIC_VECTOR (7 downto 0));
 end ram;
 
-ARCHITECTURE Behavioral OF ram IS 
+architecture Behavioral of ram is 
 
-   -----------------------------------------------------------------------------
-   -- Here all private types are defined                                      --
-   -----------------------------------------------------------------------------
-   TYPE MEMORY_ARRAY IS ARRAY (65535 DOWNTO 0) OF std_logic_vector(7 DOWNTO 0);
+   type memory_array_type is array ((2**addr_bits)-1 downto 0) of std_logic_vector(7 downto 0);
+   signal memory_array : memory_array_type := (others => (others => '0'));
+   
 
-   -----------------------------------------------------------------------------
-   -- Here all used signals are defined                                       --
-   -----------------------------------------------------------------------------
-   SIGNAL s_oe                               : std_logic := '0';
-   SIGNAL s_ram_data_out                     : std_logic_vector( 7 DOWNTO 0 ) := (others => '0');
-   SIGNAL s_we                               : std_logic := '0';
-   SIGNAL s_Address_reg                      : std_logic_vector( 15 DOWNTO 0 ) := (others => '0');
-   SIGNAL s_DataInReg                        : std_logic_vector( 7 DOWNTO 0 ) := (others => '0');
-   SIGNAL s_DataOutReg                       : std_logic_vector( 7 DOWNTO 0 ) := (others => '0');
-   SIGNAL s_OEReg                            : std_logic := '0';
-   SIGNAL s_TickDelayLine                    : std_logic_vector( 2 DOWNTO 0 ) := (others => '0');
-   SIGNAL s_WEReg                            : std_logic := '0';
-   SIGNAL s_mem_contents                     : MEMORY_ARRAY := (others => (others => '0'));
+begin
 
-BEGIN
-   -----------------------------------------------------------------------------
-   -- Here the control signals are defined                                    --
-   -----------------------------------------------------------------------------
-   s_oe <= s_TickDelayLine(2) AND s_OEReg;
-   s_we <= s_TickDelayLine(0) AND s_WEReg;
-
-   -----------------------------------------------------------------------------
-   -- Here the input registers are defined                                    --
-   -----------------------------------------------------------------------------
-    sync_proc : PROCESS (clk)
-    BEGIN
-        IF rising_edge(clk) THEN
-        
+    sync_proc : process (clk) is begin
+        if rising_edge(clk) THEN
             if rst = '1' then
-            
---                s_DataInReg        <= (others => '0');
---                s_Address_reg      <= (others => '0');
---                s_WEReg            <= '0';
---                s_OEReg            <= '0';
-                
---                s_TickDelayLine <= (others => '0');
-                
---                s_mem_contents <= (others => (others => '0'));
---                s_ram_data_out <= (others => '0');
-                
---                data_out <= (others => '0');
-                
-            elsif ce = '1' then
-            
---                s_DataInReg        <= data_in;
---                s_Address_reg      <= addr;
---                s_WEReg            <= WE;
---                s_OEReg            <= OE;
-                
---                s_TickDelayLine(0)          <= '1';
---                s_TickDelayLine(2 DOWNTO 1) <= s_TickDelayLine(1 DOWNTO 0);
-                
-                IF (WE = '1') THEN
-                    s_mem_contents(to_integer(unsigned(addr))) <= data_in;
-                END IF;
---                s_ram_data_out <= s_mem_contents(to_integer(unsigned(addr)));
-                
---                IF (OE = '1') THEN
---                    data_out <= s_ram_data_out;
---                END IF;
-            
+                memory_array <= (others => (others => '0'));
+            elsif (WE = '1') then
+                memory_array(to_integer(unsigned(addr))) <= data_in;
             end if;
-        
-            
-            
-        END IF;
-    END PROCESS sync_proc;
+        end if;
+    end process sync_proc;
     
-    data_out <= s_mem_contents(to_integer(unsigned(addr)));
+    data_out <= memory_array(to_integer(unsigned(addr)));
 
-END Behavioral;
+end Behavioral;

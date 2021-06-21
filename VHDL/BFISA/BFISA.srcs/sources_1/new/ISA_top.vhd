@@ -143,27 +143,26 @@ begin
     
     RAM_data_in <= key when memsrc = '1' else std_logic_vector(unsigned(RAM_data_out) + unsigned(mem_signed_one));
     
---    work_mem: entity work.ram
---    port map(
---        addr => RAM_addr,
---        clk => clk,
---        rst => rst,
---        ce => ce,
---        we => modmem,
---        data_in => RAM_data_in,
---        data_out => RAM_data_out
---    );
+    work_mem: entity work.ram
+    port map(
+        addr => RAM_addr(7 downto 0),
+        clk => clk,
+        rst => rst,
+        we => RAM_ce,
+        data_in => RAM_data_in,
+        data_out => RAM_data_out
+    );
 
     RAM_ce <= modmem and ce;
 
-    work_mem : dist_mem_gen_0
-    port map(
-        a => RAM_addr(7 downto 0),
-        clk => clk,
-        we => RAM_ce,
-        d => RAM_data_in,
-        spo => RAM_data_out
-    );
+--    work_mem : dist_mem_gen_0
+--    port map(
+--        a => RAM_addr(7 downto 0),
+--        clk => clk,
+--        we => RAM_ce,
+--        d => RAM_data_in,
+--        spo => RAM_data_out
+--    );
 
 --    bram_we(0) <= modmem;
 

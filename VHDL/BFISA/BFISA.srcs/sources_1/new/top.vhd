@@ -83,7 +83,8 @@ architecture Structural of top is
       );
     END COMPONENT;
     
-    signal dbcd_ce, dbcd_input_valid, clk_50mhz, clk_vga, clk_locked, logic_rst, out_en, fifo_empty, disp_char_we : std_logic;
+    signal dbcd_ce, dbcd_input_valid, clk_50mhz, clk_vga, clk_locked, logic_rst, out_en, fifo_empty, disp_char_we, fifo_re : std_logic;
+    signal fifo_empty_reg : std_logic := '0';
     signal char_disp_char : character;
     signal char_from_isa, char_to_disp : std_logic_vector(7 downto 0);
 
@@ -127,7 +128,7 @@ begin
     
     char_out <= char_to_disp;
     char_disp_char <= character'val(to_integer(unsigned(char_to_disp)));
-    out_enable <= out_en;
+    out_enable <= disp_char_we;
     
     iv_dbcr: entity work.debounce_pulse_gen
     port map(
@@ -147,7 +148,8 @@ begin
         pulse => dbcd_ce
     );
     
-    disp_char_we <= not fifo_empty;
+    disp_char_we <= not fifo_empty_reg;
+    fifo_re <= not fifo_empty;
     
     disp_fifo: fifo_generator_0
       PORT MAP (
@@ -156,11 +158,17 @@ begin
         rd_clk => clk_vga,
         din => char_from_isa,
         wr_en => out_en,
-        rd_en => disp_char_we,
+        rd_en => fifo_re,
         dout => char_to_disp,
         full => open,
         empty => fifo_empty
       );
+      
+    process(clk_vga) is begin
+        if rising_edge(clk_vga) then
+            fifo_empty_reg <= fifo_empty;
+        end if;
+    end process;
 
     disp: entity work.display_output
     port map(

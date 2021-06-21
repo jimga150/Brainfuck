@@ -122,12 +122,6 @@ wire clk_in2_clk_wiz_1;
   wire        clkfbstopped_unused;
   wire        clkinstopped_unused;
   wire        reset_high;
-  (* KEEP = "TRUE" *) 
-  (* ASYNC_REG = "TRUE" *)
-  reg  [7 :0] seq_reg1 = 0;
-  (* KEEP = "TRUE" *) 
-  (* ASYNC_REG = "TRUE" *)
-  reg  [7 :0] seq_reg2 = 0;
 
   MMCME2_ADV
   #(.BANDWIDTH            ("OPTIMIZED"),
@@ -205,46 +199,14 @@ wire clk_in2_clk_wiz_1;
 
 
 
-
-  BUFGCE clkout1_buf
+  BUFG clkout1_buf
    (.O   (clk_logic),
-    .CE  (seq_reg1[7]),
     .I   (clk_logic_clk_wiz_1));
 
-  BUFH clkout1_buf_en
-   (.O   (clk_logic_clk_wiz_1_en_clk),
-    .I   (clk_logic_clk_wiz_1));
-  always @(posedge clk_logic_clk_wiz_1_en_clk or posedge reset_high) begin
-    if(reset_high == 1'b1) begin
-	    seq_reg1 <= 8'h00;
-    end
-    else begin
-        seq_reg1 <= {seq_reg1[6:0],locked_int};
-  
-    end
-  end
 
-
-  BUFGCE clkout2_buf
+  BUFG clkout2_buf
    (.O   (clk_vga),
-    .CE  (seq_reg2[7]),
     .I   (clk_vga_clk_wiz_1));
- 
-  BUFH clkout2_buf_en
-   (.O   (clk_vga_clk_wiz_1_en_clk),
-    .I   (clk_vga_clk_wiz_1));
- 
-  always @(posedge clk_vga_clk_wiz_1_en_clk or posedge reset_high) begin
-    if(reset_high == 1'b1) begin
-	  seq_reg2 <= 8'h00;
-    end
-    else begin
-        seq_reg2 <= {seq_reg2[6:0],locked_int};
-  
-    end
-  end
-
-
 
 
 

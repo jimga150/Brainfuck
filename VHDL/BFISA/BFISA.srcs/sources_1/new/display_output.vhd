@@ -74,6 +74,7 @@ begin
                 text_array <= (others => nul);
                 h_reg <= '0';
                 v_reg <= '0';
+                next_char_index := 1;
             else
             
                 h_reg <= h_sync_sig;

@@ -1,5 +1,6 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  --include "../../../../BFISA.gen/sources_1/ip/clk_wiz_0" --include "../../../../BFISA.gen/sources_1/ip/vga_clk_wiz" --include "../../../../BFISA.gen/sources_1/ip/clk_wiz_1" \
+"../../../../BFISA.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v" \
 "../../../../BFISA.gen/sources_1/ip/dist_mem_gen_0/sim/dist_mem_gen_0.v" \
 "../../../../BFISA.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_clk_wiz.v" \
 "../../../../BFISA.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.v" \

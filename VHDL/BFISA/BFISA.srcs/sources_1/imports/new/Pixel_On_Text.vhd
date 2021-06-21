@@ -38,8 +38,8 @@ entity Pixel_On_Text is
 		-- top left corner of the text
 		position: in point_2d := (0, 0);
 		-- current pixel postion
-		horzCoord: in integer;
-		vertCoord: in integer;
+		horzCoord: in integer := 0;
+		vertCoord: in integer := 0;
 		
 		pixel: out std_logic := '0'
 	);
@@ -48,15 +48,15 @@ end Pixel_On_Text;
 
 architecture Behavioral of Pixel_On_Text is
 
-	signal fontAddress: integer;
+	signal fontAddress: integer range 0 to 127*FONT_HEIGHT := 0;
 	-- A row of bit in a charactor, we check if our current (x,y) is 1 in char row
 	signal charBitInRow: std_logic_vector(FONT_WIDTH-1 downto 0) := (others => '0');
 	-- char in ASCII code
-	signal charCode:integer := 0;
+	signal charCode:integer range 0 to 127 := 0;
 	-- the position(column) of a charactor in the given text
-	signal charPosition:integer := 0;
+	signal charPosition:integer range 1 to textLength := 1;
 	-- the bit position(column) in a charactor
-	signal bitPosition:integer := 0;
+	signal bitPosition:integer range 0 to FONT_WIDTH - 1 := 0;
 	
 	type int_array_type is array (1 downto 0) of integer;
 	signal horz_reg, vert_reg : int_array_type := (others => 0);

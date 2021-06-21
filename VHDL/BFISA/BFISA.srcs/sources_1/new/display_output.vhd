@@ -53,7 +53,8 @@ architecture Structural of display_output is
     
     signal rst_n, pixel_bit : std_logic;
     
-    signal text_array : string(1 to num_chars) := (others => nul);
+    constant default_char : character := '_';
+    signal text_array : string(1 to num_chars) := (others => default_char);
     
     type integer_array_type is array (num_char_rows-1 downto 0) of integer;
     signal addr_array : integer_array_type;
@@ -71,7 +72,7 @@ begin
     begin
         if rising_edge(clk) then
             if rst = '1' then
-                text_array <= (others => nul);
+                text_array <= (others => default_char);
                 h_reg <= '0';
                 v_reg <= '0';
                 next_char_index := 1;

@@ -109,7 +109,7 @@ begin
      );
 
     textElement: entity work.Pixel_On_Text_multiline
-    generic map (
+    generic map(
         num_char_rows => num_char_rows,
         num_char_cols => num_char_cols
     )

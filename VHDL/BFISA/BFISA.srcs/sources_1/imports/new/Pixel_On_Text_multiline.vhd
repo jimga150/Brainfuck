@@ -28,11 +28,10 @@ library work;
 use work.commonPak.all;
 
 entity Pixel_On_Text_multiline is
-	generic(
-	   -- needed for init displayText, the default value 11 is just a random number
-       num_char_rows : integer := 3;
-       num_char_cols : integer := 6
-	);
+    generic (
+        num_char_rows : integer := 4;
+        num_char_cols : integer := 4
+    );
 	port (
 		clk: in std_logic;
 		displayText: in string (1 to num_char_rows*num_char_cols) := (others => nul);

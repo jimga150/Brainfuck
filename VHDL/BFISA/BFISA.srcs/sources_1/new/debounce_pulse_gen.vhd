@@ -33,12 +33,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity debounce_pulse_gen is
     Port ( btn_in, clk, rst : in STD_LOGIC;
+            count : out std_logic_vector(7 downto 0);
            pulse : out STD_LOGIC);
 end debounce_pulse_gen;
 
 architecture Structural of debounce_pulse_gen is
 
-    signal rstn, dbc_result, pulse_reg : std_logic;
+    signal rstn, dbc_result : std_logic;
+    signal pulse_reg : std_logic := '0';
 
 begin
 
@@ -49,6 +51,7 @@ begin
         clk => clk,
         reset_n => rstn,
         button => btn_in,
+        count_out => count,
         result => dbc_result
     );
 

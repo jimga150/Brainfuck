@@ -39,16 +39,20 @@ end register_16b;
 
 architecture Behavioral of register_16b is
 
+    signal qsig : std_logic_vector(15 downto 0) := (others => '0');
+
 begin
 
     sync_proc: process(clk) is begin
         if rising_edge(clk) then
             if rst = '1' then
-                Q <= (others => '0');
+                qsig <= (others => '0');
             elsif ce = '1' then
-                Q <= D;
+                qsig <= D;
             end if;
         end if;
     end process sync_proc;
+    
+    Q <= qsig;
 
 end Behavioral;

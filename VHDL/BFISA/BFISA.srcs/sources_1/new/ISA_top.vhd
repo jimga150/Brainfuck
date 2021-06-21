@@ -40,12 +40,35 @@ end ISA_top;
 
 architecture Structural of ISA_top is
 
+    COMPONENT dist_mem_gen_0
+      PORT (
+        a : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        d : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        clk : IN STD_LOGIC;
+        we : IN STD_LOGIC;
+        spo : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+      );
+    END COMPONENT;
+    
+    COMPONENT blk_mem_gen_0
+      PORT (
+        clka : IN STD_LOGIC;
+        ena : IN STD_LOGIC;
+        wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        addra : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        dina : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+        douta : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+      );
+    END COMPONENT;
+
     --control signals
     signal ptrop, memop, loopback, memsrc, modptr, jump, outp, modmem, hold : std_logic;
 
-    signal PC_clock_en, PC_jump_sel, RAM_addr_switch, cell_zero, ptr_ce : std_logic;
+    signal PC_clock_en, PC_jump_sel, RAM_addr_switch, cell_zero, ptr_ce, RAM_ce : std_logic;
     signal new_PC_addr, PC_out, PC_jump_addr, ROM_out, ptr_out, ptr_next, ptr_signed_one, RAM_addr : std_logic_vector(15 downto 0);
     signal RAM_data_in, RAM_data_out, mem_signed_one : std_logic_vector(7 downto 0);
+    
+    signal bram_we : std_logic_vector(0 downto 0);
 
 begin
 
@@ -99,7 +122,7 @@ begin
         Q => ptr_out
     );
     
-    ptr_signed_one(0) <= not ptrop;
+    ptr_signed_one(0) <= '1';
     gen_ptr_signed_one: for i in 1 to 15 generate
         ptr_signed_one(i) <= ptrop;
     end generate gen_ptr_signed_one;
@@ -113,7 +136,7 @@ begin
     --so when the clock is low, you bypass the pointer register
     RAM_addr <= ptr_out when RAM_addr_switch = '1' else ptr_next;
     
-    mem_signed_one(0) <= not memop;
+    mem_signed_one(0) <= '1';
     gen_mem_signed_one: for i in 1 to 7 generate
         mem_signed_one(i) <= memop;
     end generate gen_mem_signed_one;
@@ -122,13 +145,36 @@ begin
     
     work_mem: entity work.ram
     port map(
-        addr => RAM_addr,
+        addr => RAM_addr(7 downto 0),
         clk => clk,
-        ce => ce,
-        we => modmem,
+        rst => rst,
+        we => RAM_ce,
         data_in => RAM_data_in,
         data_out => RAM_data_out
     );
+
+    RAM_ce <= modmem and ce;
+
+--    work_mem : dist_mem_gen_0
+--    port map(
+--        a => RAM_addr(7 downto 0),
+--        clk => clk,
+--        we => RAM_ce,
+--        d => RAM_data_in,
+--        spo => RAM_data_out
+--    );
+
+--    bram_we(0) <= modmem;
+
+--    work_mem : blk_mem_gen_0 
+--      PORT MAP (
+--        clka => clk,
+--        ena => ce,
+--        wea => bram_we,
+--        addra => RAM_addr(7 downto 0),
+--        dina => RAM_data_in,
+--        douta => RAM_data_out
+--      );
     
     cell_zero <= '1' when RAM_data_out = x"00" else '0';
     

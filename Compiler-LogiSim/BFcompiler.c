@@ -13,17 +13,19 @@ int main(int argc, char* argv[]){
     
 	char* prog_filename = NULL;
 	char* output_filename = NULL;
+	char coe_output = 0;
 	//int Err_code = 0;
 	
 	int rc;
 	int option_index = 0;
-	char* getoptOptions = "p:o:";
+	char* getoptOptions = "p:o:c";
 
 	struct option long_options[] = {
 		{"program", 		required_argument,  0,  'p'},
 		{"prog", 			required_argument, 	0, 	'p'},
 		{"output", 			required_argument, 	0,	'o'},
 		{"out", 			required_argument, 	0, 	'o'},
+		{"coe",				optional_argument, 	0,	'c'},
 		{0, 0, 0, 0}
 	};	
 	
@@ -37,6 +39,9 @@ int main(int argc, char* argv[]){
 				break;
 			case 'o':
 				output_filename = optarg;
+				break;
+			case 'c':
+				coe_output = 1;
 				break;
 			case '?': //already handled
 				break;
@@ -66,7 +71,12 @@ int main(int argc, char* argv[]){
 		fprintf(stderr, "File open failed on line %d!\n", __LINE__);
 		return 1;
 	}
-	fprintf(OutFile, "v2.0 raw\n");
+
+	if (coe_output){
+		fprintf(OutFile, "memory_initialization_radix=16;\nmemory_initialization_vector=");
+	} else {
+		fprintf(OutFile, "v2.0 raw\n");
+	}
 
 	char ch;
 	
@@ -199,10 +209,22 @@ int main(int argc, char* argv[]){
 			case '['://if pointer is 0, jump to command AFTER ending bracket 
 				//printf("Got a [\n");
 				com = (LUT[i] << 3) | 0x0004;
+				if (com >> 3 != LUT[i]){
+					fprintf(stderr, 
+						"Error: ROM data width not large enough "
+						"to hold jump value %x\n", LUT[i]
+					);
+				}
 				break;
 			case ']'://jump to complimentary opening bracket
 				//printf("Got a ]: metas[i]=%d\n", metas[i]);
 				com = (LUT[i] << 3) | 0x0005;
+				if (com >> 3 != LUT[i]){
+					fprintf(stderr, 
+						"Error: ROM data width not large enough "
+						"to hold jump value %x\n", LUT[i]
+					);
+				}
 				break;
 			case '.':
 				com = 0x0006; 
@@ -218,6 +240,10 @@ int main(int argc, char* argv[]){
 	}
 
 	fprintf(OutFile, "FFFFF");
+	
+	if (coe_output){
+		fprintf(OutFile, ";\n");
+	}
 
 	fclose(OutFile);
 }

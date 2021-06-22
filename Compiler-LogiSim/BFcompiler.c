@@ -14,18 +14,21 @@ int main(int argc, char* argv[]){
 	char* prog_filename = NULL;
 	char* output_filename = NULL;
 	char coe_output = 0;
-	//int Err_code = 0;
+	unsigned int bus_width = 16;
+	
+	int arg_err = 0;
 	
 	int rc;
 	int option_index = 0;
-	char* getoptOptions = "p:o:c";
+	char* getoptOptions = "p:o:b:c";
 
 	struct option long_options[] = {
 		{"program", 		required_argument,  0,  'p'},
 		{"prog", 			required_argument, 	0, 	'p'},
 		{"output", 			required_argument, 	0,	'o'},
 		{"out", 			required_argument, 	0, 	'o'},
-		{"coe",				optional_argument, 	0,	'c'},
+		{"busw",			optional_argument,	0,	'b'},
+		{"coe",				no_argument, 		0,	'c'},
 		{0, 0, 0, 0}
 	};	
 	
@@ -43,6 +46,17 @@ int main(int argc, char* argv[]){
 			case 'c':
 				coe_output = 1;
 				break;
+			case 'b':
+				bus_width = atoi(optarg);
+				if (bus_width < 8 || bus_width > 64){
+					fprintf(
+						stderr, 
+						"Bus width must be 8 or more bits, "
+						"and no more than 64 bits.\n"
+					);
+					arg_err = 1;
+				}
+				break;
 			case '?': //already handled
 				break;
 			default:
@@ -51,10 +65,22 @@ int main(int argc, char* argv[]){
 		}
 	}
 	//printf("optind = %d, argc = %d, filename = %p\n", optind, argc, (void*)prog_filename);	
-	if ((optind < argc) || prog_filename == NULL || output_filename == NULL){
+	if ((optind < argc) || prog_filename == NULL || output_filename == NULL || arg_err){
 		//print usage shit
-        fprintf(stderr,
-                "Usage: ./%s -p[rog[ram]] <Program File> -o[ut[put]] <Output>\n", __FILE__);
+        	fprintf(
+			stderr,
+                	"Usage: ./%s -p[rog[ram]] <Program File> "
+				"-o[ut[put]] <Output> [options]\n", 
+			__FILE__
+		);
+
+		fprintf(stderr, "Options:\n");
+		fprintf(
+			stderr, 
+			"\t-c\texport in COE format (Verilog memory init file). "
+			"Default is logisim v2 raw image.\n");
+		fprintf(stderr, "\t-b[usw] <n>\tmake ROM with instruction width n.\n");
+		
 		fflush(stderr);
 		return 1;
 	}
@@ -190,7 +216,10 @@ int main(int argc, char* argv[]){
 	//printf("printing metas:\n");
 	//printIntArray(stdout, metas, char_count, "%x ");
 	
-	uint16_t com = 0x0000;
+	char format_str[16];
+	sprintf(format_str, "%%0%uX ", (bus_width-1)/4 + 1);
+
+	uint64_t com = 0;
 	for(int i=0; i<char_count; i++){
 		//printf("Loop: i=%d\n", i);
 		switch (prog[i]){
@@ -211,8 +240,8 @@ int main(int argc, char* argv[]){
 				com = (LUT[i] << 3) | 0x0004;
 				if (com >> 3 != LUT[i]){
 					fprintf(stderr, 
-						"Error: ROM data width not large enough "
-						"to hold jump value %x\n", LUT[i]
+						"Error: ROM data width (%d) not large enough "
+						"to hold jump value %x\n", bus_width, LUT[i]
 					);
 				}
 				break;
@@ -221,8 +250,8 @@ int main(int argc, char* argv[]){
 				com = (LUT[i] << 3) | 0x0005;
 				if (com >> 3 != LUT[i]){
 					fprintf(stderr, 
-						"Error: ROM data width not large enough "
-						"to hold jump value %x\n", LUT[i]
+						"Error: ROM data width (%d) not large enough "
+						"to hold jump value %x\n", bus_width, LUT[i]
 					);
 				}
 				break;
@@ -236,10 +265,16 @@ int main(int argc, char* argv[]){
 				//ignore any other input
 				break;
 		}
-		fprintf(OutFile, "%04X ", com);
+		fprintf(OutFile, format_str, com);
 	}
 
-	fprintf(OutFile, "FFFFF");
+	//generate an all-1s command
+	com = 0;
+	for (int i = 0; i < bus_width; ++i){
+		com |= 1 << i;
+	}
+
+	fprintf(OutFile, format_str, com);
 	
 	if (coe_output){
 		fprintf(OutFile, ";\n");

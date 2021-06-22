@@ -61,13 +61,24 @@ architecture Structural of ISA_top is
       );
     END COMPONENT;
     
+    COMPONENT dist_mem_rom
+      PORT (
+        a : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
+        spo : OUT STD_LOGIC_VECTOR(16 DOWNTO 0)
+      );
+    END COMPONENT;
+    
     constant RAM_bits : integer := 10;
+    constant ROM_bus_width : integer := 17;
+    constant jump_addr_width : integer := ROM_bus_width - 3;
+    constant jump_zero_padding : std_logic_vector(16-jump_addr_width-1 downto 0) := (others => '0');
 
     --control signals
     signal ptrop, memop, loopback, memsrc, modptr, jump, outp, modmem, hold : std_logic;
 
     signal PC_clock_en, PC_jump_sel, RAM_addr_switch, cell_zero, ptr_ce, RAM_ce : std_logic;
-    signal new_PC_addr, PC_out, PC_jump_addr, ROM_out, ptr_out, ptr_next, ptr_signed_one, RAM_addr : std_logic_vector(15 downto 0);
+    signal new_PC_addr, PC_out, PC_jump_addr, ptr_out, ptr_next, ptr_signed_one, RAM_addr : std_logic_vector(15 downto 0);
+    signal ROM_out : std_logic_vector(ROM_bus_width-1 downto 0);
     signal RAM_data_in, RAM_data_out, mem_signed_one : std_logic_vector(7 downto 0);
     
     signal bram_we : std_logic_vector(0 downto 0);
@@ -101,17 +112,23 @@ begin
         Q => PC_out
     );
     
-    PC_jump_addr <= "000" & ROM_out(15 downto 3);
+    PC_jump_addr <= jump_zero_padding & ROM_out(ROM_bus_width-1 downto 3);
     
     PC_jump_sel <= jump and (loopback xor cell_zero);
     
     new_PC_addr <= PC_jump_addr when PC_jump_sel = '1' else std_logic_vector(unsigned(PC_out) + to_unsigned(1, 16));
     
-    prog_mem: entity work.rom
-    port map(
-        addr => PC_out,
-        data_out => ROM_out
-    );
+--    prog_mem: entity work.rom
+--    port map(
+--        addr => PC_out,
+--        data_out => ROM_out
+--    );
+
+    prog_mem : dist_mem_rom
+      port map (
+        a => PC_out(13 downto 0),
+        spo => ROM_out
+      );
     
     ptr_ce <= ce and modptr;
     

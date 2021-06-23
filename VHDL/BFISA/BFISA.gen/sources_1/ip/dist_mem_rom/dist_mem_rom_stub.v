@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-// Date        : Tue Jun 22 01:23:10 2021
+// Date        : Tue Jun 22 01:23:09 2021
 // Host        : DESKTOP-F1LS71S running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               c:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.gen/sources_1/ip/dist_mem_rom/dist_mem_rom_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top dist_mem_rom -prefix
+//               dist_mem_rom_ dist_mem_rom_stub.v
 // Design      : dist_mem_rom
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

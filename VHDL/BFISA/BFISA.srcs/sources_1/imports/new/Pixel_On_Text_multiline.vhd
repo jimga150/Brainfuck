@@ -69,14 +69,16 @@ architecture Behavioral of Pixel_On_Text_multiline is
 	
 begin
     -- (horz_reg - position.x): x positionin the top left of the whole text
-    bitPosition <= (horz_reg(0) - position.x) mod FONT_WIDTH;
+    -- moved to clk process
+--    bitPosition <= (horz_reg(0) - position.x) mod FONT_WIDTH;
     
     -- zero indexed
     charCol <= (horzCoord - position.x)/FONT_WIDTH;
     charRow <= (vertCoord - position.y)/FONT_HEIGHT;
     
     -- one-indexed
-    charPosition <= charRow*num_char_cols + charCol + 1;
+    -- moved to clk process
+--    charPosition <= charRow*num_char_cols + charCol + 1;
     
     charCode <= character'pos(displayText(charPosition));
     
@@ -103,6 +105,9 @@ begin
             
             vert_reg(1) <= vertCoord;
             vert_reg(0) <= vert_reg(1);
+            
+            charPosition <= charRow*num_char_cols + charCol + 1;
+            bitPosition <= (horz_reg(0) - position.x) mod FONT_WIDTH;
             
             -- reset
             inXRange := false;

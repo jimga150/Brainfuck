@@ -37,61 +37,109 @@ entity display_output is
     Port (
         clk, rst, we : in STD_LOGIC;
         char_in : character;
-        h_sync, v_sync : out std_logic;
+        h_sync_out, v_sync_out : out std_logic;
         pixel : out std_logic_vector(11 downto 0)
     );
 end display_output;
 
 architecture Structural of display_output is
 
-    constant num_char_rows : integer := 3;
+    constant num_char_rows : integer := 44;
     constant num_char_cols : integer := 158;
     constant num_chars : integer := num_char_rows*num_char_cols;
     
-    signal row_int, col_int : integer;
-    signal row_vect, col_vect : std_logic_vector(11 downto 0);
+    signal vga_row_sig, vga_col_sig : integer;
     
     signal rst_n, pixel_bit : std_logic;
     
     constant default_char : character := '_';
-    signal text_array : string(1 to num_chars) := (others => default_char);
     
-    type integer_array_type is array (num_char_rows-1 downto 0) of integer;
-    signal addr_array : integer_array_type;
+    type text_rows_type is array(1 to num_char_rows) of string(1 to num_char_cols);
+    signal text_rows : text_rows_type := (others => (others => default_char));
     
-    type font_row_array_type is array (num_char_rows-1 downto 0) of std_logic_vector(7 downto 0);
-    signal font_row_array : font_row_array_type;
+    type col_num_stage_type is array(num_char_rows downto 1) of integer range 1 to num_char_cols;
+    signal col_num_stage : col_num_stage_type := (others => 1);
+    signal text_row_stage : string(1 to num_char_rows) := (others => 'X');
+    signal rows_pending_write : std_logic_vector(num_char_rows downto 1) := (others => '0');
     
-    signal h_reg, v_reg : std_logic := '0';
+    signal next_char_row : integer range 1 to num_char_rows := 1;
+    signal next_char_col : integer range 1 to num_char_cols := 1;
+    
+    signal text_array : string(1 to num_chars);
+    
+    signal h_reg, v_reg : std_logic_vector(1 downto 0) := (others => '0');
     signal h_sync_sig, v_sync_sig : std_logic;
+    
+    signal vga_row_reg, vga_col_reg : integer := 0;
 
 begin
 
-    sync_proc: process(clk) is
-        variable next_char_index : integer range 1 to num_chars := 1;
-    begin
+    sync_proc: process(clk) is begin
         if rising_edge(clk) then
             if rst = '1' then
-                text_array <= (others => default_char);
-                h_reg <= '0';
-                v_reg <= '0';
-                next_char_index := 1;
+                h_reg <= (others => '0');
+                v_reg <= (others => '0');
+                text_rows <= (others => (others => default_char));
+                col_num_stage <= (others => 1);
+                text_row_stage <= (others => 'X');
+                rows_pending_write <= (others => '0');
+                next_char_row <= 1;
+                next_char_col <= 1;
+                vga_row_reg <= 0;
+                vga_col_reg <= 0;
             else
             
-                h_reg <= h_sync_sig;
-                v_reg <= v_sync_sig;
-            
+                h_reg(1) <= h_sync_sig;
+                h_reg(0) <= h_reg(1);
+                
+                v_reg(1) <= v_sync_sig;
+                v_reg(0) <= v_reg(1);
+                
+                vga_row_reg <= vga_row_sig;
+                vga_col_reg <= vga_col_sig;
+                
+                for r in 1 to num_char_rows loop
+                    if rows_pending_write(r) = '1' then
+                    
+                    text_rows(r)(col_num_stage(r)) <= text_row_stage(r);
+                    
+                    rows_pending_write(r) <= '0';
+                    
+                    end if;
+                end loop;
+                
                 if we = '1' then
-                    text_array(next_char_index) <= char_in;
-                    next_char_index := next_char_index + 1;
+                
+                    text_row_stage(next_char_row) <= char_in;
+                    col_num_stage(next_char_row) <= next_char_col;
+                    
+                    rows_pending_write(next_char_row) <= '1';
+                    
+                    if next_char_col = num_char_cols then
+                        
+                        if next_char_row = num_char_rows then
+                            next_char_row <= 1;
+                        else 
+                            next_char_row <= next_char_row + 1;
+                        end if;
+                        
+                        next_char_col <= 1;
+                    else
+                        next_char_col <= next_char_col + 1;
+                    end if;
+                    
                 end if;
                 
             end if;
         end if;
     end process sync_proc;
     
-    h_sync <= h_reg;
-    v_sync <= v_reg;
+    gen_text_array_rows: for r in 1 to num_char_rows generate
+        text_array((r-1)*num_char_cols + 1 to r*num_char_cols) <= text_rows(r);
+    end generate gen_text_array_rows;
+    
+    h_sync_out <= h_reg(0);
+    v_sync_out <= v_reg(0);
 
     rst_n <= not rst;
     
@@ -102,8 +150,8 @@ begin
         h_sync => h_sync_sig,
         v_sync => v_sync_sig,
         disp_ena => open,
-        row => row_int,
-        column => col_int,
+        row => vga_row_sig,
+        column => vga_col_sig,
         n_blank => open,
         n_sync => open
      );
@@ -117,8 +165,8 @@ begin
         clk => clk,
         displayText => text_array,
         position => (10, 10),
-        horzCoord => col_int,
-        vertCoord => row_int,
+        horzCoord => vga_col_reg,
+        vertCoord => vga_row_reg,
         pixel => pixel_bit 
     );
 
@@ -130,8 +178,8 @@ begin
 --        clk => clk,
 --        displayText => text_array,
 --        position => (10, 10),
---        horzCoord => col_int,
---        vertCoord => row_int,
+--        horzCoord => vga_col_reg,
+--        vertCoord => vga_row_reg,
 --        pixel => pixel_bit 
 --    );
     

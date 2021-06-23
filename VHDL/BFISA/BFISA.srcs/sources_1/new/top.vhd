@@ -176,8 +176,8 @@ begin
         rst => logic_rst,
         we => disp_char_we,
         char_in => char_disp_char,
-        h_sync => h_sync,
-        v_sync => v_sync,
+        h_sync_out => h_sync,
+        v_sync_out => v_sync,
         pixel => pixel
     );
 

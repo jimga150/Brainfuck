@@ -120,7 +120,7 @@ begin
         clk => clk_50mhz,
         rst => logic_rst, 
         input_valid => dbcd_input_valid,
-        ce => ce,
+        ce => dbcd_ce,
         key => key,
         out_enable => out_en,
         char_out => char_from_isa
@@ -136,7 +136,8 @@ begin
         rst => logic_rst,
         btn_in => input_valid,
         count => open,
-        pulse => dbcd_input_valid
+        pulse => dbcd_input_valid,
+        dbcd_btn => open
     );
     
     ce_dbcr: entity work.debounce_pulse_gen
@@ -145,7 +146,8 @@ begin
         rst => logic_rst,
         btn_in => ce,
         count => open,
-        pulse => dbcd_ce
+        pulse => open,
+        dbcd_btn => dbcd_ce
     );
     
     disp_char_we <= not fifo_empty_reg;

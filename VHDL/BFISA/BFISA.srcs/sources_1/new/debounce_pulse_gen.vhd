@@ -34,7 +34,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity debounce_pulse_gen is
     Port ( btn_in, clk, rst : in STD_LOGIC;
             count : out std_logic_vector(7 downto 0);
-           pulse : out STD_LOGIC);
+           dbcd_btn, pulse : out STD_LOGIC);
 end debounce_pulse_gen;
 
 architecture Structural of debounce_pulse_gen is
@@ -45,6 +45,8 @@ architecture Structural of debounce_pulse_gen is
 begin
 
     rstn <= not rst;
+    
+    dbcd_btn <= dbc_result;
 
     dbcr: entity work.debounce
     port map(

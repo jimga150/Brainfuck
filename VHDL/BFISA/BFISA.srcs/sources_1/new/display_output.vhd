@@ -44,7 +44,7 @@ end display_output;
 
 architecture Structural of display_output is
 
-    constant num_char_rows : integer := 44;
+    constant num_char_rows : integer := 49;
     constant num_char_cols : integer := 158;
     constant num_chars : integer := num_char_rows*num_char_cols;
     
@@ -52,7 +52,7 @@ architecture Structural of display_output is
     
     signal rst_n, pixel_bit : std_logic;
     
-    constant default_char : character := '_';
+    constant default_char : character := ' ';
     
     type text_rows_type is array(1 to num_char_rows) of string(1 to num_char_cols);
     signal text_rows : text_rows_type := (others => (others => default_char));
@@ -62,8 +62,8 @@ architecture Structural of display_output is
     signal text_row_stage : string(1 to num_char_rows) := (others => 'X');
     signal rows_pending_write : std_logic_vector(num_char_rows downto 1) := (others => '0');
     
-    signal next_char_row : integer range 1 to num_char_rows := 1;
-    signal next_char_col : integer range 1 to num_char_cols := 1;
+    signal curr_char_row : integer range 1 to num_char_rows := 1;
+    signal curr_char_col, last_char_col : integer range 1 to num_char_cols := 1;
     
     signal text_array : string(1 to num_chars);
     
@@ -71,8 +71,10 @@ architecture Structural of display_output is
     signal h_sync_sig, v_sync_sig : std_logic;
     
     signal vga_row_reg, vga_col_reg : integer := 0;
-
+    
 begin
+
+    last_char_col <= num_char_cols when curr_char_col = 1 else curr_char_col - 1;
 
     sync_proc: process(clk) is begin
         if rising_edge(clk) then
@@ -83,8 +85,8 @@ begin
                 col_num_stage <= (others => 1);
                 text_row_stage <= (others => 'X');
                 rows_pending_write <= (others => '0');
-                next_char_row <= 1;
-                next_char_col <= 1;
+                curr_char_row <= 1;
+                curr_char_col <= 1;
                 vga_row_reg <= 0;
                 vga_col_reg <= 0;
             else
@@ -109,23 +111,64 @@ begin
                 end loop;
                 
                 if we = '1' then
-                
-                    text_row_stage(next_char_row) <= char_in;
-                    col_num_stage(next_char_row) <= next_char_col;
                     
-                    rows_pending_write(next_char_row) <= '1';
-                    
-                    if next_char_col = num_char_cols then
+                    --control flow
+                    if char_in = cr or char_in = lf then
                         
-                        if next_char_row = num_char_rows then
-                            next_char_row <= 1;
+                        --increment row
+                        if curr_char_row = num_char_rows then
+                            curr_char_row <= 1;
                         else 
-                            next_char_row <= next_char_row + 1;
+                            curr_char_row <= curr_char_row + 1;
                         end if;
                         
-                        next_char_col <= 1;
+                        --reset column
+                        curr_char_col <= 1;
+                        
+                    elsif char_in = del then
+                        
+                         --'delete' the last character
+                        text_row_stage(curr_char_row) <= nul;
+                        col_num_stage(curr_char_row) <= last_char_col;
+                        
+                        rows_pending_write(last_char_col) <= '1';
+                        
+                        --decrement columnn
+                        if curr_char_col = 1 then
+                            
+                            --decrement row
+                            if curr_char_row = 1 then
+                                curr_char_row <= num_char_rows;
+                            else 
+                                curr_char_row <= curr_char_row - 1;
+                            end if;
+                            
+                            curr_char_col <= num_char_cols;
+                        else
+                            curr_char_col <= last_char_col;
+                        end if;
+                        
                     else
-                        next_char_col <= next_char_col + 1;
+                        --proceed as normal
+                        text_row_stage(curr_char_row) <= char_in;
+                        col_num_stage(curr_char_row) <= curr_char_col;
+                        
+                        rows_pending_write(curr_char_row) <= '1';
+                        
+                        --increment columnn
+                        if curr_char_col = num_char_cols then
+                            
+                            --increment row
+                            if curr_char_row = num_char_rows then
+                                curr_char_row <= 1;
+                            else 
+                                curr_char_row <= curr_char_row + 1;
+                            end if;
+                            
+                            curr_char_col <= 1;
+                        else
+                            curr_char_col <= curr_char_col + 1;
+                        end if;
                     end if;
                     
                 end if;

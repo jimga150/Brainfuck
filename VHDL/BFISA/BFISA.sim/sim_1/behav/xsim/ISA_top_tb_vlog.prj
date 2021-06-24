@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../BFISA.gen/sources_1/ip/clk_wiz_0" --include "../../../../BFISA.gen/sources_1/ip/vga_clk_wiz" --include "../../../../BFISA.gen/sources_1/ip/clk_wiz_1" \
+"../../../../BFISA.gen/sources_1/ip/dist_mem_rom/sim/dist_mem_rom.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

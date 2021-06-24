@@ -43,18 +43,6 @@ entity top is
 end top;
 
 architecture Structural of top is
-
-    component clk_wiz_0
-    port
-     (-- Clock in ports
-      -- Clock out ports
-      clk_out1          : out    std_logic;
-      -- Status and control signals
-      reset             : in     std_logic;
-      locked            : out    std_logic;
-      clk_in1           : in     std_logic
-     );
-    end component;
     
     component clk_wiz_1
     port
@@ -83,23 +71,12 @@ architecture Structural of top is
       );
     END COMPONENT;
     
-    signal dbcd_ce, dbcd_input_valid, clk_50mhz, clk_vga, clk_locked, logic_rst, out_en, fifo_empty, disp_char_we, fifo_re : std_logic;
+    signal dbcd_ce, dbcd_input_valid, clk_50mhz, clk_vga, clk_locked, logic_rst, out_en, fifo_empty, disp_char_we, fifo_re, fifo_we : std_logic;
     signal fifo_empty_reg : std_logic := '0';
     signal char_disp_char : character;
     signal char_from_isa, char_to_disp : std_logic_vector(7 downto 0);
 
 begin
-
---    clk_divider : clk_wiz_0
---       port map ( 
---      -- Clock out ports  
---       clk_out1 => clk_50mhz, --50MHz
---      -- Status and control signals                
---       reset => rst,
---       locked => clk_locked,
---       -- Clock in ports
---       clk_in1 => clk --100MHz
---     );
 
     clk_divider : clk_wiz_1
        port map ( 
@@ -127,7 +104,9 @@ begin
     );
     
     char_out <= char_to_disp;
+    
     char_disp_char <= character'val(to_integer(unsigned(char_to_disp)));
+
     out_enable <= disp_char_we;
     
     iv_dbcr: entity work.debounce_pulse_gen
@@ -152,6 +131,7 @@ begin
     
     disp_char_we <= not fifo_empty_reg;
     fifo_re <= not fifo_empty;
+    fifo_we <= dbcd_ce and out_en;
     
     disp_fifo: fifo_generator_0
       PORT MAP (
@@ -159,7 +139,7 @@ begin
         wr_clk => clk_50mhz,
         rd_clk => clk_vga,
         din => char_from_isa,
-        wr_en => out_en,
+        wr_en => fifo_we,
         rd_en => fifo_re,
         dout => char_to_disp,
         full => open,

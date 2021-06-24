@@ -44,6 +44,9 @@ architecture Behavioral of ram is
    type memory_array_type is array ((2**addr_bits)-1 downto 0) of std_logic_vector(7 downto 0);
    signal memory_array : memory_array_type := (others => (others => '0'));
    
+   attribute dont_touch : string;
+   attribute dont_touch of memory_array : signal is "true";
+   
 
 begin
 

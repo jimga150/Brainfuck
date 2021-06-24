@@ -1,1 +1,1 @@
--wto "57b9abab7a3b4c8abedc991da5a92385" --incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" -L "xpm" --snapshot "ISA_top_tb_behav" "xil_defaultlib.ISA_top_tb" -log "elaborate.log" 
+-wto "57b9abab7a3b4c8abedc991da5a92385" --incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "dist_mem_gen_v8_0_13" -L "unisims_ver" -L "unimacro_ver" -L "secureip" -L "xpm" --snapshot "ISA_top_tb_behav" "xil_defaultlib.ISA_top_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

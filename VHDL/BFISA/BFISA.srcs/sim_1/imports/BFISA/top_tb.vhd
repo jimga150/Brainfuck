@@ -94,6 +94,7 @@ begin
         
         wait for 5 us;
         ce <= '1';
+        wait for button_hold_time;
         wait for clk_logic_period*1000;
 		
 		assert false report "End Simulation" severity failure;

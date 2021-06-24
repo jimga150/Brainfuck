@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-// Date        : Tue Jun 22 01:23:09 2021
+// Date        : Tue Jun 22 00:46:20 2021
 // Host        : DESKTOP-F1LS71S running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub -rename_top dist_mem_rom -prefix
 //               dist_mem_rom_ dist_mem_rom_stub.v

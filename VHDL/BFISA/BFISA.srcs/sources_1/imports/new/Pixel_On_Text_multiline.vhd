@@ -64,7 +64,7 @@ architecture Behavioral of Pixel_On_Text_multiline is
 	-- the bit position(column) in a charactor
 	signal bitPosition:integer range 0 to FONT_WIDTH - 1 := 0;
 	
-	type int_array_type is array (1 downto 0) of integer;
+	type int_array_type is array (3 downto 0) of integer;
 	signal horz_reg, vert_reg : int_array_type := (others => 0);
 	
 begin
@@ -80,10 +80,10 @@ begin
     -- moved to clk process
 --    charPosition <= charRow*num_char_cols + charCol + 1;
     
-    charCode <= character'pos(displayText(charPosition));
+--    charCode <= character'pos(displayText(charPosition));
     
     -- charCode*16: first row of the char
-    fontAddress <= charCode*FONT_HEIGHT+((vertCoord - position.y) mod FONT_HEIGHT);
+--    fontAddress <= charCode*FONT_HEIGHT+((vertCoord - position.y) mod FONT_HEIGHT);
 
 
 	fontRom: entity work.Font_Rom
@@ -99,15 +99,23 @@ begin
 	begin
         if rising_edge(clk) then
         
-            -- add 2 cycle of delay to row/column numbernig to match font rom delay
-            horz_reg(1) <= horzCoord;
-            horz_reg(0) <= horz_reg(1);
+            -- add n cycle of delay to row/column numbernig to match font rom delay
+            horz_reg(3) <= horzCoord;
+            vert_reg(3) <= vertCoord;
+            for i in 2 downto 0 loop
+                horz_reg(i) <= horz_reg(i+1);
+                vert_reg(i) <= vert_reg(i+1);
+            end loop;
             
-            vert_reg(1) <= vertCoord;
-            vert_reg(0) <= vert_reg(1);
+            bitPosition <= (horz_reg(0) - position.x) mod FONT_WIDTH;
+            
             
             charPosition <= charRow*num_char_cols + charCol + 1;
-            bitPosition <= (horz_reg(0) - position.x) mod FONT_WIDTH;
+            
+            charCode <= character'pos(displayText(charPosition));
+
+            fontAddress <= charCode*FONT_HEIGHT+((vertCoord - position.y) mod FONT_HEIGHT);
+            
             
             -- reset
             inXRange := false;

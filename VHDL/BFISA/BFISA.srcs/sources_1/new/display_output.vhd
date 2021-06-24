@@ -44,8 +44,10 @@ end display_output;
 
 architecture Structural of display_output is
 
-    constant num_char_rows : integer := 49;
+    constant num_char_rows : integer := 48;
     constant num_char_cols : integer := 158;
+--    constant num_char_rows : integer := 5;
+--    constant num_char_cols : integer := 5;
     constant num_chars : integer := num_char_rows*num_char_cols;
     
     signal vga_row_sig, vga_col_sig : integer;

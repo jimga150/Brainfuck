@@ -63,18 +63,25 @@ begin
 	clk <= not clk after clk_period/2;
 	
 	stim_proc: process is begin
+	
+	   for i in 0 to 3 loop
+	   
+	        rst <= '1';
+	        ce <= '0';
 		
-		wait for clk_period;
-		
-		rst <= '0';
-		
-		wait for clk_period;
-		
-		--Insert stimuli here
-		ce <= '1';
-		
-		-- hello world 2: 969 cycles
-		wait for clk_period*1000;
+            wait for clk_period;
+            
+            rst <= '0';
+            
+            wait for clk_period;
+            
+            --Insert stimuli here
+            ce <= '1';
+            
+            -- hello world 2: 969 cycles
+            wait for clk_period*1000;
+            
+        end loop;
 		
 		assert false report "End Simulation" severity failure;
 		

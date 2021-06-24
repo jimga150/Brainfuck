@@ -71,10 +71,11 @@ architecture Structural of ISA_top is
     
     COMPONENT blk_mem_rom
       PORT (
-        clka : IN STD_LOGIC;
+        clka, rsta : IN STD_LOGIC;
         ena : IN STD_LOGIC;
         addra : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-        douta : OUT STD_LOGIC_VECTOR(16 DOWNTO 0)
+        douta : OUT STD_LOGIC_VECTOR(16 DOWNTO 0);
+        rsta_busy : OUT STD_LOGIC
       );
     END COMPONENT;
     
@@ -84,6 +85,7 @@ architecture Structural of ISA_top is
 
     --control signals
     signal ptrop, memop, loopback, memsrc, modptr, jump, outp, modmem, hold : std_logic;
+    signal rom_rst_busy : std_logic;
 
     signal PC_clock_en, PC_jump_sel, RAM_addr_switch, cell_zero, ptr_ce, RAM_ce : std_logic;
     signal new_PC_addr, PC_out, PC_jump_addr, ptr_out, ptr_in, ptr_signed_one, RAM_addr : std_logic_vector(15 downto 0);
@@ -113,8 +115,10 @@ begin
         hold => hold
     );
     
-    
-    PC_clock_en <= ce and (input_valid or (not hold));
+    -- only when CE is on, and either:
+    --      input is valid, or
+    --      the HOLD signal is low and the ROM is not busy resetting (usual operation)
+    PC_clock_en <= ce and (input_valid or (not (hold or rom_rst_busy)));
 
     PC: entity work.register_16b
     port map(
@@ -146,12 +150,14 @@ begin
     prog_mem : blk_mem_rom
       PORT MAP (
         clka => clk,
+        rsta => rst, --this only resets the input register, not the ROM configuration.
         ena => PC_clock_en,
         addra => new_PC_addr,
-        douta => ROM_out
+        douta => ROM_out,
+        rsta_busy => rom_rst_busy
       );
     
-    ptr_ce <= ce and modptr;
+    ptr_ce <= (not rom_rst_busy) and ce and modptr;
     
     Pointer: entity work.register_16b
     port map(
@@ -163,7 +169,7 @@ begin
     );
     
     pointer_is_new_val <= '1' when RAM_addr = next_ptr_q else '0';
-    next_ptr_ce <= ce and pointer_is_new_val;
+    next_ptr_ce <= (not rom_rst_busy) and ce and pointer_is_new_val;
     next_ptr_d <= std_logic_vector(unsigned(next_ptr_q) + 1);
     
     Next_Ptr: entity work.register_16b
@@ -201,7 +207,7 @@ begin
         key when "01",
         (others => '0') when others;
     
-    RAM_ce <= (modmem or pointer_is_new_val) and ce;
+    RAM_ce <= (not rom_rst_busy) and (modmem or pointer_is_new_val) and ce;
     
 --    work_mem: entity work.ram
 --    generic map(addr_bits => RAM_bits)

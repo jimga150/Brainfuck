@@ -6,191 +6,273 @@
       <db_ref path="ISA_top_tb_behav.wdb" id="1">
          <top_modules>
             <top_module name="ISA_top_tb" />
+            <top_module name="glbl" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="6567609fs"></ZoomStartTime>
-      <ZoomEndTime time="10275610fs"></ZoomEndTime>
-      <Cursor1Time time="9685000fs"></Cursor1Time>
+      <ZoomStartTime time="6923819fs"></ZoomStartTime>
+      <ZoomEndTime time="7297020fs"></ZoomEndTime>
+      <Cursor1Time time="27600fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="108"></ValueColumnWidth>
+      <ValueColumnWidth column_width="96"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="33" />
-   <wvobject fp_name="/ISA_top_tb/clk" type="logic">
+   <WVObjectSize size="37" />
+   <wvobject fp_name="/ISA_top_tb/UUT/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/rst" type="logic">
+   <wvobject fp_name="/ISA_top_tb/UUT/rst" type="logic">
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/input_valid" type="logic">
+   <wvobject fp_name="/ISA_top_tb/UUT/input_valid" type="logic">
       <obj_property name="ElementShortName">input_valid</obj_property>
       <obj_property name="ObjectShortName">input_valid</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/ce" type="logic">
+   <wvobject fp_name="/ISA_top_tb/UUT/ce" type="logic">
       <obj_property name="ElementShortName">ce</obj_property>
       <obj_property name="ObjectShortName">ce</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/key" type="array">
+   <wvobject fp_name="/ISA_top_tb/UUT/key" type="array">
       <obj_property name="ElementShortName">key[7:0]</obj_property>
       <obj_property name="ObjectShortName">key[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/PC/qsig" type="array">
+   <wvobject fp_name="group469" type="group">
+      <obj_property name="label">Control Signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">qsig[15:0]</obj_property>
-      <obj_property name="ObjectShortName">qsig[15:0]</obj_property>
-      <obj_property name="label">PC</obj_property>
+      <wvobject fp_name="/ISA_top_tb/UUT/ptrop" type="logic">
+         <obj_property name="ElementShortName">ptrop</obj_property>
+         <obj_property name="ObjectShortName">ptrop</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/memop" type="logic">
+         <obj_property name="ElementShortName">memop</obj_property>
+         <obj_property name="ObjectShortName">memop</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/loopback" type="logic">
+         <obj_property name="ElementShortName">loopback</obj_property>
+         <obj_property name="ObjectShortName">loopback</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/memsrc" type="logic">
+         <obj_property name="ElementShortName">memsrc</obj_property>
+         <obj_property name="ObjectShortName">memsrc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/modptr" type="logic">
+         <obj_property name="ElementShortName">modptr</obj_property>
+         <obj_property name="ObjectShortName">modptr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/jump" type="logic">
+         <obj_property name="ElementShortName">jump</obj_property>
+         <obj_property name="ObjectShortName">jump</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/outp" type="logic">
+         <obj_property name="ElementShortName">outp</obj_property>
+         <obj_property name="ObjectShortName">outp</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/modmem" type="logic">
+         <obj_property name="ElementShortName">modmem</obj_property>
+         <obj_property name="ObjectShortName">modmem</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/hold" type="logic">
+         <obj_property name="ElementShortName">hold</obj_property>
+         <obj_property name="ObjectShortName">hold</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/opcode" type="array">
-      <obj_property name="ElementShortName">opcode[2:0]</obj_property>
-      <obj_property name="ObjectShortName">opcode[2:0]</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/rom_rst_busy" type="logic">
+      <obj_property name="ElementShortName">rom_rst_busy</obj_property>
+      <obj_property name="ObjectShortName">rom_rst_busy</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/ptrop" type="logic">
-      <obj_property name="ElementShortName">ptrop</obj_property>
-      <obj_property name="ObjectShortName">ptrop</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/PC_clock_en" type="logic">
+      <obj_property name="ElementShortName">PC_clock_en</obj_property>
+      <obj_property name="ObjectShortName">PC_clock_en</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/memop" type="logic">
-      <obj_property name="ElementShortName">memop</obj_property>
-      <obj_property name="ObjectShortName">memop</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/PC_jump_sel" type="logic">
+      <obj_property name="ElementShortName">PC_jump_sel</obj_property>
+      <obj_property name="ObjectShortName">PC_jump_sel</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/loopback" type="logic">
-      <obj_property name="ElementShortName">loopback</obj_property>
-      <obj_property name="ObjectShortName">loopback</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/RAM_addr_switch" type="logic">
+      <obj_property name="ElementShortName">RAM_addr_switch</obj_property>
+      <obj_property name="ObjectShortName">RAM_addr_switch</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/memsrc" type="logic">
-      <obj_property name="ElementShortName">memsrc</obj_property>
-      <obj_property name="ObjectShortName">memsrc</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/cell_zero" type="logic">
+      <obj_property name="ElementShortName">cell_zero</obj_property>
+      <obj_property name="ObjectShortName">cell_zero</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/modptr" type="logic">
-      <obj_property name="ElementShortName">modptr</obj_property>
-      <obj_property name="ObjectShortName">modptr</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/ptr_ce" type="logic">
+      <obj_property name="ElementShortName">ptr_ce</obj_property>
+      <obj_property name="ObjectShortName">ptr_ce</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/jump" type="logic">
-      <obj_property name="ElementShortName">jump</obj_property>
-      <obj_property name="ObjectShortName">jump</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/RAM_ce" type="logic">
+      <obj_property name="ElementShortName">RAM_ce</obj_property>
+      <obj_property name="ObjectShortName">RAM_ce</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/outp" type="logic">
-      <obj_property name="ElementShortName">outp</obj_property>
-      <obj_property name="ObjectShortName">outp</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/new_PC_addr" type="array">
+      <obj_property name="ElementShortName">new_PC_addr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">new_PC_addr[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/modmem" type="logic">
-      <obj_property name="ElementShortName">modmem</obj_property>
-      <obj_property name="ObjectShortName">modmem</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/PC_out" type="array">
+      <obj_property name="ElementShortName">PC_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_out[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/d_code/hold" type="logic">
-      <obj_property name="ElementShortName">hold</obj_property>
-      <obj_property name="ObjectShortName">hold</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/PC_jump_addr" type="array">
+      <obj_property name="ElementShortName">PC_jump_addr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">PC_jump_addr[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/ptr_out" type="array">
+      <obj_property name="ElementShortName">ptr_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ptr_out[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/ptr_in" type="array">
+      <obj_property name="ElementShortName">ptr_in[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ptr_in[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/ISA_top_tb/UUT/ptr_signed_one" type="array">
       <obj_property name="ElementShortName">ptr_signed_one[15:0]</obj_property>
       <obj_property name="ObjectShortName">ptr_signed_one[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/ptr_next" type="array">
-      <obj_property name="ElementShortName">ptr_next[15:0]</obj_property>
-      <obj_property name="ObjectShortName">ptr_next[15:0]</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/RAM_addr" type="array">
+      <obj_property name="ElementShortName">RAM_addr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">RAM_addr[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/Pointer/qsig" type="array">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">qsig[15:0]</obj_property>
-      <obj_property name="ObjectShortName">qsig[15:0]</obj_property>
-      <obj_property name="label">Ptr</obj_property>
-   </wvobject>
-   <wvobject fp_name="group27" type="group">
-      <obj_property name="label">RAM</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_mem_contents[8]" type="array">
-         <obj_property name="ElementShortName">[8][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[8][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_mem_contents[7]" type="array">
-         <obj_property name="ElementShortName">[7][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[7][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_mem_contents[6]" type="array">
-         <obj_property name="ElementShortName">[6][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[6][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_mem_contents[5]" type="array">
-         <obj_property name="ElementShortName">[5][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[5][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_mem_contents[4]" type="array">
-         <obj_property name="ElementShortName">[4][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[4][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_mem_contents[3]" type="array">
-         <obj_property name="ElementShortName">[3][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[3][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_mem_contents[2]" type="array">
-         <obj_property name="ElementShortName">[2][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[2][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_mem_contents[1]" type="array">
-         <obj_property name="ElementShortName">[1][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[1][7:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_mem_contents[0]" type="array">
-         <obj_property name="ElementShortName">[0][7:0]</obj_property>
-         <obj_property name="ObjectShortName">[0][7:0]</obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject fp_name="/ISA_top_tb/out_enable" type="logic">
-      <obj_property name="ElementShortName">out_enable</obj_property>
-      <obj_property name="ObjectShortName">out_enable</obj_property>
-   </wvobject>
-   <wvobject fp_name="/ISA_top_tb/char_out" type="array">
-      <obj_property name="ElementShortName">char_out[7:0]</obj_property>
-      <obj_property name="ObjectShortName">char_out[7:0]</obj_property>
-      <obj_property name="Radix">ASCIIRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_oe" type="logic">
-      <obj_property name="ElementShortName">s_oe</obj_property>
-      <obj_property name="ObjectShortName">s_oe</obj_property>
-   </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_ram_data_out" type="array">
-      <obj_property name="ElementShortName">s_ram_data_out[7:0]</obj_property>
-      <obj_property name="ObjectShortName">s_ram_data_out[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_we" type="logic">
-      <obj_property name="ElementShortName">s_we</obj_property>
-      <obj_property name="ObjectShortName">s_we</obj_property>
-   </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_Address_reg" type="array">
-      <obj_property name="ElementShortName">s_Address_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">s_Address_reg[15:0]</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/ROM_out" type="array">
+      <obj_property name="ElementShortName">ROM_out[16:0]</obj_property>
+      <obj_property name="ObjectShortName">ROM_out[16:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/ISA_top_tb/UUT/RAM_data_in" type="array">
       <obj_property name="ElementShortName">RAM_data_in[7:0]</obj_property>
       <obj_property name="ObjectShortName">RAM_data_in[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_DataInReg" type="array">
-      <obj_property name="ElementShortName">s_DataInReg[7:0]</obj_property>
-      <obj_property name="ObjectShortName">s_DataInReg[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_DataOutReg" type="array">
-      <obj_property name="ElementShortName">s_DataOutReg[7:0]</obj_property>
-      <obj_property name="ObjectShortName">s_DataOutReg[7:0]</obj_property>
+   <wvobject fp_name="group587" type="group">
+      <obj_property name="label">RAM</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[0]" type="array">
+         <obj_property name="ElementShortName">[0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[1]" type="array">
+         <obj_property name="ElementShortName">[1][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[2]" type="array">
+         <obj_property name="ElementShortName">[2][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[3]" type="array">
+         <obj_property name="ElementShortName">[3][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[4]" type="array">
+         <obj_property name="ElementShortName">[4][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[5]" type="array">
+         <obj_property name="ElementShortName">[5][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[6]" type="array">
+         <obj_property name="ElementShortName">[6][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[7]" type="array">
+         <obj_property name="ElementShortName">[7][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[8]" type="array">
+         <obj_property name="ElementShortName">[8][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[8][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[9]" type="array">
+         <obj_property name="ElementShortName">[9][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[9][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[10]" type="array">
+         <obj_property name="ElementShortName">[10][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[10][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[11]" type="array">
+         <obj_property name="ElementShortName">[11][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[11][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[12]" type="array">
+         <obj_property name="ElementShortName">[12][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[12][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[13]" type="array">
+         <obj_property name="ElementShortName">[13][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[13][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[14]" type="array">
+         <obj_property name="ElementShortName">[14][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[14][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/ISA_top_tb/UUT/work_mem/inst/\native_mem_module.blk_mem_gen_v8_4_4_inst /memory[15]" type="array">
+         <obj_property name="ElementShortName">[15][7:0]</obj_property>
+         <obj_property name="ObjectShortName">[15][7:0]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/ISA_top_tb/UUT/RAM_data_out" type="array">
       <obj_property name="ElementShortName">RAM_data_out[7:0]</obj_property>
       <obj_property name="ObjectShortName">RAM_data_out[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_OEReg" type="logic">
-      <obj_property name="ElementShortName">s_OEReg</obj_property>
-      <obj_property name="ObjectShortName">s_OEReg</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/mem_signed_one" type="array">
+      <obj_property name="ElementShortName">mem_signed_one[7:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_signed_one[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_TickDelayLine" type="array">
-      <obj_property name="ElementShortName">s_TickDelayLine[2:0]</obj_property>
-      <obj_property name="ObjectShortName">s_TickDelayLine[2:0]</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/bram_we" type="array">
+      <obj_property name="ElementShortName">bram_we[0:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_we[0:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/ISA_top_tb/UUT/work_mem/s_WEReg" type="logic">
-      <obj_property name="ElementShortName">s_WEReg</obj_property>
-      <obj_property name="ObjectShortName">s_WEReg</obj_property>
+   <wvobject fp_name="/ISA_top_tb/UUT/next_ptr_q" type="array">
+      <obj_property name="ElementShortName">next_ptr_q[15:0]</obj_property>
+      <obj_property name="ObjectShortName">next_ptr_q[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/next_ptr_d" type="array">
+      <obj_property name="ElementShortName">next_ptr_d[15:0]</obj_property>
+      <obj_property name="ObjectShortName">next_ptr_d[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/pointer_is_new_val" type="logic">
+      <obj_property name="ElementShortName">pointer_is_new_val</obj_property>
+      <obj_property name="ObjectShortName">pointer_is_new_val</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/next_ptr_ce" type="logic">
+      <obj_property name="ElementShortName">next_ptr_ce</obj_property>
+      <obj_property name="ObjectShortName">next_ptr_ce</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/RAM_s" type="array">
+      <obj_property name="ElementShortName">RAM_s[1:0]</obj_property>
+      <obj_property name="ObjectShortName">RAM_s[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/out_enable" type="logic">
+      <obj_property name="ElementShortName">out_enable</obj_property>
+      <obj_property name="ObjectShortName">out_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/char_out" type="array">
+      <obj_property name="ElementShortName">char_out[7:0]</obj_property>
+      <obj_property name="ObjectShortName">char_out[7:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/RAM_bits" type="other">
+      <obj_property name="ElementShortName">RAM_bits</obj_property>
+      <obj_property name="ObjectShortName">RAM_bits</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/ROM_bus_width" type="other">
+      <obj_property name="ElementShortName">ROM_bus_width</obj_property>
+      <obj_property name="ObjectShortName">ROM_bus_width</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/jump_addr_width" type="other">
+      <obj_property name="ElementShortName">jump_addr_width</obj_property>
+      <obj_property name="ObjectShortName">jump_addr_width</obj_property>
+   </wvobject>
+   <wvobject fp_name="/ISA_top_tb/UUT/jump_zero_padding" type="array">
+      <obj_property name="ElementShortName">jump_zero_padding[1:0]</obj_property>
+      <obj_property name="ObjectShortName">jump_zero_padding[1:0]</obj_property>
    </wvobject>
 </wave_config>

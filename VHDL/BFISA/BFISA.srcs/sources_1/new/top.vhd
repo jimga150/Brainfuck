@@ -71,7 +71,7 @@ architecture Structural of top is
       );
     END COMPONENT;
     
-    signal dbcd_ce, dbcd_input_valid, clk_50mhz, clk_vga, clk_locked, logic_rst, out_en, fifo_empty, disp_char_we, fifo_re, fifo_we : std_logic;
+    signal dbcd_ce, dbcd_input_valid, clk_logic, clk_vga, clk_locked, logic_rst, out_en, fifo_empty, disp_char_we, fifo_re, fifo_we : std_logic;
     signal fifo_empty_reg : std_logic := '0';
     --signal char_disp_char : character;
     signal char_from_isa, char_to_disp : std_logic_vector(7 downto 0);
@@ -81,7 +81,7 @@ begin
     clk_divider : clk_wiz_1
        port map ( 
       -- Clock out ports  
-       clk_logic => clk_50mhz,
+       clk_logic => clk_logic,
        clk_vga => clk_vga,
       -- Status and control signals                
        reset => rst,
@@ -94,7 +94,7 @@ begin
 
     ISA: entity work.ISA_top
     port map(
-        clk => clk_50mhz,
+        clk => clk_logic,
         rst => logic_rst, 
         input_valid => dbcd_input_valid,
         ce => dbcd_ce,
@@ -111,7 +111,7 @@ begin
     
     iv_dbcr: entity work.debounce_pulse_gen
     port map(
-        clk => clk_50mhz,
+        clk => clk_logic,
         rst => logic_rst,
         btn_in => input_valid,
         count => open,
@@ -121,7 +121,7 @@ begin
     
     ce_dbcr: entity work.debounce_pulse_gen
     port map(
-        clk => clk_50mhz,
+        clk => clk_logic,
         rst => logic_rst,
         btn_in => ce,
         count => open,
@@ -136,7 +136,7 @@ begin
     disp_fifo: fifo_generator_0
       PORT MAP (
         rst => logic_rst,
-        wr_clk => clk_50mhz,
+        wr_clk => clk_logic,
         rd_clk => clk_vga,
         din => char_from_isa,
         wr_en => fifo_we,

@@ -56,8 +56,8 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_logic__50.00000______0.000______50.0______159.803____155.613
-// _clk_vga__83.48214______0.000______50.0______143.606____155.613
+// clk_logic__80.00000______0.000______50.0______210.310____302.484
+// _clk_vga__83.57143______0.000______50.0______209.081____302.484
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -128,11 +128,11 @@ wire clk_in2_clk_wiz_1;
     .CLKOUT4_CASCADE      ("FALSE"),
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
-    .DIVCLK_DIVIDE        (2),
-    .CLKFBOUT_MULT_F      (23.375),
+    .DIVCLK_DIVIDE        (5),
+    .CLKFBOUT_MULT_F      (58.500),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (23.375),
+    .CLKOUT0_DIVIDE_F     (14.625),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),

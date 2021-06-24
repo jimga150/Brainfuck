@@ -69,6 +69,15 @@ architecture Structural of ISA_top is
       );
     END COMPONENT;
     
+    COMPONENT blk_mem_rom
+      PORT (
+        clka : IN STD_LOGIC;
+        ena : IN STD_LOGIC;
+        addra : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+        douta : OUT STD_LOGIC_VECTOR(16 DOWNTO 0)
+      );
+    END COMPONENT;
+    
     constant ROM_bus_width : integer := 17;
     constant jump_addr_width : integer := ROM_bus_width - 3;
     constant jump_zero_padding : std_logic_vector(16-jump_addr_width-1 downto 0) := (others => '0');
@@ -128,10 +137,18 @@ begin
 --        data_out => ROM_out
 --    );
 
-    prog_mem : dist_mem_rom
-      port map (
-        a => PC_out(13 downto 0),
-        spo => ROM_out
+--    prog_mem : dist_mem_rom
+--      port map (
+--        a => PC_out(13 downto 0),
+--        spo => ROM_out
+--      );
+
+    prog_mem : blk_mem_rom
+      PORT MAP (
+        clka => clk,
+        ena => PC_clock_en,
+        addra => new_PC_addr,
+        douta => ROM_out
       );
     
     ptr_ce <= ce and modptr;

@@ -34,7 +34,11 @@ entity Pixel_On_Text_multiline is
     );
 	port (
 		clk: in std_logic;
-		displayText: in string (1 to num_char_rows*num_char_cols) := (others => nul);
+		
+		-- interfeace with text BRAM
+		charPosition : out integer range 1 to num_char_rows*num_char_cols := 1;
+		charCode : in integer range 0 to 127;
+		
 		-- top left corner of the text
 		position: in point_2d := (0, 0);
 		-- current pixel postion
@@ -53,13 +57,9 @@ architecture Behavioral of Pixel_On_Text_multiline is
 	-- A row of bit in a charactor, we check if our current (x,y) is 1 in char row
 	signal charBitInRow: std_logic_vector(FONT_WIDTH-1 downto 0) := (others => '0');
 	
-	-- char in ASCII code
-	signal charCode:integer range 0 to 127 := 0;
-	
 	-- the position of a charactor in the given text
 	signal charCol : integer range 1 to num_char_cols := 1;
 	signal charRow : integer range 1 to num_char_rows := 1;
-	signal charPosition : integer range 1 to num_char_rows*num_char_cols := 1;
 	
 	-- the bit position(column) in a charactor
 	signal bitPosition:integer range 0 to FONT_WIDTH - 1 := 0;
@@ -111,9 +111,7 @@ begin
             
             
             charPosition <= charRow*num_char_cols + charCol + 1;
-            
-            charCode <= character'pos(displayText(charPosition));
-
+            -- fetches charCode from BRAM outside this module
             fontAddress <= charCode*FONT_HEIGHT+((vertCoord - position.y) mod FONT_HEIGHT);
             
             

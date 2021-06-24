@@ -73,7 +73,7 @@ architecture Structural of top is
     
     signal dbcd_ce, dbcd_input_valid, clk_50mhz, clk_vga, clk_locked, logic_rst, out_en, fifo_empty, disp_char_we, fifo_re, fifo_we : std_logic;
     signal fifo_empty_reg : std_logic := '0';
-    signal char_disp_char : character;
+    --signal char_disp_char : character;
     signal char_from_isa, char_to_disp : std_logic_vector(7 downto 0);
 
 begin
@@ -105,7 +105,7 @@ begin
     
     char_out <= char_to_disp;
     
-    char_disp_char <= character'val(to_integer(unsigned(char_to_disp)));
+    --char_disp_char <= character'val(to_integer(unsigned(char_to_disp)));
 
     out_enable <= disp_char_we;
     
@@ -157,7 +157,7 @@ begin
         clk => clk_vga,
         rst => logic_rst,
         we => disp_char_we,
-        char_in => char_disp_char,
+        char_in => char_to_disp,
         h_sync_out => h_sync,
         v_sync_out => v_sync,
         pixel => pixel

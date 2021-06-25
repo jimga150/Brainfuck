@@ -48,7 +48,7 @@ architecture Behavioral of top_tb is
 	
 	--Clock Periods
 	constant clk_period : time := 10 ns;
-	constant clk_logic_period : time := 20 ns;
+	constant clk_logic_period : time := 12.5 ns;
 	
 	constant button_hold_time : time := 1.1 ms;
 	
@@ -95,7 +95,7 @@ begin
         wait for 5 us;
         ce <= '1';
         wait for button_hold_time;
-        wait for clk_logic_period*1000;
+        wait for clk_logic_period*1300;
 		
 		assert false report "End Simulation" severity failure;
 		

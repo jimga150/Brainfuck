@@ -81,6 +81,22 @@ begin
             -- hello world 2: 969 cycles
             wait for clk_period*1300;
             
+            for j in 0 to 10 loop
+            
+                key <= std_logic_vector(to_unsigned(j + 65, 8));
+                
+                wait for clk_period;
+            
+                input_valid <= '1';
+                
+                wait for clk_period;
+                
+                input_valid <= '0';
+                
+                wait for clk_period*10;
+                
+            end loop;
+            
         end loop;
 		
 		assert false report "End Simulation" severity failure;

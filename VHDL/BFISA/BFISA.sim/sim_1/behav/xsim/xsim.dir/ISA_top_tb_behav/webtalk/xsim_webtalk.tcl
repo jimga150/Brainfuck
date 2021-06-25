@@ -1,6 +1,6 @@
 webtalk_init -webtalk_dir C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/ISA_top_tb_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Fri Jun 25 00:07:27 2021" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Fri Jun 25 01:05:53 2021" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2020.2 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "3064766" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "3277e948-6288-4c01-8055-5377bf7e8158" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "57b9abab7a3b4c8abedc991da5a92385" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "40" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "42" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Windows Server 2016 or Windows 10" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i7-7800X CPU @ 3.50GHz" -context "user_environment"
@@ -36,7 +36,7 @@ webtalk_add_data -client xsim -key Total_Nets -value "0" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Processes -value "446" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Instances -value "24" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Xilinx_HDL_Libraries_Used -value "secureip unimacro_ver unisims_ver " -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Time -value "3.87_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Memory -value "106708_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 399943316 -regid "" -xml C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/ISA_top_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/ISA_top_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/ISA_top_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Compiler_Time -value "3.83_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Compiler_Memory -value "106816_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 10418129 -regid "" -xml C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/ISA_top_tb_behav/webtalk/usage_statistics_ext_xsim.xml -html C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/ISA_top_tb_behav/webtalk/usage_statistics_ext_xsim.html -wdm C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/ISA_top_tb_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

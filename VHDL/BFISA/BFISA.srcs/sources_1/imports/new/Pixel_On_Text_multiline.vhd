@@ -107,14 +107,15 @@ begin
                 vert_reg(i) <= vert_reg(i+1);
             end loop;
             
-            bitPosition <= (horz_reg(0) - position.x) mod FONT_WIDTH;
+            -- delay bit position by 4 clock cycles to arrive 1 cycle before the x/y range calculations, to that the pixel is calculated on the 5th cycle
+            bitPosition <= (horz_reg(1) - position.x) mod FONT_WIDTH;
             
             
             charPosition <= charRow*num_char_cols + charCol + 1;
             -- fetches charCode from BRAM outside this module
             fontAddress <= charCode*FONT_HEIGHT+((vertCoord - position.y) mod FONT_HEIGHT);
             
-            
+            -- delay x/y range calculations and subsequent pixel assignment by 5 cycles to match the character fetching
             -- reset
             inXRange := false;
             inYRange := false;

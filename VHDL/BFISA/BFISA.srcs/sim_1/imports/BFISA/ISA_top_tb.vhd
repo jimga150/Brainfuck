@@ -79,7 +79,7 @@ begin
             ce <= '1';
             
             -- hello world 2: 969 cycles
-            wait for clk_period*1000;
+            wait for clk_period*1300;
             
         end loop;
 		

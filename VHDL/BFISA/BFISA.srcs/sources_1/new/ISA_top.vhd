@@ -87,8 +87,9 @@ architecture Structural of ISA_top is
     signal ptrop, memop, loopback, memsrc, modptr, jump, outp, modmem, hold : std_logic;
     signal rom_rst_busy : std_logic;
 
-    signal PC_clock_en, PC_jump_sel, RAM_addr_switch, cell_zero, ptr_ce, RAM_ce : std_logic;
-    signal new_PC_addr, PC_out, PC_jump_addr, ptr_out, ptr_in, ptr_signed_one, RAM_addr : std_logic_vector(15 downto 0);
+    signal PC_clock_en, PC_jump_sel, cell_zero, ptr_ce, RAM_ce : std_logic;
+    --signal RAM_addr_switch : std_logic;
+    signal new_PC_addr, new_ROM_addr, PC_out, PC_jump_addr, ptr_out, ptr_in, ptr_signed_one, RAM_addr : std_logic_vector(15 downto 0);
     signal ROM_out : std_logic_vector(ROM_bus_width-1 downto 0);
     signal RAM_data_in, RAM_data_out, mem_signed_one : std_logic_vector(7 downto 0);
     
@@ -97,6 +98,9 @@ architecture Structural of ISA_top is
     signal next_ptr_q, next_ptr_d : std_logic_vector(15 downto 0);
     signal pointer_is_new_val, next_ptr_ce : std_logic;
     signal RAM_s : std_logic_vector(1 downto 0);
+    
+    signal out_en_reg, modptr_reg : std_logic := '0';
+    signal pause_pc, pause_ram : std_logic;
 
 begin
 
@@ -115,10 +119,23 @@ begin
         hold => hold
     );
     
+    process(clk) is begin
+        if rising_edge(clk) then
+            if rst = '1' or rom_rst_busy = '1' then
+            
+            elsif ce = '1' then
+                out_en_reg <= outp;
+                modptr_reg <= modptr;
+            end if;
+        end if;
+    end process;
+    
+    pause_pc <= pause_ram or (modptr_reg and jump);
+    
     -- only when CE is on, and either:
     --      input is valid, or
     --      the HOLD signal is low and the ROM is not busy resetting (usual operation)
-    PC_clock_en <= ce and (input_valid or (not (hold or rom_rst_busy)));
+    PC_clock_en <= ce and (not pause_pc) and (input_valid or (not (hold or rom_rst_busy)));
 
     PC: entity work.register_16b
     port map(
@@ -147,12 +164,14 @@ begin
 --        spo => ROM_out
 --      );
 
+    new_ROM_addr <= new_PC_addr when rom_rst_busy = '0' else (others => '0');
+
     prog_mem : blk_mem_rom
       PORT MAP (
         clka => clk,
         rsta => rst, --this only resets the input register, not the ROM configuration.
         ena => PC_clock_en,
-        addra => new_PC_addr,
+        addra => new_ROM_addr,
         douta => ROM_out,
         rsta_busy => rom_rst_busy
       );
@@ -188,12 +207,13 @@ begin
     
     ptr_in <= std_logic_vector(unsigned(ptr_out) + unsigned(ptr_signed_one));
     
-    RAM_addr_switch <= (not modptr);
+    --RAM_addr_switch <= (not modptr);
     
     --on instructions where the pointer is NOT modified (ie. the result of the last cycle's pointer modification matters)
     --we have to advance the pointer result by a cycle in order to jump a pipeline stage in the RAM
     --so when the clock is low, you bypass the pointer register
-    RAM_addr <= ptr_out when RAM_addr_switch = '1' else ptr_in;
+    --RAM_addr <= ptr_out when RAM_addr_switch = '1' else ptr_in;
+    RAM_addr <= ptr_out;
     
     mem_signed_one(0) <= '1';
     gen_mem_signed_one: for i in 1 to 7 generate
@@ -207,7 +227,9 @@ begin
         key when "01",
         (others => '0') when others;
     
-    RAM_ce <= (not rom_rst_busy) and (modmem or pointer_is_new_val) and ce;
+    pause_ram <= modptr_reg and modmem;
+    
+    RAM_ce <= (not rom_rst_busy) and ((modmem and (not pause_ram)) or pointer_is_new_val) and ce;
     
 --    work_mem: entity work.ram
 --    generic map(addr_bits => RAM_bits)
@@ -244,6 +266,6 @@ begin
     
     char_out <= RAM_data_out;
     
-    out_enable <= outp;
+    out_enable <= out_en_reg;
 
 end Structural;

@@ -97,7 +97,7 @@ architecture Structural of ISA_top is
     
     signal next_ptr_q, next_ptr_d : std_logic_vector(15 downto 0);
     signal pointer_is_new_val, next_ptr_ce : std_logic;
-    signal RAM_s : std_logic_vector(1 downto 0);
+    signal RAM_s, ROM_s : std_logic_vector(1 downto 0);
     
     signal out_en_reg, modptr_reg : std_logic := '0';
     signal pause_pc, pause_ram : std_logic;
@@ -150,7 +150,7 @@ begin
     
     PC_jump_sel <= jump and (loopback xor cell_zero);
     
-    new_PC_addr <= PC_jump_addr when PC_jump_sel = '1' else std_logic_vector(unsigned(PC_out) + to_unsigned(1, 16));
+    --new_PC_addr <= PC_jump_addr when PC_jump_sel = '1' else std_logic_vector(unsigned(PC_out) + to_unsigned(1, 16));
     
 --    prog_mem: entity work.rom
 --    port map(
@@ -164,14 +164,20 @@ begin
 --        spo => ROM_out
 --      );
 
-    new_ROM_addr <= new_PC_addr when rom_rst_busy = '0' else (others => '0');
+    --new_ROM_addr <= new_PC_addr when rom_rst_busy = '0' else (others => '0');
+    
+    ROM_s <= rom_rst_busy & PC_jump_sel;
+    with ROM_s select new_PC_addr <= 
+        std_logic_vector(unsigned(PC_out) + to_unsigned(1, 16)) when "00",
+        PC_jump_addr when "01",
+        (others => '0') when others;
 
     prog_mem : blk_mem_rom
       PORT MAP (
         clka => clk,
         rsta => rst, --this only resets the input register, not the ROM configuration.
         ena => PC_clock_en,
-        addra => new_ROM_addr,
+        addra => new_PC_addr,
         douta => ROM_out,
         rsta_busy => rom_rst_busy
       );

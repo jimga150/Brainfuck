@@ -45,7 +45,9 @@ end display_output;
 architecture Structural of display_output is
 
     constant num_char_rows : integer := 50;
-    constant num_char_cols : integer := 158;
+    constant num_char_cols_term1 : integer := 2;
+    constant num_char_cols_term2 : integer := 79;
+    constant num_char_cols : integer := num_char_cols_term1*num_char_cols_term2;
 --    constant num_char_rows : integer := 5;
 --    constant num_char_cols : integer := 5;
     constant num_chars : integer := num_char_rows*num_char_cols;
@@ -192,7 +194,7 @@ begin
                         text_din <= char_in;
                         text_write_en(0) <= '1';
                         
-                        next_text_write_addr <= curr_write_addr + 1;
+                        next_text_write_addr <= to_integer(unsigned(text_write_addr)) + 1;
                         
                         --increment columnn
                         if curr_char_col = num_char_cols then
@@ -260,7 +262,8 @@ begin
     textElement: entity work.Pixel_On_Text_multiline
     generic map(
         num_char_rows => num_char_rows,
-        num_char_cols => num_char_cols
+        num_char_cols_term1 => num_char_cols_term1,
+        num_char_cols_term2 => num_char_cols_term2
     )
     port map(
         clk => clk,

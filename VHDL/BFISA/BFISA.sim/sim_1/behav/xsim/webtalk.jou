@@ -2,8 +2,8 @@
 # Webtalk v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Thu Jun 24 17:26:36 2021
-# Process ID: 35380
+# Start of session at: Fri Jun 25 20:29:07 2021
+# Process ID: 9436
 # Current directory: C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim
 # Command line: wbtcv.exe -mode batch -source C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/ISA_top_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/webtalk.log

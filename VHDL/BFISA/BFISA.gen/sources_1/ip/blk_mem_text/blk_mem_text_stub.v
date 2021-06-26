@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-// Date        : Thu Jun 24 16:14:45 2021
+// Date        : Fri Jun 25 01:40:58 2021
 // Host        : DESKTOP-F1LS71S running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub -rename_top blk_mem_text -prefix
 //               blk_mem_text_ blk_mem_text_stub.v

@@ -30,13 +30,13 @@ use work.commonPak.all;
 entity Pixel_On_Text_multiline is
     generic (
         num_char_rows : integer := 4;
-        num_char_cols : integer := 4
+        num_char_cols_term1, num_char_cols_term2 : integer := 2
     );
 	port (
 		clk: in std_logic;
 		
 		-- interfeace with text BRAM
-		charPosition : out integer range 1 to num_char_rows*num_char_cols := 1;
+		charPosition : out integer range 1 to num_char_rows*num_char_cols_term1*num_char_cols_term2 := 1;
 		charCode : in integer range 0 to 127;
 		
 		-- top left corner of the text
@@ -52,6 +52,8 @@ end Pixel_On_Text_multiline;
 
 architecture Behavioral of Pixel_On_Text_multiline is
 
+    constant num_char_cols : integer := num_char_cols_term1*num_char_cols_term2;
+
 	signal fontAddress: integer range 0 to 127*FONT_HEIGHT := 0;
 	
 	-- A row of bit in a charactor, we check if our current (x,y) is 1 in char row
@@ -61,10 +63,12 @@ architecture Behavioral of Pixel_On_Text_multiline is
 	signal charCol : integer range 1 to num_char_cols := 1;
 	signal charRow : integer range 1 to num_char_rows := 1;
 	
+	signal charPosition_rowdep_1, charPosition_rowdep_2 : integer range 1 to num_char_rows*num_char_cols := 1;
+	
 	-- the bit position(column) in a charactor
 	signal bitPosition:integer range 0 to FONT_WIDTH - 1 := 0;
 	
-	type int_array_type is array (3 downto 0) of integer;
+	type int_array_type is array (4 downto 0) of integer;
 	signal horz_reg, vert_reg : int_array_type := (others => 0);
 	
 begin
@@ -100,22 +104,24 @@ begin
         if rising_edge(clk) then
         
             -- add n cycle of delay to row/column numbernig to match font rom delay
-            horz_reg(3) <= horzCoord;
-            vert_reg(3) <= vertCoord;
-            for i in 2 downto 0 loop
+            horz_reg(4) <= horzCoord;
+            vert_reg(4) <= vertCoord;
+            for i in 3 downto 0 loop
                 horz_reg(i) <= horz_reg(i+1);
                 vert_reg(i) <= vert_reg(i+1);
             end loop;
             
-            -- delay bit position by 4 clock cycles to arrive 1 cycle before the x/y range calculations, to that the pixel is calculated on the 5th cycle
+            -- delay bit position by 5 clock cycles to arrive 1 cycle before the x/y range calculations, to that the pixel is calculated on the 5th cycle
             bitPosition <= (horz_reg(1) - position.x) mod FONT_WIDTH;
             
+            charPosition_rowdep_1 <= charRow*num_char_cols_term1;
+            charPosition_rowdep_2 <= charPosition_rowdep_1*num_char_cols_term2;
+            charPosition <= charPosition_rowdep_2 + charCol + 1;
             
-            charPosition <= charRow*num_char_cols + charCol + 1;
             -- fetches charCode from BRAM outside this module
             fontAddress <= charCode*FONT_HEIGHT+((vertCoord - position.y) mod FONT_HEIGHT);
             
-            -- delay x/y range calculations and subsequent pixel assignment by 5 cycles to match the character fetching
+            -- delay x/y range calculations and subsequent pixel assignment by 6 cycles to match the character fetching
             -- reset
             inXRange := false;
             inYRange := false;

@@ -68,7 +68,7 @@ architecture Behavioral of Pixel_On_Text_multiline is
 	-- the bit position(column) in a charactor
 	signal bitPosition:integer range 0 to FONT_WIDTH - 1 := 0;
 	
-	type int_array_type is array (4 downto 0) of integer;
+	type int_array_type is array (1 to 7) of integer;
 	signal horz_reg, vert_reg : int_array_type := (others => 0);
 	
 begin
@@ -77,8 +77,8 @@ begin
 --    bitPosition <= (horz_reg(0) - position.x) mod FONT_WIDTH;
     
     -- zero indexed
-    charCol <= (horzCoord - position.x)/FONT_WIDTH;
-    charRow <= (vertCoord - position.y)/FONT_HEIGHT;
+--    charCol <= (horzCoord - position.x)/FONT_WIDTH;
+--    charRow <= (vertCoord - position.y)/FONT_HEIGHT;
     
     -- one-indexed
     -- moved to clk process
@@ -86,8 +86,8 @@ begin
     
 --    charCode <= character'pos(displayText(charPosition));
     
-    -- charCode*16: first row of the char
---    fontAddress <= charCode*FONT_HEIGHT+((vertCoord - position.y) mod FONT_HEIGHT);
+-- fetches charCode from BRAM outside this module
+    fontAddress <= charCode*FONT_HEIGHT+((vert_reg(5) - position.y) mod FONT_HEIGHT);
 
 
 	fontRom: entity work.Font_Rom
@@ -104,35 +104,45 @@ begin
         if rising_edge(clk) then
         
             -- add n cycle of delay to row/column numbernig to match font rom delay
-            horz_reg(4) <= horzCoord;
-            vert_reg(4) <= vertCoord;
-            for i in 3 downto 0 loop
-                horz_reg(i) <= horz_reg(i+1);
-                vert_reg(i) <= vert_reg(i+1);
+            horz_reg(1) <= horzCoord;
+            vert_reg(1) <= vertCoord;
+            for i in 2 to 7 loop
+                horz_reg(i) <= horz_reg(i-1);
+                vert_reg(i) <= vert_reg(i-1);
             end loop;
             
-            -- delay bit position by 5 clock cycles to arrive 1 cycle before the x/y range calculations, to that the pixel is calculated on the 5th cycle
-            bitPosition <= (horz_reg(1) - position.x) mod FONT_WIDTH;
+            --cycle 1
+            charRow <= (vertCoord - position.y)/FONT_HEIGHT;
             
+            --cycle 2
             charPosition_rowdep_1 <= charRow*num_char_cols_term1;
+            
+            --cycle 3
             charPosition_rowdep_2 <= charPosition_rowdep_1*num_char_cols_term2;
+            charCol <= (horz_reg(2) - position.x)/FONT_WIDTH;
+            
+            --cycle 4
             charPosition <= charPosition_rowdep_2 + charCol + 1;
             
-            -- fetches charCode from BRAM outside this module
-            fontAddress <= charCode*FONT_HEIGHT+((vertCoord - position.y) mod FONT_HEIGHT);
+            --cycle 5 (text bram outputs)
             
-            -- delay x/y range calculations and subsequent pixel assignment by 6 cycles to match the character fetching
+            --cycle 6 (fontrom address assigned via fontAddress)
+            
+            --cycle 7 (charinbitrow is assigned from fontROM)
+            bitPosition <= (horz_reg(6) - position.x) mod FONT_WIDTH;
+            
+            --cycle 8
             -- reset
             inXRange := false;
             inYRange := false;
-            pixel <= '0';
+            
             -- If current pixel is in the horizontal range of text
-            if horz_reg(0) >= position.x and horz_reg(0) < position.x + (FONT_WIDTH * num_char_cols) then
+            if horz_reg(7) >= position.x and horz_reg(7) < position.x + (FONT_WIDTH * num_char_cols) then
                 inXRange := true;
             end if;
             
             -- If current pixel is in the vertical range of text
-            if vert_reg(0) >= position.y and vert_reg(0) < position.y + (FONT_HEIGHT * num_char_rows) then
+            if vert_reg(7) >= position.y and vert_reg(7) < position.y + (FONT_HEIGHT * num_char_rows) then
                 inYRange := true;
             end if;
             
@@ -141,6 +151,8 @@ begin
                 -- FONT_WIDTH-bitPosition: we are reverting the charactor
                 if charBitInRow(FONT_WIDTH-bitPosition) = '1' then
                     pixel <= '1';
+                else
+                    pixel <= '0';
                 end if;					
             end if;
 

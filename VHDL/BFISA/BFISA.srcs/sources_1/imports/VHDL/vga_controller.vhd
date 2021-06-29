@@ -26,15 +26,26 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 
 ENTITY vga_controller IS
-	GENERIC(
-		h_pulse 	:	INTEGER := 136;    	--horiztonal sync pulse width in pixels
-		h_bp	 	:	INTEGER := 200;		--horiztonal back porch width in pixels
-		h_pixels	:	INTEGER := 1280;		--horiztonal display width in pixels
-		h_fp	 	:	INTEGER := 64;		--horiztonal front porch width in pixels
+--	GENERIC(
+--		h_pulse 	:	INTEGER := 136;    	--horiztonal sync pulse width in pixels
+--		h_bp	 	:	INTEGER := 200;		--horiztonal back porch width in pixels
+--		h_pixels	:	INTEGER := 1280;		--horiztonal display width in pixels
+--		h_fp	 	:	INTEGER := 64;		--horiztonal front porch width in pixels
+--		h_pol		:	STD_LOGIC := '0';		--horizontal sync pulse polarity (1 = positive, 0 = negative)
+--		v_pulse 	:	INTEGER := 3;			--vertical sync pulse width in rows
+--		v_bp	 	:	INTEGER := 24;			--vertical back porch width in rows
+--		v_pixels	:	INTEGER := 800;		--vertical display width in rows
+--		v_fp	 	:	INTEGER := 1;			--vertical front porch width in rows
+--		v_pol		:	STD_LOGIC := '1');	--vertical sync pulse polarity (1 = positive, 0 = negative)
+    GENERIC(
+		h_pulse 	:	INTEGER := 184;    	--horiztonal sync pulse width in pixels
+		h_bp	 	:	INTEGER := 288;		--horiztonal back porch width in pixels
+		h_pixels	:	INTEGER := 1680;		--horiztonal display width in pixels
+		h_fp	 	:	INTEGER := 104;		--horiztonal front porch width in pixels
 		h_pol		:	STD_LOGIC := '0';		--horizontal sync pulse polarity (1 = positive, 0 = negative)
 		v_pulse 	:	INTEGER := 3;			--vertical sync pulse width in rows
-		v_bp	 	:	INTEGER := 24;			--vertical back porch width in rows
-		v_pixels	:	INTEGER := 800;		--vertical display width in rows
+		v_bp	 	:	INTEGER := 33;			--vertical back porch width in rows
+		v_pixels	:	INTEGER := 1050;		--vertical display width in rows
 		v_fp	 	:	INTEGER := 1;			--vertical front porch width in rows
 		v_pol		:	STD_LOGIC := '1');	--vertical sync pulse polarity (1 = positive, 0 = negative)
 	PORT(

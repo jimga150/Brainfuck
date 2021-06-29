@@ -44,27 +44,31 @@ end display_output;
 
 architecture Structural of display_output is
 
-    constant num_char_rows : integer := 50;
-    constant num_char_cols : integer := 158;
+    constant num_char_rows : integer := 65;
+    constant num_char_cols_term1 : integer := 14;
+    constant num_char_cols_term2 : integer := 15;
+    constant num_char_cols : integer := num_char_cols_term1*num_char_cols_term2;
 --    constant num_char_rows : integer := 5;
 --    constant num_char_cols : integer := 5;
     constant num_chars : integer := num_char_rows*num_char_cols;
+    
+    constant text_addr_bits : integer := 16;
     
     COMPONENT blk_mem_text
       PORT (
         clka : IN STD_LOGIC;
         wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-        addra : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
+        addra : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
         dina : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
         clkb : IN STD_LOGIC;
-        addrb : IN STD_LOGIC_VECTOR(12 DOWNTO 0);
+        addrb : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
         doutb : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
       );
     END COMPONENT;
     
     signal vga_row_sig, vga_col_sig : integer;
     
-    signal rst_n, pixel_bit : std_logic;
+    signal rst_n, pixel_bit, disp_en : std_logic;
     
     constant default_char : character := ' ';
     
@@ -78,13 +82,13 @@ architecture Structural of display_output is
     
     --signal text_array : string(1 to num_chars);
     
-    signal h_reg, v_reg : std_logic_vector(1 downto 0) := (others => '0');
+    signal h_reg, v_reg, de_reg : std_logic_vector(1 to 9) := (others => '0');
     signal h_sync_sig, v_sync_sig : std_logic;
     
     signal vga_row_reg, vga_col_reg : integer := 0;
     
     signal text_write_en : std_logic_vector(0 downto 0) := (others => '0');
-    signal text_write_addr, text_read_addr : std_logic_vector(12 downto 0);
+    signal text_write_addr, text_read_addr : std_logic_vector(text_addr_bits-1 downto 0);
     signal text_din, text_dout : std_logic_vector(7 downto 0);
     signal char_position : integer range 1 to num_char_rows*num_char_cols;
     signal char_code : integer range 0 to 127;
@@ -115,11 +119,14 @@ begin
                 vga_col_reg <= 0;
             else
             
-                h_reg(1) <= h_sync_sig;
-                h_reg(0) <= h_reg(1);
-                
+                h_reg(1) <= h_sync_sig;                
                 v_reg(1) <= v_sync_sig;
-                v_reg(0) <= v_reg(1);
+                de_reg(1) <= disp_en;
+                for i in 2 to 9 loop
+                    h_reg(i) <= h_reg(i-1);                
+                    v_reg(i) <= v_reg(i-1);  
+                    de_reg(i) <= de_reg(i-1);
+                end loop;
                 
                 vga_row_reg <= vga_row_sig;
                 vga_col_reg <= vga_col_sig;
@@ -135,6 +142,8 @@ begin
 --                end loop;
                 
                 if we = '1' then
+                    
+                    next_text_write_addr <= to_integer(unsigned(text_write_addr)) + 1;
                     
                     --control flow: CR & LF
                     if char_in = X"0D" or char_in = X"0A" then
@@ -160,7 +169,7 @@ begin
                         
 --                        rows_pending_write(last_char_col) <= '1';
 
-                        text_write_addr <= std_logic_vector(to_unsigned((curr_char_row-1)*num_char_cols + last_char_col, 13));
+                        text_write_addr <= std_logic_vector(to_unsigned((curr_char_row-1)*num_char_cols + last_char_col, text_addr_bits));
                         text_din <= X"00";
                         text_write_en(0) <= '1';
                         
@@ -188,11 +197,9 @@ begin
 
                         curr_write_addr := (curr_char_row-1)*num_char_cols + curr_char_col;
 
-                        text_write_addr <= std_logic_vector(to_unsigned(curr_write_addr, 13));
+                        text_write_addr <= std_logic_vector(to_unsigned(curr_write_addr, text_addr_bits));
                         text_din <= char_in;
                         text_write_en(0) <= '1';
-                        
-                        next_text_write_addr <= curr_write_addr + 1;
                         
                         --increment columnn
                         if curr_char_col = num_char_cols then
@@ -223,8 +230,8 @@ begin
 --        text_array((r-1)*num_char_cols + 1 to r*num_char_cols) <= text_rows(r);
 --    end generate gen_text_array_rows;
     
-    h_sync_out <= h_reg(0);
-    v_sync_out <= v_reg(0);
+    h_sync_out <= h_reg(8);
+    v_sync_out <= v_reg(8);
 
     rst_n <= not rst;
     
@@ -234,7 +241,7 @@ begin
         reset_n => rst_n,
         h_sync => h_sync_sig,
         v_sync => v_sync_sig,
-        disp_ena => open,
+        disp_ena => disp_en,
         row => vga_row_sig,
         column => vga_col_sig,
         n_blank => open,
@@ -254,19 +261,21 @@ begin
       
       -- when the read address is one that has already been written to, pass it through, otherwise overwrite the adress with 0, 
       -- which will always be the initial value since no character is written to address 0 in this schema.
-      text_read_addr <= std_logic_vector(to_unsigned(char_position, 13)) when char_position < next_text_write_addr else (others => '0');
+      text_read_addr <= std_logic_vector(to_unsigned(char_position, text_addr_bits)) when char_position < next_text_write_addr else (others => '0');
       char_code <= to_integer(unsigned(text_dout));
 
+    -- 8 cycles of delay
     textElement: entity work.Pixel_On_Text_multiline
     generic map(
         num_char_rows => num_char_rows,
-        num_char_cols => num_char_cols
+        num_char_cols_term1 => num_char_cols_term1,
+        num_char_cols_term2 => num_char_cols_term2
     )
     port map(
         clk => clk,
         charPosition => char_position,
         charCode => char_code,
-        position => (10, 10),
+        position => (0, 0),
         horzCoord => vga_col_reg,
         vertCoord => vga_row_reg,
         pixel => pixel_bit 
@@ -286,7 +295,7 @@ begin
 --    );
     
     gen_pixel: for i in 0 to 11 generate
-        pixel(i) <= pixel_bit;
+        pixel(i) <= pixel_bit and de_reg(9);
      end generate;
 
 end Structural;

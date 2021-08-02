@@ -898,7 +898,7 @@ integer sdModel_file_desc;
 
 initial
 begin
-  sdModel_file_desc = $fopen("../log/sd_model.log");
+  sdModel_file_desc = $fopen("C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.srcs/sim_1/imports/rtl_sim/log/sd_model.log");
   if (sdModel_file_desc < 2)
   begin
     $display("*E Could not open/create testbench log file in /log/ directory!");

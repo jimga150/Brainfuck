@@ -47,7 +47,7 @@
 //`define TX_ERROR_TEST
 `include "wb_model_defines.v"
 `include "sd_defines.v"
-`define TIME $display("  Time: %0t", $time)
+`define TIME $display("  Time: %0t ps", $time)
 
 `define BD_RX 8'h60
 `define BD_TX 8'h80
@@ -138,10 +138,36 @@ wire sd_dat_oe;
 wire cmdIn;
 wire [3:0] datIn;
 wire card_detect;
-trireg sd_cmd;
+tri sd_cmd;
 tri [3:0] sd_dat;
 
-assign sd_cmd = sd_cmd_oe ? cmdIn: 1'bz;
+//assign sd_cmd = sd_cmd_oe ? cmdIn: 1'bz;
+//     LDCE     : In order to incorporate this function into the design,
+//    Verilog   : the following instance declaration needs to be placed
+//   instance   : in the body of the design code.  The instance name
+//  declaration : (LDCE_inst) and/or the port declarations within the
+//     code     : parenthesis may be changed to properly reference and
+//              : connect this function to the design.  Delete or comment
+//              : out inputs/outs that are not necessary.
+
+//  <-----Cut code below this line---->
+
+// LDCE:  Transparent latch with Asynchronous Reset and Gate Enable.
+//        Artix-7
+// Xilinx HDL Language Template, version 2020.2
+
+LDCE #(
+  .INIT(1'b0) // Initial value of latch (1'b0 or 1'b1)
+) LDCE_inst (
+  .Q(sd_cmd),      // Data output (reflects D when G and GE are both high, otherwise holds)
+  .CLR(!wb_rst),  // Asynchronous clear/reset input
+  .D(cmdIn),      // Data input
+  .G(1),      // Gate input (if GE is high, Q will take on D's value up until after G's falling edge)
+  .GE(sd_cmd_oe)     // Gate enable input
+);
+
+// End of LDCE_inst instantiation
+
 assign sd_dat =  sd_dat_oe  ? datIn : 4'bz;
 assign card_detect = 1'b1;
 reg succes;
@@ -390,7 +416,7 @@ integer     tb_log_file;
 
 initial
 begin
-  tb_log_file = $fopen("../log/sdc_tb.log");
+  tb_log_file = $fopen("C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.srcs/sim_1/imports/rtl_sim/log/sdc_tb.log");
   if (tb_log_file < 2)
   begin
     $display("*E Could not open/create testbench log file in ../log/ directory!");
@@ -399,7 +425,7 @@ begin
   $fdisplay(tb_log_file, "========================== SD IP Core Testbench results ===========================");
   $fdisplay(tb_log_file, " ");
 
-  phy_log_file_desc = $fopen("../log/eth_tb_phy.log");
+  phy_log_file_desc = $fopen("C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.srcs/sim_1/imports/rtl_sim/log/eth_tb_phy.log");
   if (phy_log_file_desc < 2)
   begin
     $fdisplay(tb_log_file, "*E Could not open/create sd_tb_phy.log file in ../log/ directory!");
@@ -408,7 +434,7 @@ begin
   $fdisplay(phy_log_file_desc, "================ PHY Module  Testbench access log ================");
   $fdisplay(phy_log_file_desc, " ");
 
-  memory_log_file_desc = $fopen("../log/sd_tb_memory.log");
+  memory_log_file_desc = $fopen("C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.srcs/sim_1/imports/rtl_sim/log/eth_tb_phy.log");
   if (memory_log_file_desc < 2)
   begin
     $fdisplay(tb_log_file, "*E Could not open/create sd_tb_memory.log file in ../log/ directory!");
@@ -417,7 +443,7 @@ begin
   $fdisplay(memory_log_file_desc, "=============== MEMORY Module Testbench access log ===============");
   $fdisplay(memory_log_file_desc, " ");
 
-  host_log_file_desc = $fopen("../log/eth_tb_host.log");
+  host_log_file_desc = $fopen("C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.srcs/sim_1/imports/rtl_sim/log/eth_tb_host.log");
   if (host_log_file_desc < 2)
   begin
     $fdisplay(tb_log_file, "*E Could not open/create eth_tb_host.log file in ../log/ directory!");
@@ -426,7 +452,7 @@ begin
   $fdisplay(host_log_file_desc, "================ HOST Module Testbench access log ================");
   $fdisplay(host_log_file_desc, " ");
 
-  wb_s_mon_log_file_desc = $fopen("../log/eth_tb_wb_s_mon.log");
+  wb_s_mon_log_file_desc = $fopen("C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.srcs/sim_1/imports/rtl_sim/log/eth_tb_wb_s_mon.log");
   if (wb_s_mon_log_file_desc < 2)
   begin
     $fdisplay(tb_log_file, "*E Could not open/create eth_tb_wb_s_mon.log file in ../log/ directory!");
@@ -437,7 +463,7 @@ begin
   $fdisplay(wb_s_mon_log_file_desc, "   Only ERRONEOUS conditions are logged !");
   $fdisplay(wb_s_mon_log_file_desc, " ");
 
-  wb_m_mon_log_file_desc = $fopen("../log/eth_tb_wb_m_mon.log");
+  wb_m_mon_log_file_desc = $fopen("C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.srcs/sim_1/imports/rtl_sim/log/eth_tb_wb_m_mon.log");
   if (wb_m_mon_log_file_desc < 2)
   begin
     $fdisplay(tb_log_file, "*E Could not open/create eth_tb_wb_m_mon.log file in ../log/ directory!");

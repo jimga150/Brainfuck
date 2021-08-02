@@ -56,8 +56,9 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_logic__92.99242______0.000______50.0______266.098____406.240
-// _clk_vga__146.13095______0.000______50.0______250.339____406.240
+// _clk_vga__147.13115______0.000______50.0______180.939____223.233
+// clk_logic__93.48958______0.000______50.0______193.280____223.233
+// __clk_sd__24.93056______0.000______50.0______249.379____223.233
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -70,8 +71,9 @@ module clk_wiz_1_clk_wiz
 
  (// Clock in ports
   // Clock out ports
-  output        clk_logic,
   output        clk_vga,
+  output        clk_logic,
+  output        clk_sd,
   // Status and control signals
   input         reset,
   output        locked,
@@ -95,9 +97,9 @@ wire clk_in2_clk_wiz_1;
   //    * Unused inputs are tied off
   //    * Unused outputs are labeled unused
 
-  wire        clk_logic_clk_wiz_1;
   wire        clk_vga_clk_wiz_1;
-  wire        clk_out3_clk_wiz_1;
+  wire        clk_logic_clk_wiz_1;
+  wire        clk_sd_clk_wiz_1;
   wire        clk_out4_clk_wiz_1;
   wire        clk_out5_clk_wiz_1;
   wire        clk_out6_clk_wiz_1;
@@ -112,7 +114,6 @@ wire clk_in2_clk_wiz_1;
   wire        clkfboutb_unused;
     wire clkout0b_unused;
    wire clkout1b_unused;
-   wire clkout2_unused;
    wire clkout2b_unused;
    wire clkout3_unused;
    wire clkout3b_unused;
@@ -128,29 +129,33 @@ wire clk_in2_clk_wiz_1;
     .CLKOUT4_CASCADE      ("FALSE"),
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
-    .DIVCLK_DIVIDE        (6),
-    .CLKFBOUT_MULT_F      (61.375),
+    .DIVCLK_DIVIDE        (4),
+    .CLKFBOUT_MULT_F      (44.875),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (11.000),
+    .CLKOUT0_DIVIDE_F     (7.625),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (7),
+    .CLKOUT1_DIVIDE       (12),
     .CLKOUT1_PHASE        (0.000),
     .CLKOUT1_DUTY_CYCLE   (0.500),
     .CLKOUT1_USE_FINE_PS  ("FALSE"),
+    .CLKOUT2_DIVIDE       (45),
+    .CLKOUT2_PHASE        (0.000),
+    .CLKOUT2_DUTY_CYCLE   (0.500),
+    .CLKOUT2_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD        (10.000))
   mmcm_adv_inst
     // Output clocks
    (
     .CLKFBOUT            (clkfbout_clk_wiz_1),
     .CLKFBOUTB           (clkfboutb_unused),
-    .CLKOUT0             (clk_logic_clk_wiz_1),
+    .CLKOUT0             (clk_vga_clk_wiz_1),
     .CLKOUT0B            (clkout0b_unused),
-    .CLKOUT1             (clk_vga_clk_wiz_1),
+    .CLKOUT1             (clk_logic_clk_wiz_1),
     .CLKOUT1B            (clkout1b_unused),
-    .CLKOUT2             (clkout2_unused),
+    .CLKOUT2             (clk_sd_clk_wiz_1),
     .CLKOUT2B            (clkout2b_unused),
     .CLKOUT3             (clkout3_unused),
     .CLKOUT3B            (clkout3b_unused),
@@ -200,13 +205,17 @@ wire clk_in2_clk_wiz_1;
 
 
   BUFG clkout1_buf
-   (.O   (clk_logic),
-    .I   (clk_logic_clk_wiz_1));
+   (.O   (clk_vga),
+    .I   (clk_vga_clk_wiz_1));
 
 
   BUFG clkout2_buf
-   (.O   (clk_vga),
-    .I   (clk_vga_clk_wiz_1));
+   (.O   (clk_logic),
+    .I   (clk_logic_clk_wiz_1));
+
+  BUFG clkout3_buf
+   (.O   (clk_sd),
+    .I   (clk_sd_clk_wiz_1));
 
 
 

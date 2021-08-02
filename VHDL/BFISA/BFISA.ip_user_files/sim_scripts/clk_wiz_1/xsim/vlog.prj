@@ -1,4 +1,4 @@
-verilog xil_defaultlib --include "../../../ipstatic" \
+verilog xil_defaultlib "../../../../BFISA.srcs/sim_1/imports/verilog/timescale.v" --include "../../../ipstatic" --include "../../../../BFISA.srcs/sim_1/imports/verilog" \
 "../../../../BFISA.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_clk_wiz.v" \
 "../../../../BFISA.gen/sources_1/ip/clk_wiz_1/clk_wiz_1.v" \
 

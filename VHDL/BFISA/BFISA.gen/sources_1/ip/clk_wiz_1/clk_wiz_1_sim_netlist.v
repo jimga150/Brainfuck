@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
-// Date        : Fri Jun 25 23:58:55 2021
+// Date        : Mon Aug  2 14:23:34 2021
 // Host        : DESKTOP-F1LS71S running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               c:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_sim_netlist.v
@@ -14,19 +14,22 @@
 
 (* NotValidForBitStream *)
 module clk_wiz_1
-   (clk_logic,
-    clk_vga,
+   (clk_vga,
+    clk_logic,
+    clk_sd,
     reset,
     locked,
     clk_in1);
-  output clk_logic;
   output clk_vga;
+  output clk_logic;
+  output clk_sd;
   input reset;
   output locked;
   input clk_in1;
 
   (* IBUF_LOW_PWR *) wire clk_in1;
   wire clk_logic;
+  wire clk_sd;
   wire clk_vga;
   wire locked;
   wire reset;
@@ -34,6 +37,7 @@ module clk_wiz_1
   clk_wiz_1_clk_wiz_1_clk_wiz inst
        (.clk_in1(clk_in1),
         .clk_logic(clk_logic),
+        .clk_sd(clk_sd),
         .clk_vga(clk_vga),
         .locked(locked),
         .reset(reset));
@@ -41,13 +45,15 @@ endmodule
 
 (* ORIG_REF_NAME = "clk_wiz_1_clk_wiz" *) 
 module clk_wiz_1_clk_wiz_1_clk_wiz
-   (clk_logic,
-    clk_vga,
+   (clk_vga,
+    clk_logic,
+    clk_sd,
     reset,
     locked,
     clk_in1);
-  output clk_logic;
   output clk_vga;
+  output clk_logic;
+  output clk_sd;
   input reset;
   output locked;
   input clk_in1;
@@ -56,6 +62,8 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
   wire clk_in1_clk_wiz_1;
   wire clk_logic;
   wire clk_logic_clk_wiz_1;
+  wire clk_sd;
+  wire clk_sd_clk_wiz_1;
   wire clk_vga;
   wire clk_vga_clk_wiz_1;
   wire clkfbout_buf_clk_wiz_1;
@@ -67,7 +75,6 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
   wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED;
-  wire NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED;
@@ -93,29 +100,33 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
         .O(clk_in1_clk_wiz_1));
   (* BOX_TYPE = "PRIMITIVE" *) 
   BUFG clkout1_buf
-       (.I(clk_logic_clk_wiz_1),
-        .O(clk_logic));
-  (* BOX_TYPE = "PRIMITIVE" *) 
-  BUFG clkout2_buf
        (.I(clk_vga_clk_wiz_1),
         .O(clk_vga));
   (* BOX_TYPE = "PRIMITIVE" *) 
+  BUFG clkout2_buf
+       (.I(clk_logic_clk_wiz_1),
+        .O(clk_logic));
+  (* BOX_TYPE = "PRIMITIVE" *) 
+  BUFG clkout3_buf
+       (.I(clk_sd_clk_wiz_1),
+        .O(clk_sd));
+  (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
-    .CLKFBOUT_MULT_F(61.375000),
+    .CLKFBOUT_MULT_F(44.875000),
     .CLKFBOUT_PHASE(0.000000),
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(10.000000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(11.000000),
+    .CLKOUT0_DIVIDE_F(7.625000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),
-    .CLKOUT1_DIVIDE(7),
+    .CLKOUT1_DIVIDE(12),
     .CLKOUT1_DUTY_CYCLE(0.500000),
     .CLKOUT1_PHASE(0.000000),
     .CLKOUT1_USE_FINE_PS("FALSE"),
-    .CLKOUT2_DIVIDE(1),
+    .CLKOUT2_DIVIDE(45),
     .CLKOUT2_DUTY_CYCLE(0.500000),
     .CLKOUT2_PHASE(0.000000),
     .CLKOUT2_USE_FINE_PS("FALSE"),
@@ -137,7 +148,7 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
     .CLKOUT6_PHASE(0.000000),
     .CLKOUT6_USE_FINE_PS("FALSE"),
     .COMPENSATION("ZHOLD"),
-    .DIVCLK_DIVIDE(6),
+    .DIVCLK_DIVIDE(4),
     .IS_CLKINSEL_INVERTED(1'b0),
     .IS_PSEN_INVERTED(1'b0),
     .IS_PSINCDEC_INVERTED(1'b0),
@@ -158,11 +169,11 @@ module clk_wiz_1_clk_wiz_1_clk_wiz
         .CLKIN2(1'b0),
         .CLKINSEL(1'b1),
         .CLKINSTOPPED(NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED),
-        .CLKOUT0(clk_logic_clk_wiz_1),
+        .CLKOUT0(clk_vga_clk_wiz_1),
         .CLKOUT0B(NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED),
-        .CLKOUT1(clk_vga_clk_wiz_1),
+        .CLKOUT1(clk_logic_clk_wiz_1),
         .CLKOUT1B(NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED),
-        .CLKOUT2(NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED),
+        .CLKOUT2(clk_sd_clk_wiz_1),
         .CLKOUT2B(NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED),
         .CLKOUT3(NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED),
         .CLKOUT3B(NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED),

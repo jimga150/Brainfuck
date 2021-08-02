@@ -138,35 +138,17 @@ wire sd_dat_oe;
 wire cmdIn;
 wire [3:0] datIn;
 wire card_detect;
-tri sd_cmd;
+reg sd_cmd;
 tri [3:0] sd_dat;
 
 //assign sd_cmd = sd_cmd_oe ? cmdIn: 1'bz;
-//     LDCE     : In order to incorporate this function into the design,
-//    Verilog   : the following instance declaration needs to be placed
-//   instance   : in the body of the design code.  The instance name
-//  declaration : (LDCE_inst) and/or the port declarations within the
-//     code     : parenthesis may be changed to properly reference and
-//              : connect this function to the design.  Delete or comment
-//              : out inputs/outs that are not necessary.
-
-//  <-----Cut code below this line---->
-
-// LDCE:  Transparent latch with Asynchronous Reset and Gate Enable.
-//        Artix-7
-// Xilinx HDL Language Template, version 2020.2
-
-LDCE #(
-  .INIT(1'b0) // Initial value of latch (1'b0 or 1'b1)
-) LDCE_inst (
-  .Q(sd_cmd),      // Data output (reflects D when G and GE are both high, otherwise holds)
-  .CLR(!wb_rst),  // Asynchronous clear/reset input
-  .D(cmdIn),      // Data input
-  .G(1),      // Gate input (if GE is high, Q will take on D's value up until after G's falling edge)
-  .GE(sd_cmd_oe)     // Gate enable input
-);
-
-// End of LDCE_inst instantiation
+always @ (sd_cmd_oe, wb_rst, cmdIn)  
+      if (wb_rst)  
+         sd_cmd <= 0;  
+      else  
+         if (sd_cmd_oe)  
+            sd_cmd <= cmdIn; 
+             
 
 assign sd_dat =  sd_dat_oe  ? datIn : 4'bz;
 assign card_detect = 1'b1;

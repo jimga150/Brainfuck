@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sd_controller_top_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="sd_controller_top_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="2608001fs"></ZoomEndTime>
+      <Cursor1Time time="62000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="276"></NameColumnWidth>
+      <ValueColumnWidth column_width="88"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="45" />
+   <wvobject fp_name="/sd_controller_top_tb/wb_clk" type="logic">
+      <obj_property name="ElementShortName">wb_clk</obj_property>
+      <obj_property name="ObjectShortName">wb_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wb_rst" type="logic">
+      <obj_property name="ElementShortName">wb_rst</obj_property>
+      <obj_property name="ObjectShortName">wb_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_sds_dat_i" type="array">
+      <obj_property name="ElementShortName">wbs_sds_dat_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wbs_sds_dat_i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_sds_dat_o" type="array">
+      <obj_property name="ElementShortName">wbs_sds_dat_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wbs_sds_dat_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_sds_adr_i" type="array">
+      <obj_property name="ElementShortName">wbs_sds_adr_i[9:0]</obj_property>
+      <obj_property name="ObjectShortName">wbs_sds_adr_i[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_sds_sel_i" type="array">
+      <obj_property name="ElementShortName">wbs_sds_sel_i[3:0]</obj_property>
+      <obj_property name="ObjectShortName">wbs_sds_sel_i[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_sds_we_i" type="logic">
+      <obj_property name="ElementShortName">wbs_sds_we_i</obj_property>
+      <obj_property name="ObjectShortName">wbs_sds_we_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_sds_cyc_i" type="logic">
+      <obj_property name="ElementShortName">wbs_sds_cyc_i</obj_property>
+      <obj_property name="ObjectShortName">wbs_sds_cyc_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_sds_stb_i" type="logic">
+      <obj_property name="ElementShortName">wbs_sds_stb_i</obj_property>
+      <obj_property name="ObjectShortName">wbs_sds_stb_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_sds_ack_o" type="logic">
+      <obj_property name="ElementShortName">wbs_sds_ack_o</obj_property>
+      <obj_property name="ObjectShortName">wbs_sds_ack_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_adr_o" type="array">
+      <obj_property name="ElementShortName">wbm_sdm_adr_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_adr_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_sel_o" type="array">
+      <obj_property name="ElementShortName">wbm_sdm_sel_o[3:0]</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_sel_o[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_we_o" type="logic">
+      <obj_property name="ElementShortName">wbm_sdm_we_o</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_we_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_dat_i" type="array">
+      <obj_property name="ElementShortName">wbm_sdm_dat_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_dat_i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_dat_o" type="array">
+      <obj_property name="ElementShortName">wbm_sdm_dat_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_dat_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_cyc_o" type="logic">
+      <obj_property name="ElementShortName">wbm_sdm_cyc_o</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_cyc_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_stb_o" type="logic">
+      <obj_property name="ElementShortName">wbm_sdm_stb_o</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_stb_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_ack_i" type="logic">
+      <obj_property name="ElementShortName">wbm_sdm_ack_i</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_ack_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_cti_o" type="array">
+      <obj_property name="ElementShortName">wbm_sdm_cti_o[2:0]</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_cti_o[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_bte_o" type="array">
+      <obj_property name="ElementShortName">wbm_sdm_bte_o[1:0]</obj_property>
+      <obj_property name="ObjectShortName">wbm_sdm_bte_o[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_working" type="logic">
+      <obj_property name="ElementShortName">wbm_working</obj_property>
+      <obj_property name="ObjectShortName">wbm_working</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/tests_successfull" type="array">
+      <obj_property name="ElementShortName">tests_successfull[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tests_successfull[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/tests_failed" type="array">
+      <obj_property name="ElementShortName">tests_failed[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tests_failed[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_init_waits" type="array">
+      <obj_property name="ElementShortName">wbm_init_waits[3:0]</obj_property>
+      <obj_property name="ObjectShortName">wbm_init_waits[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbm_subseq_waits" type="array">
+      <obj_property name="ElementShortName">wbm_subseq_waits[3:0]</obj_property>
+      <obj_property name="ObjectShortName">wbm_subseq_waits[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_waits" type="array">
+      <obj_property name="ElementShortName">wbs_waits[3:0]</obj_property>
+      <obj_property name="ObjectShortName">wbs_waits[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wbs_retries" type="array">
+      <obj_property name="ElementShortName">wbs_retries[7:0]</obj_property>
+      <obj_property name="ObjectShortName">wbs_retries[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/test_name" type="array">
+      <obj_property name="ElementShortName">test_name[799:0]</obj_property>
+      <obj_property name="ObjectShortName">test_name[799:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_cmd_oe" type="logic">
+      <obj_property name="ElementShortName">sd_cmd_oe</obj_property>
+      <obj_property name="ObjectShortName">sd_cmd_oe</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/cmdIn" type="logic">
+      <obj_property name="ElementShortName">cmdIn</obj_property>
+      <obj_property name="ObjectShortName">cmdIn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_cmd" type="logic">
+      <obj_property name="ElementShortName">sd_cmd</obj_property>
+      <obj_property name="ObjectShortName">sd_cmd</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_dat_oe" type="logic">
+      <obj_property name="ElementShortName">sd_dat_oe</obj_property>
+      <obj_property name="ObjectShortName">sd_dat_oe</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/datIn" type="array">
+      <obj_property name="ElementShortName">datIn[3:0]</obj_property>
+      <obj_property name="ObjectShortName">datIn[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/card_detect" type="logic">
+      <obj_property name="ElementShortName">card_detect</obj_property>
+      <obj_property name="ObjectShortName">card_detect</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_dat" type="array">
+      <obj_property name="ElementShortName">sd_dat[3:0]</obj_property>
+      <obj_property name="ObjectShortName">sd_dat[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/succes" type="logic">
+      <obj_property name="ElementShortName">succes</obj_property>
+      <obj_property name="ObjectShortName">succes</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/host_log_file_desc" type="array">
+      <obj_property name="ElementShortName">host_log_file_desc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">host_log_file_desc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/memory_log_file_desc" type="array">
+      <obj_property name="ElementShortName">memory_log_file_desc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_log_file_desc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/phy_log_file_desc" type="array">
+      <obj_property name="ElementShortName">phy_log_file_desc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">phy_log_file_desc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wb_s_mon_log_file_desc" type="array">
+      <obj_property name="ElementShortName">wb_s_mon_log_file_desc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_s_mon_log_file_desc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wb_m_mon_log_file_desc" type="array">
+      <obj_property name="ElementShortName">wb_m_mon_log_file_desc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_m_mon_log_file_desc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/StartTB" type="logic">
+      <obj_property name="ElementShortName">StartTB</obj_property>
+      <obj_property name="ObjectShortName">StartTB</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/card_rca" type="array">
+      <obj_property name="ElementShortName">card_rca[31:0]</obj_property>
+      <obj_property name="ObjectShortName">card_rca[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/tb_log_file" type="array">
+      <obj_property name="ElementShortName">tb_log_file[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_log_file[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_clk_pad_o" type="logic">
+      <obj_property name="ElementShortName">sd_clk_pad_o</obj_property>
+      <obj_property name="ObjectShortName">sd_clk_pad_o</obj_property>
+   </wvobject>
+</wave_config>

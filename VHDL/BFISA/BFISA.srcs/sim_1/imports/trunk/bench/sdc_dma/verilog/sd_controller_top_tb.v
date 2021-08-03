@@ -138,18 +138,10 @@ wire sd_dat_oe;
 wire cmdIn;
 wire [3:0] datIn;
 wire card_detect;
-reg sd_cmd;
+tri sd_cmd;
 tri [3:0] sd_dat;
 
-//assign sd_cmd = sd_cmd_oe ? cmdIn: 1'bz;
-always @ (sd_cmd_oe, wb_rst, cmdIn)  
-      if (wb_rst)  
-         sd_cmd <= 0;  
-      else  
-         if (sd_cmd_oe)  
-            sd_cmd <= cmdIn; 
-             
-
+assign sd_cmd = sd_cmd_oe ? cmdIn: 1'bz;
 assign sd_dat =  sd_dat_oe  ? datIn : 4'bz;
 assign card_detect = 1'b1;
 reg succes;

@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="2608001fs"></ZoomEndTime>
-      <Cursor1Time time="62000fs"></Cursor1Time>
+      <ZoomEndTime time="131200001fs"></ZoomEndTime>
+      <Cursor1Time time="52563000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="88"></ValueColumnWidth>
+      <ValueColumnWidth column_width="80"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="45" />
+   <WVObjectSize size="49" />
    <wvobject fp_name="/sd_controller_top_tb/wb_clk" type="logic">
       <obj_property name="ElementShortName">wb_clk</obj_property>
       <obj_property name="ObjectShortName">wb_clk</obj_property>
@@ -152,13 +152,13 @@
       <obj_property name="ElementShortName">datIn[3:0]</obj_property>
       <obj_property name="ObjectShortName">datIn[3:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/card_detect" type="logic">
-      <obj_property name="ElementShortName">card_detect</obj_property>
-      <obj_property name="ObjectShortName">card_detect</obj_property>
-   </wvobject>
    <wvobject fp_name="/sd_controller_top_tb/sd_dat" type="array">
       <obj_property name="ElementShortName">sd_dat[3:0]</obj_property>
       <obj_property name="ObjectShortName">sd_dat[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/card_detect" type="logic">
+      <obj_property name="ElementShortName">card_detect</obj_property>
+      <obj_property name="ObjectShortName">card_detect</obj_property>
    </wvobject>
    <wvobject fp_name="/sd_controller_top_tb/succes" type="logic">
       <obj_property name="ElementShortName">succes</obj_property>
@@ -199,5 +199,22 @@
    <wvobject fp_name="/sd_controller_top_tb/sd_clk_pad_o" type="logic">
       <obj_property name="ElementShortName">sd_clk_pad_o</obj_property>
       <obj_property name="ObjectShortName">sd_clk_pad_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_data_serial_host_1/transf_cnt" type="array">
+      <obj_property name="ElementShortName">transf_cnt[10:0]</obj_property>
+      <obj_property name="ObjectShortName">transf_cnt[10:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_data_serial_host_1/state" type="array">
+      <obj_property name="ElementShortName">state[5:0]</obj_property>
+      <obj_property name="ObjectShortName">state[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_data_serial_host_1/start_dat" type="array">
+      <obj_property name="ElementShortName">start_dat[1:0]</obj_property>
+      <obj_property name="ObjectShortName">start_dat[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/cmd_serial_host_1/state" type="array">
+      <obj_property name="ElementShortName">state[9:0]</obj_property>
+      <obj_property name="ObjectShortName">state[9:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
 </wave_config>

@@ -45,7 +45,7 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="nexys-a7-100t"/>
-    <Option Name="WTXSimLaunchSim" Val="161"/>
+    <Option Name="WTXSimLaunchSim" Val="171"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -92,8 +92,65 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/block_ram_pack.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../sd_mmc_emulator_latest/sd_mmc_emulator/trunk/rtl/block_ram_pack.vhd"/>
+          <Attr Name="ImportTime" Val="1509004920"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/convert_pack.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../sd_mmc_emulator_latest/sd_mmc_emulator/trunk/rtl/convert_pack.vhd"/>
+          <Attr Name="ImportTime" Val="1509004920"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/dds_pack.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../sd_mmc_emulator_latest/sd_mmc_emulator/trunk/rtl/dds_pack.vhd"/>
+          <Attr Name="ImportTime" Val="1509004920"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/fifo_pack.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../sd_mmc_emulator_latest/sd_mmc_emulator/trunk/rtl/fifo_pack.vhd"/>
+          <Attr Name="ImportTime" Val="1509004920"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/ucrc_pack.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../sd_mmc_emulator_latest/sd_mmc_emulator/trunk/rtl/ucrc_pack.vhd"/>
+          <Attr Name="ImportTime" Val="1509004920"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/signal_conditioning_pack.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../sd_mmc_emulator_latest/sd_mmc_emulator/trunk/rtl/signal_conditioning_pack.vhd"/>
+          <Attr Name="ImportTime" Val="1509004920"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/rtl/sd_host_pack.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../sd_mmc_emulator_latest/sd_mmc_emulator/trunk/rtl/sd_host_pack.vhd"/>
+          <Attr Name="ImportTime" Val="1509004920"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_bd.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_bd.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -103,6 +160,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_clock_divider.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_clock_divider.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -112,6 +170,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_cmd_master.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_cmd_master.v"/>
           <Attr Name="ImportTime" Val="1287149298"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -121,6 +180,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_cmd_serial_host.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_cmd_serial_host.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -130,6 +190,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_controller_wb.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_controller_wb.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -139,6 +200,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_crc_16.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_crc_16.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -148,6 +210,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_crc_7.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_crc_7.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -157,6 +220,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_data_master.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_data_master.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -166,6 +230,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_data_serial_host.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_data_serial_host.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -175,6 +240,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_fifo_rx_filler.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_fifo_rx_filler.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -184,6 +250,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_fifo_tx_filler.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_fifo_tx_filler.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -193,6 +260,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_rx_fifo.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_rx_fifo.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -202,6 +270,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sd_tx_fifo.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sd_tx_fifo.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -211,6 +280,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/verilog/sdc_controller.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../SD_Card_Controller/sdcard_mass_storage_controller_latest/sdcard_mass_storage_controller/trunk/rtl/sdc_dma/verilog/sdc_controller.v"/>
           <Attr Name="ImportTime" Val="1287142520"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -460,7 +530,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="sdc_controller"/>
+        <Option Name="TopModule" Val="sd_controller_8bit_bram"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">

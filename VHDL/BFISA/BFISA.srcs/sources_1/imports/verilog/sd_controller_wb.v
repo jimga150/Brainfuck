@@ -142,7 +142,7 @@ output reg [`RAM_MEM_WIDTH-1:0] dat_in_m_tx_bd;
 reg [1:0] we;
 
 
-always @(posedge wb_clk_i, posedge wb_rst_i)
+always @(posedge wb_clk_i)
 	begin
 	  we_m_rx_bd <= 0;
    	we_m_tx_bd <= 0;

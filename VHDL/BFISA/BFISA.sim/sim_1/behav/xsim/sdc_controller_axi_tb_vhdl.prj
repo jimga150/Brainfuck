@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../BFISA.srcs/sources_1/new/sdc_cont_axi_converter.vhd" \
+"../../../../BFISA.srcs/sources_1/new/sdc_controller_axi.vhd" \
+"../../../../BFISA.srcs/sim_1/imports/Jim/sdc_controller_axi_tb.vhd" \
+
+# Do not sort compile order
+nosort

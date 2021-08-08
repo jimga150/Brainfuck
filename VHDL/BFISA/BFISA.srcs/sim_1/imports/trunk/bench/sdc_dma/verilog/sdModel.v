@@ -8,7 +8,8 @@
 `define DLY_TO_OUTP 47 
 
 `define BLOCKSIZE 512
-`define MEMSIZE 24643590 // 2mb block
+//`define MEMSIZE 24643590 // 2mb block
+`define MEMSIZE 8192 // 16 blocks
 `define BLOCK_BUFFER_SIZE 1
 `define TIME_BUSY 63
 
@@ -43,7 +44,7 @@ assign dat = oeDat ? datOut : 4'bz;
 reg InbuffStatus;
 reg [31:0] BlockAddr;
 reg [7:0] Inbuff [0:511];
-reg [7:0] FLASHmem [0:`MEMSIZE];
+reg [7:0] FLASHmem [0:`MEMSIZE - 1];
 
 
 reg [46:0]inCmd;

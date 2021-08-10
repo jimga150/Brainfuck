@@ -376,6 +376,9 @@ begin
  // $display("===========================================================================");
  $display("All Test finnished. Nr Failed: %d, Nr Succes: %d", tests_failed,tests_successfull);
   succes = 1'b1;
+  #13;
+  $stop;
+  
 end
 
 

@@ -1,0 +1,6 @@
+vhdl xil_defaultlib  \
+"../../../bd/sd_buffer/ip/sd_buffer_axi_bram_ctrl_0_0/sim/sd_buffer_axi_bram_ctrl_0_0.vhd" \
+"../../../bd/sd_buffer/sim/sd_buffer.vhd" \
+"../../../bd/sd_buffer/ip/sd_buffer_axi_bram_ctrl_0_1/sim/sd_buffer_axi_bram_ctrl_0_1.vhd" \
+
+nosort

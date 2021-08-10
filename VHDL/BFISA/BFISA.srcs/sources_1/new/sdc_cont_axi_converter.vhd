@@ -35,27 +35,10 @@ entity sdc_cont_axi_converter is
     port(
         clk, rst : in std_logic;
         
-        error, axi_ready : out std_logic;
+        error, sd_ready : out std_logic;
         
---        axi_ra_addr : in std_logic_vector(31 downto 0);
---        axi_ra_valid : in std_logic;
---        axi_ra_ready : out std_logic;
-        
---        axi_rd_data : out std_logic_vector(31 downto 0);
---        axi_rd_valid : out std_logic;
---        axi_rd_ready : in std_logic;
-        
---        axi_wa_addr : in std_logic_vector(31 downto 0);
---        axi_wa_valid : in std_logic;
---        axi_wa_ready : out std_logic;
-        
---        axi_wd_data : in std_logic_vector(31 downto 0);
---        axi_wd_valid : in std_logic;
---        axi_wd_ready : out std_logic;
-        
---        axi_wr_resp : out std_logic_vector(1 downto 0);
---        axi_wr_valid : out std_logic;
---        axi_wr_ready : in std_logic;
+        write_valid, read_valid : in std_logic;
+        buffer_addr, sd_block_addr : in std_logic_vector(31 downto 0);
         
         wb_data_to_wb : out std_logic_vector(31 downto 0);
         wb_data_from_wb : in std_logic_vector(31 downto 0);
@@ -87,7 +70,14 @@ architecture Behavioral of sdc_cont_axi_converter is
         REQ_RESP, 
         READ_RESP,
          
-        AXI_RDY
+        SD_RDY,
+        SEND_RD_CMD_1,
+        SEND_RD_CMD_2,
+        SEND_WR_CMD_1,
+        SEND_WR_CMD_2,
+        REQ_DATA_INT,
+        CHECK_DATA_INT,
+        DATA_ERR
     );
     
     
@@ -199,6 +189,8 @@ architecture Behavioral of sdc_cont_axi_converter is
     constant default_cmd_step : unsigned(4 downto 0) := (others => '1');
     signal current_cmd_step : unsigned(4 downto 0) := default_cmd_step;
     
+    signal buffer_addr_reg, sd_block_addr_reg : std_logic_vector(31 downto 0) := (others => '0');
+    
     constant rst_state : state_type := IDLE;
     signal state, saved_state : state_type := rst_state;
     signal next_state : state_type;
@@ -214,9 +206,16 @@ begin
                 saved_state <= rst_state;
                 current_cmd_step <= default_cmd_step;
                 RCA <= (others => '0');
+                buffer_addr_reg <= (others => '0');
+                sd_block_addr_reg <= (others => '0');
             else
                 
                 state <= next_state;
+                
+                if state = SD_RDY then 
+                    buffer_addr_reg <= buffer_addr;
+                    sd_block_addr_reg <= sd_block_addr;
+                end if;
                 
                 if next_state = SET_CMD then
                     current_cmd_step <= to_unsigned(to_integer(current_cmd_step) + 1, current_cmd_step'length);
@@ -240,11 +239,16 @@ begin
                         if cmds(to_integer(current_cmd_step)).response_expected then
                             saved_state <= REQ_RESP;
                         elsif to_integer(current_cmd_step) = num_cmds - 1 then
-                            saved_state <= AXI_RDY;
+                            saved_state <= SD_RDY;
                         else
                             saved_state <= SET_CMD;
                         end if;
                     when REQ_RESP => saved_state <= READ_RESP;
+                    when SEND_RD_CMD_1 => saved_state <= SEND_RD_CMD_2;
+                    when SEND_RD_CMD_2 => saved_state <= REQ_DATA_INT;
+                    when SEND_WR_CMD_1 => saved_state <= SEND_WR_CMD_2;
+                    when SEND_WR_CMD_2 => saved_state <= REQ_DATA_INT;
+                    when REQ_DATA_INT => saved_state <= CHECK_DATA_INT;
                     when others => saved_state <= saved_state;
                 end case;
                 
@@ -253,9 +257,7 @@ begin
     end process sync_proc;
     
     ns_proc: process(state, saved_state, current_cmd_step,
---            axi_ra_addr, axi_ra_valid, axi_rd_ready, axi_wa_addr, 
---            axi_wa_valid, axi_wd_data, axi_wd_valid, axi_wr_ready, 
-            wb_data_from_wb, wb_ack) is begin
+            wb_data_from_wb, wb_ack, read_valid, write_valid) is begin
         case state is
             when IDLE => next_state <= ASSERT_SW_RST;
             when ASSERT_SW_RST => next_state <= WAIT_ACK;
@@ -288,11 +290,32 @@ begin
             when REQ_RESP => next_state <= WAIT_ACK;
             when READ_RESP => 
                 if to_integer(current_cmd_step) = num_cmds - 1 then
-                    next_state <= AXI_RDY;
+                    next_state <= SD_RDY;
                 else
                     next_state <= SET_CMD;
                 end if;
-            when AXI_RDY => next_state <= AXI_RDY;
+            when SD_RDY => 
+                if read_valid = '1' and write_valid = '0' then
+                    next_state <= SEND_RD_CMD_1;
+                elsif read_valid = '0' and write_valid = '1' then
+                    next_state <= SEND_WR_CMD_1;
+                else 
+                    next_state <= SD_RDY;
+                end if;
+            when SEND_RD_CMD_1 | SEND_WR_CMD_1 | 
+                    SEND_RD_CMD_2 | SEND_WR_CMD_2 => 
+                next_state <= WAIT_ACK;
+            when REQ_DATA_INT => next_state <= WAIT_ACK;
+            when CHECK_DATA_INT =>
+                if wb_data_from_wb(5) = '1' or wb_data_from_wb(4) = '1' or
+                        wb_data_from_wb(2) = '1' or wb_data_from_wb(1) = '1' then
+                    next_state <= DATA_ERR;
+                elsif wb_data_from_wb(0) = '1' then
+                    next_state <= SD_RDY;
+                else
+                    next_state <= REQ_DATA_INT;
+                end if;
+            when DATA_ERR => next_state <= DATA_ERR;
         end case;
     end process ns_proc;
     
@@ -306,6 +329,9 @@ begin
             when SET_ARGS => wb_addr <= X"00";
             when READ_INT_REG | CLEAR_INT_REG => wb_addr <= X"30";
             when REQ_RESP => wb_addr <= X"0c";
+            when SEND_RD_CMD_1 | SEND_RD_CMD_2 => wb_addr <= X"80";
+            when SEND_WR_CMD_1 | SEND_WR_CMD_2 => wb_addr <= X"60";
+            when REQ_DATA_INT => wb_addr <= X"54";
             when others => wb_addr <= (others => '0');
         end case;
     end process wb_addr_proc;
@@ -339,6 +365,8 @@ begin
                 else
                     wb_data_to_wb <= X"00000000";
                 end if;
+            when SEND_RD_CMD_1 | SEND_WR_CMD_1 => wb_data_to_wb <= buffer_addr_reg;
+            when SEND_RD_CMD_2 | SEND_WR_CMD_2 => wb_data_to_wb <= sd_block_addr_reg;
             when others => wb_data_to_wb <= (others => '0');
         end case;
     end process data_to_wb_proc;
@@ -346,7 +374,8 @@ begin
     wb_cyc_stb_proc: process(state) is begin
         case state is
             when IDLE | WAIT_ACK | CHECK_INT | ERR | 
-                    READ_RESP | AXI_RDY => 
+                    READ_RESP | SD_RDY | CHECK_DATA_INT | 
+                    DATA_ERR => 
                 
                 wb_cyc_stb <= '0';
                 
@@ -358,7 +387,9 @@ begin
         case state is 
             when ASSERT_SW_RST | SET_TIMEOUT | CLEAR_INT_REG | 
                     SET_CLK_DIV | DEASSERT_SW_RST | 
-                    SET_CMD | SET_ARGS =>
+                    SET_CMD | SET_ARGS | SEND_RD_CMD_1 | 
+                    SEND_WR_CMD_1 | SEND_RD_CMD_2 | 
+                    SEND_WR_CMD_2 | REQ_DATA_INT=>
                 
                 wb_wr_en <= '1';
             
@@ -368,15 +399,15 @@ begin
     
     error_proc: process(state) is begin
         case state is
-            when ERR => error <= '1';
+            when ERR | DATA_ERR => error <= '1';
             when others => error <= '0';
         end case;   
     end process error_proc;
     
     axi_ready_proc: process(state) is begin
         case state is
-            when AXI_RDY => axi_ready <= '1';
-            when others => axi_ready <= '0';
+            when SD_RDY => sd_ready <= '1';
+            when others => sd_ready <= '0';
         end case;
     end process axi_ready_proc;
 

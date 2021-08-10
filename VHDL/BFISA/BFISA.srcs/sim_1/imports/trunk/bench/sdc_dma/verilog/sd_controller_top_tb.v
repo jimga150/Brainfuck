@@ -1077,8 +1077,8 @@ begin
   if (test_num == 0) //
   begin
 
-    test_name   = "4.0:  Send data ";
-    `TIME; $display("  TEST 4.0:   Send data  ");
+    test_name   = "4.1:  Send and Rec data ";
+    `TIME; $display("  TEST 4.1:   Send Rec data  ");
       wbm_init_waits = 0;
       wbm_subseq_waits = {$random} % 5;
      data = 0;
@@ -1337,11 +1337,11 @@ begin
        //write data
        
         addr = `SD_BASE + `BD_TX  ; 
-        data = 0; //CMD index 0, Erro check =0, rsp = 0;
+        data = 4; //CMD index 0, Erro check =0, rsp = 0;
         wbm_write(addr, data, 4'hF, 1, wbm_init_waits, wbm_subseq_waits);
         
         addr = `SD_BASE + `BD_TX  ; 
-        data = 0; //CMD index 0, Erro check =0, rsp = 0;
+        data = 8; //CMD index 0, Erro check =0, rsp = 0;
         wbm_write(addr, data, 4'hF, 1, wbm_init_waits, wbm_subseq_waits);
         
 
@@ -1375,11 +1375,11 @@ begin
 			    clear_memories;  
 
 			     addr = `SD_BASE + `BD_RX  ; 
-        data = 0; //
+        data = 4; //
         wbm_write(addr, data, 4'hF, 1, wbm_init_waits, wbm_subseq_waits);
         
         addr = `SD_BASE + `BD_RX  ; 
-        data = 0; //C
+        data = 8; //C
         wbm_write(addr, data, 4'hF, 1, wbm_init_waits, wbm_subseq_waits);
         
 

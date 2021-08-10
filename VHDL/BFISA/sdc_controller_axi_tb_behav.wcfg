@@ -5,21 +5,23 @@
    <db_ref_list>
       <db_ref path="sdc_controller_axi_tb_behav.wdb" id="1">
          <top_modules>
+            <top_module name="axi_bram_ctrl_funcs" />
             <top_module name="glbl" />
             <top_module name="sdc_controller_axi_tb" />
+            <top_module name="vcomponents" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="20274400fs"></ZoomStartTime>
-      <ZoomEndTime time="20349801fs"></ZoomEndTime>
-      <Cursor1Time time="20337300fs"></Cursor1Time>
+      <ZoomStartTime time="27375000fs"></ZoomStartTime>
+      <ZoomEndTime time="27417001fs"></ZoomEndTime>
+      <Cursor1Time time="27410000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="187"></NameColumnWidth>
+      <NameColumnWidth column_width="183"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="38" />
    <wvobject fp_name="/sdc_controller_axi_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -28,25 +30,29 @@
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
    </wvobject>
-   <wvobject fp_name="/sdc_controller_axi_tb/sd_clk" type="logic">
-      <obj_property name="ElementShortName">sd_clk</obj_property>
-      <obj_property name="ObjectShortName">sd_clk</obj_property>
+   <wvobject fp_name="/sdc_controller_axi_tb/write_valid" type="logic">
+      <obj_property name="ElementShortName">write_valid</obj_property>
+      <obj_property name="ObjectShortName">write_valid</obj_property>
    </wvobject>
-   <wvobject fp_name="/sdc_controller_axi_tb/sd_cmd" type="logic">
-      <obj_property name="ElementShortName">sd_cmd</obj_property>
-      <obj_property name="ObjectShortName">sd_cmd</obj_property>
+   <wvobject fp_name="/sdc_controller_axi_tb/read_valid" type="logic">
+      <obj_property name="ElementShortName">read_valid</obj_property>
+      <obj_property name="ObjectShortName">read_valid</obj_property>
    </wvobject>
-   <wvobject fp_name="/sdc_controller_axi_tb/sd_dat" type="array">
-      <obj_property name="ElementShortName">sd_dat[3:0]</obj_property>
-      <obj_property name="ObjectShortName">sd_dat[3:0]</obj_property>
+   <wvobject fp_name="/sdc_controller_axi_tb/buffer_addr" type="array">
+      <obj_property name="ElementShortName">buffer_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">buffer_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/sd_block_addr" type="array">
+      <obj_property name="ElementShortName">sd_block_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sd_block_addr[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/sd_ready" type="logic">
+      <obj_property name="ElementShortName">sd_ready</obj_property>
+      <obj_property name="ObjectShortName">sd_ready</obj_property>
    </wvobject>
    <wvobject fp_name="/sdc_controller_axi_tb/error" type="logic">
       <obj_property name="ElementShortName">error</obj_property>
       <obj_property name="ObjectShortName">error</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sdc_controller_axi_tb/axi_ready" type="logic">
-      <obj_property name="ElementShortName">axi_ready</obj_property>
-      <obj_property name="ObjectShortName">axi_ready</obj_property>
    </wvobject>
    <wvobject fp_name="/sdc_controller_axi_tb/UUT/axi_convert/state" type="other">
       <obj_property name="ElementShortName">state</obj_property>
@@ -60,25 +66,169 @@
    <wvobject fp_name="/sdc_controller_axi_tb/UUT/wb_s_dat_axi_wb" type="array">
       <obj_property name="ElementShortName">wb_s_dat_axi_wb[31:0]</obj_property>
       <obj_property name="ObjectShortName">wb_s_dat_axi_wb[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/sdc_controller_axi_tb/UUT/wb_s_dat_wb_axi" type="array">
       <obj_property name="ElementShortName">wb_s_dat_wb_axi[31:0]</obj_property>
       <obj_property name="ObjectShortName">wb_s_dat_wb_axi[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/sdc_controller_axi_tb/UUT/wb_s_addr_axi_wb" type="array">
       <obj_property name="ElementShortName">wb_s_addr_axi_wb[7:0]</obj_property>
       <obj_property name="ObjectShortName">wb_s_addr_axi_wb[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/sdc_controller_axi_tb/UUT/wb_s_cyc_stb_axi_wb" type="logic">
       <obj_property name="ElementShortName">wb_s_cyc_stb_axi_wb</obj_property>
       <obj_property name="ObjectShortName">wb_s_cyc_stb_axi_wb</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/sdc_controller_axi_tb/UUT/wb_s_we_axi_wb" type="logic">
       <obj_property name="ElementShortName">wb_s_we_axi_wb</obj_property>
       <obj_property name="ObjectShortName">wb_s_we_axi_wb</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/sdc_controller_axi_tb/UUT/wb_s_ack_wb_axi" type="logic">
       <obj_property name="ElementShortName">wb_s_ack_wb_axi</obj_property>
       <obj_property name="ObjectShortName">wb_s_ack_wb_axi</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_ar_addr" type="array">
+      <obj_property name="ElementShortName">axi_ar_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_ar_addr[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_ar_prot" type="array">
+      <obj_property name="ElementShortName">axi_ar_prot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_ar_prot[2:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_ar_valid" type="logic">
+      <obj_property name="ElementShortName">axi_ar_valid</obj_property>
+      <obj_property name="ObjectShortName">axi_ar_valid</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_ar_ready" type="logic">
+      <obj_property name="ElementShortName">axi_ar_ready</obj_property>
+      <obj_property name="ObjectShortName">axi_ar_ready</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_rd_data" type="array">
+      <obj_property name="ElementShortName">axi_rd_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_rd_data[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_rd_resp" type="array">
+      <obj_property name="ElementShortName">axi_rd_resp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_rd_resp[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_rd_valid" type="logic">
+      <obj_property name="ElementShortName">axi_rd_valid</obj_property>
+      <obj_property name="ObjectShortName">axi_rd_valid</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_rd_ready" type="logic">
+      <obj_property name="ElementShortName">axi_rd_ready</obj_property>
+      <obj_property name="ObjectShortName">axi_rd_ready</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_aw_addr" type="array">
+      <obj_property name="ElementShortName">axi_aw_addr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_aw_addr[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_aw_prot" type="array">
+      <obj_property name="ElementShortName">axi_aw_prot[2:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_aw_prot[2:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_aw_valid" type="logic">
+      <obj_property name="ElementShortName">axi_aw_valid</obj_property>
+      <obj_property name="ObjectShortName">axi_aw_valid</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_aw_ready" type="logic">
+      <obj_property name="ElementShortName">axi_aw_ready</obj_property>
+      <obj_property name="ObjectShortName">axi_aw_ready</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_wd_data" type="array">
+      <obj_property name="ElementShortName">axi_wd_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_wd_data[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_wd_strb" type="array">
+      <obj_property name="ElementShortName">axi_wd_strb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_wd_strb[3:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_wd_valid" type="logic">
+      <obj_property name="ElementShortName">axi_wd_valid</obj_property>
+      <obj_property name="ObjectShortName">axi_wd_valid</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_wd_ready" type="logic">
+      <obj_property name="ElementShortName">axi_wd_ready</obj_property>
+      <obj_property name="ObjectShortName">axi_wd_ready</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_wr_resp" type="array">
+      <obj_property name="ElementShortName">axi_wr_resp[1:0]</obj_property>
+      <obj_property name="ObjectShortName">axi_wr_resp[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_wr_valid" type="logic">
+      <obj_property name="ElementShortName">axi_wr_valid</obj_property>
+      <obj_property name="ObjectShortName">axi_wr_valid</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/axi_wr_ready" type="logic">
+      <obj_property name="ElementShortName">axi_wr_ready</obj_property>
+      <obj_property name="ObjectShortName">axi_wr_ready</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/sd_clk" type="logic">
+      <obj_property name="ElementShortName">sd_clk</obj_property>
+      <obj_property name="ObjectShortName">sd_clk</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/sd_cmd" type="logic">
+      <obj_property name="ElementShortName">sd_cmd</obj_property>
+      <obj_property name="ObjectShortName">sd_cmd</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sdc_controller_axi_tb/sd_dat" type="array">
+      <obj_property name="ElementShortName">sd_dat[3:0]</obj_property>
+      <obj_property name="ObjectShortName">sd_dat[3:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
 </wave_config>

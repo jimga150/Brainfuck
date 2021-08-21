@@ -1,5 +1,5 @@
 sd_buffer_blk_mem_gen_0_0.v,verilog,xil_defaultlib,../../../bd/sd_buffer/ip/sd_buffer_blk_mem_gen_0_0/sim/sd_buffer_blk_mem_gen_0_0.v,
 sd_buffer_axi_bram_ctrl_0_0.vhd,vhdl,xil_defaultlib,../../../bd/sd_buffer/ip/sd_buffer_axi_bram_ctrl_0_0/sim/sd_buffer_axi_bram_ctrl_0_0.vhd,
-sd_buffer.vhd,vhdl,xil_defaultlib,../../../bd/sd_buffer/sim/sd_buffer.vhd,
 sd_buffer_axi_bram_ctrl_0_1.vhd,vhdl,xil_defaultlib,../../../bd/sd_buffer/ip/sd_buffer_axi_bram_ctrl_0_1/sim/sd_buffer_axi_bram_ctrl_0_1.vhd,
+sd_buffer.vhd,vhdl,xil_defaultlib,../../../bd/sd_buffer/sim/sd_buffer.vhd,
 glbl.v,Verilog,xil_defaultlib,glbl.v

@@ -2,11 +2,11 @@
 # Webtalk v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Mon Aug  9 23:00:32 2021
-# Process ID: 64572
+# Start of session at: Sat Aug 21 15:52:19 2021
+# Process ID: 94388
 # Current directory: C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim
-# Command line: wbtcv.exe -mode batch -source C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/sdc_controller_axi_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Command line: wbtcv.exe -mode batch -source C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/sd_controller_8bit_bram_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/webtalk.log
 # Journal file: C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim\webtalk.jou
 #-----------------------------------------------------------
-source C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/sdc_controller_axi_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+source C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_1/behav/xsim/xsim.dir/sd_controller_8bit_bram_tb_behav/webtalk/xsim_webtalk.tcl -notrace

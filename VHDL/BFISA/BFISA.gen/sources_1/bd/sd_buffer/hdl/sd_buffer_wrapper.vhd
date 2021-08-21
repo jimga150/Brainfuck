@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
---Date        : Mon Aug  9 23:01:12 2021
+--Date        : Thu Aug 12 19:08:09 2021
 --Host        : DESKTOP-F1LS71S running 64-bit major release  (build 9200)
 --Command     : generate_target sd_buffer_wrapper.bd
 --Design      : sd_buffer_wrapper

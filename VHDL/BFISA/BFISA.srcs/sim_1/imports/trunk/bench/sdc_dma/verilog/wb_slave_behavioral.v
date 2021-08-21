@@ -75,6 +75,8 @@ module WB_SLAVE_BEHAVIORAL
 	CAB_I
 );
 
+parameter wb_memory_bits = 11;
+
 /*------------------------------------------------------------------------------------------------------
 WISHBONE signals
 ------------------------------------------------------------------------------------------------------*/
@@ -98,7 +100,8 @@ reg     `WB_DATA_TYPE   DAT_O;
 Asynchronous dual-port RAM signals for storing and fetching the data
 ------------------------------------------------------------------------------------------------------*/
 //reg     `WB_DATA_TYPE wb_memory [0:16777215]; // WB memory - 24 addresses connected - 2 LSB not used
-reg     `WB_DATA_TYPE wb_memory [0:1048575]; // WB memory - 20 addresses connected - 2 LSB not used
+//reg     `WB_DATA_TYPE wb_memory [0:1048575]; // WB memory - 20 addresses connected - 2 LSB not used
+reg     `WB_DATA_TYPE wb_memory [0:2047]; // WB memory - 11 addresses connected - 2 LSB not used
 reg     `WB_DATA_TYPE mem_wr_data_out;
 reg     `WB_DATA_TYPE mem_rd_data_in;
 
@@ -358,7 +361,8 @@ begin
   else
   begin
 //    #1 mem_rd_data_in = wb_memory[ADR_I[25:2]];
-    #1 mem_rd_data_in = wb_memory[ADR_I[21:2]];
+//    #1 mem_rd_data_in = wb_memory[ADR_I[21:2]];
+    #1 mem_rd_data_in = wb_memory[ADR_I[wb_memory_bits+1:2]];
   end
 end
 
@@ -379,7 +383,7 @@ begin
   if (RST_I)
     task_dat_o = `WB_DATA_WIDTH'hxxxx_xxxx;
   else
-    task_dat_o = wb_memory[task_rd_adr_i[21:2]];
+    task_dat_o = wb_memory[task_rd_adr_i[wb_memory_bits+1:2]];
 end
 always@(CLK_I or wr_sel or task_wr_data or ADR_I or task_wr_adr_i or 
         mem_wr_data_out or DAT_I or task_mem_wr_data or task_dat_i or
@@ -387,7 +391,7 @@ always@(CLK_I or wr_sel or task_wr_data or ADR_I or task_wr_adr_i or
 begin
   if (task_wr_data)
   begin
-    task_mem_wr_data = wb_memory[task_wr_adr_i[21:2]];
+    task_mem_wr_data = wb_memory[task_wr_adr_i[wb_memory_bits+1:2]];
 
     if (task_sel_i[3])
       task_mem_wr_data[31:24] = task_dat_i[31:24];
@@ -398,13 +402,13 @@ begin
     if (task_sel_i[0])
       task_mem_wr_data[ 7: 0] = task_dat_i[ 7: 0];
 
-    wb_memory[task_wr_adr_i[21:2]] = task_mem_wr_data; // write data
+    wb_memory[task_wr_adr_i[wb_memory_bits+1:2]] = task_mem_wr_data; // write data
     task_data_written = 1;
   end
   else if (wr_sel && ~CLK_I)
   begin
 //    mem_wr_data_out = wb_memory[ADR_I[25:2]]; // if no SEL_I is active, old value will be written
-    mem_wr_data_out = wb_memory[ADR_I[21:2]]; // if no SEL_I is active, old value will be written
+    mem_wr_data_out = wb_memory[ADR_I[wb_memory_bits+1:2]]; // if no SEL_I is active, old value will be written
 
     if (SEL_I[3])
       mem_wr_data_out[31:24] = DAT_I[31:24];
@@ -416,7 +420,7 @@ begin
       mem_wr_data_out[ 7: 0] = DAT_I[ 7: 0];
 
 //    wb_memory[ADR_I[25:2]]  <= mem_wr_data_out; // write data
-    wb_memory[ADR_I[21:2]]  = mem_wr_data_out; // write data
+    wb_memory[ADR_I[wb_memory_bits+1:2]]  = mem_wr_data_out; // write data
   end
 end
 

@@ -2,6 +2,6 @@ blk_mem_gen_v8_4.v,verilog,blk_mem_gen_v8_4_4,../../../../BFISA.gen/sources_1/bd
 sd_buffer_blk_mem_gen_0_0.v,verilog,xil_defaultlib,../../../bd/sd_buffer/ip/sd_buffer_blk_mem_gen_0_0/sim/sd_buffer_blk_mem_gen_0_0.v,
 axi_bram_ctrl_v4_1_rfs.vhd,vhdl,axi_bram_ctrl_v4_1_4,../../../../BFISA.gen/sources_1/bd/sd_buffer/ipshared/c9f0/hdl/axi_bram_ctrl_v4_1_rfs.vhd,
 sd_buffer_axi_bram_ctrl_0_0.vhd,vhdl,xil_defaultlib,../../../bd/sd_buffer/ip/sd_buffer_axi_bram_ctrl_0_0/sim/sd_buffer_axi_bram_ctrl_0_0.vhd,
-sd_buffer.vhd,vhdl,xil_defaultlib,../../../bd/sd_buffer/sim/sd_buffer.vhd,
 sd_buffer_axi_bram_ctrl_0_1.vhd,vhdl,xil_defaultlib,../../../bd/sd_buffer/ip/sd_buffer_axi_bram_ctrl_0_1/sim/sd_buffer_axi_bram_ctrl_0_1.vhd,
+sd_buffer.vhd,vhdl,xil_defaultlib,../../../bd/sd_buffer/sim/sd_buffer.vhd,
 glbl.v,Verilog,xil_defaultlib,glbl.v

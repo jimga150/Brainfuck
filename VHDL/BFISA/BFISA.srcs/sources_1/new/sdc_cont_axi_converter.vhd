@@ -54,6 +54,7 @@ architecture Behavioral of sdc_cont_axi_converter is
 
     type state_type is (
         IDLE, 
+        PAUSE,
         
         ASSERT_SW_RST, 
         WAIT_ACK, 
@@ -77,9 +78,9 @@ architecture Behavioral of sdc_cont_axi_converter is
         SEND_WR_CMD_2,
         REQ_DATA_INT,
         CHECK_DATA_INT,
+        CLEAR_DATA_INT,
         DATA_ERR
-    );
-    
+    );  
     
     constant cmdi_len : integer := 6;
     constant cmdw_len : integer := 2;
@@ -189,6 +190,8 @@ architecture Behavioral of sdc_cont_axi_converter is
     constant default_cmd_step : unsigned(4 downto 0) := (others => '1');
     signal current_cmd_step : unsigned(4 downto 0) := default_cmd_step;
     
+    signal first_io_op_done : std_logic := '0';
+    
     signal buffer_addr_reg, sd_block_addr_reg : std_logic_vector(31 downto 0) := (others => '0');
     
     constant rst_state : state_type := IDLE;
@@ -208,16 +211,34 @@ begin
                 RCA <= (others => '0');
                 buffer_addr_reg <= (others => '0');
                 sd_block_addr_reg <= (others => '0');
+                first_io_op_done <= '0';
             else
                 
-                state <= next_state;
+                if state = PAUSE or 
+                        next_state = WAIT_ACK or 
+                        next_state = SD_RDY or 
+                        next_state = ERR or 
+                        next_state = DATA_ERR or 
+                        next_state = SEND_RD_CMD_1 or 
+                        next_state = SEND_RD_CMD_2 or 
+                        next_state = SEND_WR_CMD_1 or 
+                        next_state = SEND_WR_CMD_2 then
+                    state <= next_state;
+                else
+                    state <= PAUSE;
+                end if;
+                
+                --if an I/O command is happening, clear the retry condition.
+                if state = SEND_WR_CMD_1 or (state = CHECK_DATA_INT and next_state = SEND_RD_CMD_1) then
+                    first_io_op_done <= '1';
+                end if;
                 
                 if state = SD_RDY then 
                     buffer_addr_reg <= buffer_addr;
                     sd_block_addr_reg <= sd_block_addr;
                 end if;
                 
-                if next_state = SET_CMD then
+                if next_state = SET_CMD and state = PAUSE then
                     current_cmd_step <= to_unsigned(to_integer(current_cmd_step) + 1, current_cmd_step'length);
                 end if;
                 
@@ -244,11 +265,8 @@ begin
                             saved_state <= SET_CMD;
                         end if;
                     when REQ_RESP => saved_state <= READ_RESP;
-                    when SEND_RD_CMD_1 => saved_state <= SEND_RD_CMD_2;
-                    when SEND_RD_CMD_2 => saved_state <= REQ_DATA_INT;
-                    when SEND_WR_CMD_1 => saved_state <= SEND_WR_CMD_2;
-                    when SEND_WR_CMD_2 => saved_state <= REQ_DATA_INT;
                     when REQ_DATA_INT => saved_state <= CHECK_DATA_INT;
+                    when CLEAR_DATA_INT => saved_state <= REQ_DATA_INT;
                     when others => saved_state <= saved_state;
                 end case;
                 
@@ -302,20 +320,53 @@ begin
                 else 
                     next_state <= SD_RDY;
                 end if;
-            when SEND_RD_CMD_1 | SEND_WR_CMD_1 | 
-                    SEND_RD_CMD_2 | SEND_WR_CMD_2 => 
-                next_state <= WAIT_ACK;
+            when SEND_RD_CMD_1 =>
+                if wb_ack = '1' then
+                    next_state <= SEND_RD_CMD_2;
+                else
+                    next_state <= SEND_RD_CMD_1;
+                end if;
+            when SEND_RD_CMD_2 =>
+                if wb_ack = '1' then
+                    next_state <= CLEAR_DATA_INT;
+                else
+                    next_state <= SEND_RD_CMD_2;
+                end if;
+            when SEND_WR_CMD_1 =>
+                if wb_ack = '1' then
+                    next_state <= SEND_WR_CMD_2;
+                else
+                    next_state <= SEND_WR_CMD_1;
+                end if;
+            when SEND_WR_CMD_2 =>
+                if wb_ack = '1' then
+                    next_state <= CLEAR_DATA_INT;
+                else
+                    next_state <= SEND_WR_CMD_2;
+                end if;
             when REQ_DATA_INT => next_state <= WAIT_ACK;
             when CHECK_DATA_INT =>
                 if wb_data_from_wb(5) = '1' or wb_data_from_wb(4) = '1' or
                         wb_data_from_wb(2) = '1' or wb_data_from_wb(1) = '1' then
                     next_state <= DATA_ERR;
                 elsif wb_data_from_wb(0) = '1' then
-                    next_state <= SD_RDY;
+                    if first_io_op_done = '1' then
+                        next_state <= SD_RDY;
+                    else
+                        next_state <= SEND_RD_CMD_1; 
+                        --redo the read. the first I/O operation after a reset, 
+                        --if it is a read (data moving from SD card to FPGA), 
+                        --is nibble-misaligned by 49 nibbles. the workaround is 
+                        --to detect the failure condition and redo the first 
+                        --read block command, which will execute normally. this 
+                        --is not necessary for any subsequent operations.
+                    end if;
                 else
                     next_state <= REQ_DATA_INT;
                 end if;
+            when CLEAR_DATA_INT => next_state <= WAIT_ACK;
             when DATA_ERR => next_state <= DATA_ERR;
+            when PAUSE => next_state <= next_state;
         end case;
     end process ns_proc;
     
@@ -329,9 +380,9 @@ begin
             when SET_ARGS => wb_addr <= X"00";
             when READ_INT_REG | CLEAR_INT_REG => wb_addr <= X"30";
             when REQ_RESP => wb_addr <= X"0c";
-            when SEND_RD_CMD_1 | SEND_RD_CMD_2 => wb_addr <= X"80";
-            when SEND_WR_CMD_1 | SEND_WR_CMD_2 => wb_addr <= X"60";
-            when REQ_DATA_INT => wb_addr <= X"54";
+            when SEND_RD_CMD_1 | SEND_RD_CMD_2 => wb_addr <= X"60";
+            when SEND_WR_CMD_1 | SEND_WR_CMD_2 => wb_addr <= X"80";
+            when REQ_DATA_INT | CLEAR_DATA_INT => wb_addr <= X"54";
             when others => wb_addr <= (others => '0');
         end case;
     end process wb_addr_proc;
@@ -340,6 +391,8 @@ begin
         case state is
             when ASSERT_SW_RST => wb_data_to_wb <= X"00000001";
             when SET_TIMEOUT => wb_data_to_wb <= X"000002ff";
+            --when SET_CLK_DIV => wb_data_to_wb <= X"00000001"; --divide clock by 4 (100 MHz -> 25 MHz)
+            when SET_CLK_DIV => wb_data_to_wb <= X"00000000"; --divide clock by 2 (50 MHz -> 25 MHz)
             when SET_CMD => 
                 wb_data_to_wb <= 
                     X"0000" & 
@@ -375,7 +428,7 @@ begin
         case state is
             when IDLE | WAIT_ACK | CHECK_INT | ERR | 
                     READ_RESP | SD_RDY | CHECK_DATA_INT | 
-                    DATA_ERR => 
+                    DATA_ERR | PAUSE => 
                 
                 wb_cyc_stb <= '0';
                 
@@ -389,7 +442,7 @@ begin
                     SET_CLK_DIV | DEASSERT_SW_RST | 
                     SET_CMD | SET_ARGS | SEND_RD_CMD_1 | 
                     SEND_WR_CMD_1 | SEND_RD_CMD_2 | 
-                    SEND_WR_CMD_2 | REQ_DATA_INT=>
+                    SEND_WR_CMD_2 | CLEAR_DATA_INT =>
                 
                 wb_wr_en <= '1';
             

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sd_controller_8bit_bram_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="convert_pack" />
+            <top_module name="dds_pack" />
+            <top_module name="fifo_pack" />
+            <top_module name="glbl" />
+            <top_module name="sd_controller_8bit_bram_tb" />
+            <top_module name="sd_host_pack" />
+            <top_module name="signal_conditioning_pack" />
+            <top_module name="ucrc_pack" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="60001fs"></ZoomEndTime>
+      <Cursor1Time time="1fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="172"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="47" />
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/wb_clk_i" type="logic">
+      <obj_property name="ElementShortName">wb_clk_i</obj_property>
+      <obj_property name="ObjectShortName">wb_clk_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/wb_rst_i" type="logic">
+      <obj_property name="ElementShortName">wb_rst_i</obj_property>
+      <obj_property name="ObjectShortName">wb_rst_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/wb_adr_i" type="array">
+      <obj_property name="ElementShortName">wb_adr_i[3:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_adr_i[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/wb_dat_i" type="array">
+      <obj_property name="ElementShortName">wb_dat_i[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_dat_i[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/wb_dat_o" type="array">
+      <obj_property name="ElementShortName">wb_dat_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_dat_o[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/wb_we_i" type="logic">
+      <obj_property name="ElementShortName">wb_we_i</obj_property>
+      <obj_property name="ObjectShortName">wb_we_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/wb_cyc_i" type="logic">
+      <obj_property name="ElementShortName">wb_cyc_i</obj_property>
+      <obj_property name="ObjectShortName">wb_cyc_i</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/wb_ack_o" type="logic">
+      <obj_property name="ElementShortName">wb_ack_o</obj_property>
+      <obj_property name="ObjectShortName">wb_ack_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/bram_clk_o" type="logic">
+      <obj_property name="ElementShortName">bram_clk_o</obj_property>
+      <obj_property name="ObjectShortName">bram_clk_o</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/bram_adr_o" type="array">
+      <obj_property name="ElementShortName">bram_adr_o[31:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_adr_o[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/bram_dat_i" type="array">
+      <obj_property name="ElementShortName">bram_dat_i[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_dat_i[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/bram_dat_i_slv" type="array">
+      <obj_property name="ElementShortName">bram_dat_i_slv[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_dat_i_slv[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/bram_dat_o" type="array">
+      <obj_property name="ElementShortName">bram_dat_o[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_dat_o[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/bram_we_o" type="logic">
+      <obj_property name="ElementShortName">bram_we_o</obj_property>
+      <obj_property name="ObjectShortName">bram_we_o</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/bram_we_o_vect" type="array">
+      <obj_property name="ElementShortName">bram_we_o_vect[0:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_we_o_vect[0:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/bram_cyc_o" type="logic">
+      <obj_property name="ElementShortName">bram_cyc_o</obj_property>
+      <obj_property name="ObjectShortName">bram_cyc_o</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_clk_o_pad" type="logic">
+      <obj_property name="ElementShortName">sd_clk_o_pad</obj_property>
+      <obj_property name="ObjectShortName">sd_clk_o_pad</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_cmd_i" type="logic">
+      <obj_property name="ElementShortName">sd_cmd_i</obj_property>
+      <obj_property name="ObjectShortName">sd_cmd_i</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_cmd_o" type="logic">
+      <obj_property name="ElementShortName">sd_cmd_o</obj_property>
+      <obj_property name="ObjectShortName">sd_cmd_o</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_cmd_oe_o" type="logic">
+      <obj_property name="ElementShortName">sd_cmd_oe_o</obj_property>
+      <obj_property name="ObjectShortName">sd_cmd_oe_o</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_cmd" type="logic">
+      <obj_property name="ElementShortName">sd_cmd</obj_property>
+      <obj_property name="ObjectShortName">sd_cmd</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_dat_i" type="array">
+      <obj_property name="ElementShortName">sd_dat_i[7:0]</obj_property>
+      <obj_property name="ObjectShortName">sd_dat_i[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_dat_o" type="array">
+      <obj_property name="ElementShortName">sd_dat_o[7:0]</obj_property>
+      <obj_property name="ObjectShortName">sd_dat_o[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_dat_oe_o" type="logic">
+      <obj_property name="ElementShortName">sd_dat_oe_o</obj_property>
+      <obj_property name="ObjectShortName">sd_dat_oe_o</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_data" type="array">
+      <obj_property name="ElementShortName">sd_data[3:0]</obj_property>
+      <obj_property name="ObjectShortName">sd_data[3:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/sd_dat_siz_o" type="array">
+      <obj_property name="ElementShortName">sd_dat_siz_o[1:0]</obj_property>
+      <obj_property name="ObjectShortName">sd_dat_siz_o[1:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/int_cmd_o" type="logic">
+      <obj_property name="ElementShortName">int_cmd_o</obj_property>
+      <obj_property name="ObjectShortName">int_cmd_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/int_data_o" type="logic">
+      <obj_property name="ElementShortName">int_data_o</obj_property>
+      <obj_property name="ObjectShortName">int_data_o</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/blk_size_reg" type="array">
+      <obj_property name="ElementShortName">blk_size_reg[11:0]</obj_property>
+      <obj_property name="ObjectShortName">blk_size_reg[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/blk_count_reg" type="array">
+      <obj_property name="ElementShortName">blk_count_reg[15:0]</obj_property>
+      <obj_property name="ObjectShortName">blk_count_reg[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/cmd_index_reg" type="array">
+      <obj_property name="ElementShortName">cmd_index_reg[5:0]</obj_property>
+      <obj_property name="ObjectShortName">cmd_index_reg[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/argument_reg" type="array">
+      <obj_property name="ElementShortName">argument_reg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">argument_reg[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/resp_0_reg" type="array">
+      <obj_property name="ElementShortName">resp_0_reg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">resp_0_reg[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/resp_1_reg" type="array">
+      <obj_property name="ElementShortName">resp_1_reg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">resp_1_reg[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/resp_2_reg" type="array">
+      <obj_property name="ElementShortName">resp_2_reg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">resp_2_reg[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/resp_3_reg" type="array">
+      <obj_property name="ElementShortName">resp_3_reg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">resp_3_reg[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/timeout_reg" type="array">
+      <obj_property name="ElementShortName">timeout_reg[15:0]</obj_property>
+      <obj_property name="ObjectShortName">timeout_reg[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/bustest_res" type="array">
+      <obj_property name="ElementShortName">bustest_res[2:0]</obj_property>
+      <obj_property name="ObjectShortName">bustest_res[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/d_stop" type="logic">
+      <obj_property name="ElementShortName">d_stop</obj_property>
+      <obj_property name="ObjectShortName">d_stop</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/sw_rst_reg" type="logic">
+      <obj_property name="ElementShortName">sw_rst_reg</obj_property>
+      <obj_property name="ObjectShortName">sw_rst_reg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/bus_siz_reg" type="array">
+      <obj_property name="ElementShortName">bus_siz_reg[1:0]</obj_property>
+      <obj_property name="ObjectShortName">bus_siz_reg[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/sd_freq_reg" type="array">
+      <obj_property name="ElementShortName">sd_freq_reg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sd_freq_reg[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/cmd_int_status_reg" type="array">
+      <obj_property name="ElementShortName">cmd_int_status_reg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">cmd_int_status_reg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/cmd_int_enable_reg" type="array">
+      <obj_property name="ElementShortName">cmd_int_enable_reg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">cmd_int_enable_reg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/data_int_status_reg" type="array">
+      <obj_property name="ElementShortName">data_int_status_reg[2:0]</obj_property>
+      <obj_property name="ObjectShortName">data_int_status_reg[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/data_int_enable_reg" type="array">
+      <obj_property name="ElementShortName">data_int_enable_reg[2:0]</obj_property>
+      <obj_property name="ObjectShortName">data_int_enable_reg[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_8bit_bram_tb/UUT/dma_adr_reg" type="array">
+      <obj_property name="ElementShortName">dma_adr_reg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dma_adr_reg[31:0]</obj_property>
+   </wvobject>
+</wave_config>

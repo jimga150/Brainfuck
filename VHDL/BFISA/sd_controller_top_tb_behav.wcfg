@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="447482166fs"></ZoomStartTime>
-      <ZoomEndTime time="448221167fs"></ZoomEndTime>
-      <Cursor1Time time="448098000fs"></Cursor1Time>
+      <ZoomStartTime time="404931000fs"></ZoomStartTime>
+      <ZoomEndTime time="630931001fs"></ZoomEndTime>
+      <Cursor1Time time="488325000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="189"></NameColumnWidth>
-      <ValueColumnWidth column_width="68"></ValueColumnWidth>
+      <NameColumnWidth column_width="160"></NameColumnWidth>
+      <ValueColumnWidth column_width="76"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="66" />
+   <WVObjectSize size="43" />
    <wvobject fp_name="/sd_controller_top_tb/wb_clk" type="logic">
       <obj_property name="ElementShortName">wb_clk</obj_property>
       <obj_property name="ObjectShortName">wb_clk</obj_property>
@@ -88,87 +88,91 @@
       <obj_property name="CustomSignalColor">#00FFFF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_adr_o" type="array">
-      <obj_property name="ElementShortName">wbm_sdm_adr_o[31:0]</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_adr_o[31:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_sel_o" type="array">
-      <obj_property name="ElementShortName">wbm_sdm_sel_o[3:0]</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_sel_o[3:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_we_o" type="logic">
-      <obj_property name="ElementShortName">wbm_sdm_we_o</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_we_o</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_dat_i" type="array">
-      <obj_property name="ElementShortName">wbm_sdm_dat_i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_dat_i[31:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_dat_o" type="array">
-      <obj_property name="ElementShortName">wbm_sdm_dat_o[31:0]</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_dat_o[31:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_cyc_o" type="logic">
-      <obj_property name="ElementShortName">wbm_sdm_cyc_o</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_cyc_o</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_stb_o" type="logic">
-      <obj_property name="ElementShortName">wbm_sdm_stb_o</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_stb_o</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_ack_i" type="logic">
-      <obj_property name="ElementShortName">wbm_sdm_ack_i</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_ack_i</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_cti_o" type="array">
-      <obj_property name="ElementShortName">wbm_sdm_cti_o[2:0]</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_cti_o[2:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_bte_o" type="array">
-      <obj_property name="ElementShortName">wbm_sdm_bte_o[1:0]</obj_property>
-      <obj_property name="ObjectShortName">wbm_sdm_bte_o[1:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_working" type="logic">
-      <obj_property name="ElementShortName">wbm_working</obj_property>
-      <obj_property name="ObjectShortName">wbm_working</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_init_waits" type="array">
-      <obj_property name="ElementShortName">wbm_init_waits[3:0]</obj_property>
-      <obj_property name="ObjectShortName">wbm_init_waits[3:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wbm_subseq_waits" type="array">
-      <obj_property name="ElementShortName">wbm_subseq_waits[3:0]</obj_property>
-      <obj_property name="ObjectShortName">wbm_subseq_waits[3:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
+   <wvobject fp_name="group11108" type="group">
+      <obj_property name="label">Wishbone master</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_adr_o" type="array">
+         <obj_property name="ElementShortName">wbm_sdm_adr_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_adr_o[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_sel_o" type="array">
+         <obj_property name="ElementShortName">wbm_sdm_sel_o[3:0]</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_sel_o[3:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_we_o" type="logic">
+         <obj_property name="ElementShortName">wbm_sdm_we_o</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_we_o</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_dat_i" type="array">
+         <obj_property name="ElementShortName">wbm_sdm_dat_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_dat_i[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_dat_o" type="array">
+         <obj_property name="ElementShortName">wbm_sdm_dat_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_dat_o[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_cyc_o" type="logic">
+         <obj_property name="ElementShortName">wbm_sdm_cyc_o</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_cyc_o</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_stb_o" type="logic">
+         <obj_property name="ElementShortName">wbm_sdm_stb_o</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_stb_o</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_ack_i" type="logic">
+         <obj_property name="ElementShortName">wbm_sdm_ack_i</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_ack_i</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_cti_o" type="array">
+         <obj_property name="ElementShortName">wbm_sdm_cti_o[2:0]</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_cti_o[2:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_sdm_bte_o" type="array">
+         <obj_property name="ElementShortName">wbm_sdm_bte_o[1:0]</obj_property>
+         <obj_property name="ObjectShortName">wbm_sdm_bte_o[1:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_working" type="logic">
+         <obj_property name="ElementShortName">wbm_working</obj_property>
+         <obj_property name="ObjectShortName">wbm_working</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_init_waits" type="array">
+         <obj_property name="ElementShortName">wbm_init_waits[3:0]</obj_property>
+         <obj_property name="ObjectShortName">wbm_init_waits[3:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/wbm_subseq_waits" type="array">
+         <obj_property name="ElementShortName">wbm_subseq_waits[3:0]</obj_property>
+         <obj_property name="ObjectShortName">wbm_subseq_waits[3:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/sd_controller_top_tb/test_name" type="array">
-      <obj_property name="ElementShortName">test_name[799:0]</obj_property>
-      <obj_property name="ObjectShortName">test_name[799:0]</obj_property>
+      <obj_property name="ElementShortName">test_name[255:0]</obj_property>
+      <obj_property name="ObjectShortName">test_name[255:0]</obj_property>
       <obj_property name="Radix">ASCIIRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/sd_controller_top_tb/tests_successfull" type="array">
@@ -178,6 +182,12 @@
    <wvobject fp_name="/sd_controller_top_tb/tests_failed" type="array">
       <obj_property name="ElementShortName">tests_failed[31:0]</obj_property>
       <obj_property name="ObjectShortName">tests_failed[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_clk_pad_o" type="logic">
+      <obj_property name="ElementShortName">sd_clk_pad_o</obj_property>
+      <obj_property name="ObjectShortName">sd_clk_pad_o</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/sd_controller_top_tb/sd_cmd_oe" type="logic">
       <obj_property name="ElementShortName">sd_cmd_oe</obj_property>
@@ -214,30 +224,85 @@
    <wvobject fp_name="/sd_controller_top_tb/card_detect" type="logic">
       <obj_property name="ElementShortName">card_detect</obj_property>
       <obj_property name="ObjectShortName">card_detect</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sdModelTB0/FLASHmem" type="array">
+      <obj_property name="ElementShortName">FLASHmem[0:8191][7:0]</obj_property>
+      <obj_property name="ObjectShortName">FLASHmem[0:8191][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/wb_slave/wb_memory" type="array">
+      <obj_property name="ElementShortName">wb_memory[0:2047][31:0]</obj_property>
+      <obj_property name="ObjectShortName">wb_memory[0:2047][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_data_serial_host_1/state" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">state[5:0]</obj_property>
+      <obj_property name="ObjectShortName">state[5:0]</obj_property>
+      <obj_property name="label">DAT Ser Hst state[5:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/cmd_serial_host_1/state" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">state[9:0]</obj_property>
+      <obj_property name="ObjectShortName">state[9:0]</obj_property>
+      <obj_property name="label">CMD Ser Hst state[9:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_data_serial_host_1/start_dat" type="array">
+      <obj_property name="ElementShortName">start_dat[1:0]</obj_property>
+      <obj_property name="ObjectShortName">start_dat[1:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/data_master_1/state" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">state[8:0]</obj_property>
+      <obj_property name="ObjectShortName">state[8:0]</obj_property>
+      <obj_property name="label">DATMS state[8:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/data_master_1/busy_n" type="logic">
+      <obj_property name="ElementShortName">busy_n</obj_property>
+      <obj_property name="ObjectShortName">busy_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/data_master_1/crc_ok" type="logic">
+      <obj_property name="ElementShortName">crc_ok</obj_property>
+      <obj_property name="ObjectShortName">crc_ok</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/data_master_1/trans_done" type="logic">
+      <obj_property name="ElementShortName">trans_done</obj_property>
+      <obj_property name="ObjectShortName">trans_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/data_master_1/internal_transm_complete" type="logic">
+      <obj_property name="ElementShortName">internal_transm_complete</obj_property>
+      <obj_property name="ObjectShortName">internal_transm_complete</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/data_master_1/rx_cycle" type="logic">
+      <obj_property name="ElementShortName">rx_cycle</obj_property>
+      <obj_property name="ObjectShortName">rx_cycle</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/data_master_1/d_read" type="logic">
+      <obj_property name="ElementShortName">d_read</obj_property>
+      <obj_property name="ObjectShortName">d_read</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/cmd_master_1/state" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">state[2:0]</obj_property>
+      <obj_property name="label">CMDMS state[2:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/cmd_serial_host_1/block_read" type="logic">
+      <obj_property name="ElementShortName">block_read</obj_property>
+      <obj_property name="ObjectShortName">block_read</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/cmd_serial_host_1/block_write" type="logic">
+      <obj_property name="ElementShortName">block_write</obj_property>
+      <obj_property name="ObjectShortName">block_write</obj_property>
    </wvobject>
    <wvobject fp_name="/sd_controller_top_tb/succes" type="logic">
       <obj_property name="ElementShortName">succes</obj_property>
       <obj_property name="ObjectShortName">succes</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/host_log_file_desc" type="array">
-      <obj_property name="ElementShortName">host_log_file_desc[31:0]</obj_property>
-      <obj_property name="ObjectShortName">host_log_file_desc[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/memory_log_file_desc" type="array">
-      <obj_property name="ElementShortName">memory_log_file_desc[31:0]</obj_property>
-      <obj_property name="ObjectShortName">memory_log_file_desc[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/phy_log_file_desc" type="array">
-      <obj_property name="ElementShortName">phy_log_file_desc[31:0]</obj_property>
-      <obj_property name="ObjectShortName">phy_log_file_desc[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wb_s_mon_log_file_desc" type="array">
-      <obj_property name="ElementShortName">wb_s_mon_log_file_desc[31:0]</obj_property>
-      <obj_property name="ObjectShortName">wb_s_mon_log_file_desc[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/wb_m_mon_log_file_desc" type="array">
-      <obj_property name="ElementShortName">wb_m_mon_log_file_desc[31:0]</obj_property>
-      <obj_property name="ObjectShortName">wb_m_mon_log_file_desc[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/sd_controller_top_tb/StartTB" type="logic">
       <obj_property name="ElementShortName">StartTB</obj_property>
@@ -247,134 +312,122 @@
       <obj_property name="ElementShortName">card_rca[31:0]</obj_property>
       <obj_property name="ObjectShortName">card_rca[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/tb_log_file" type="array">
-      <obj_property name="ElementShortName">tb_log_file[31:0]</obj_property>
-      <obj_property name="ObjectShortName">tb_log_file[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_clk_pad_o" type="logic">
-      <obj_property name="ElementShortName">sd_clk_pad_o</obj_property>
-      <obj_property name="ObjectShortName">sd_clk_pad_o</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/argument_reg" type="array">
-      <obj_property name="ElementShortName">argument_reg[31:0]</obj_property>
-      <obj_property name="ObjectShortName">argument_reg[31:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/cmd_setting_reg" type="array">
-      <obj_property name="ElementShortName">cmd_setting_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">cmd_setting_reg[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/status_reg" type="array">
-      <obj_property name="ElementShortName">status_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">status_reg[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/cmd_resp_1" type="array">
-      <obj_property name="ElementShortName">cmd_resp_1[31:0]</obj_property>
-      <obj_property name="ObjectShortName">cmd_resp_1[31:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/software_reset_reg" type="array">
-      <obj_property name="ElementShortName">software_reset_reg[7:0]</obj_property>
-      <obj_property name="ObjectShortName">software_reset_reg[7:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/time_out_reg" type="array">
-      <obj_property name="ElementShortName">time_out_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">time_out_reg[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/normal_int_status_reg" type="array">
-      <obj_property name="ElementShortName">normal_int_status_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">normal_int_status_reg[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/error_int_status_reg" type="array">
-      <obj_property name="ElementShortName">error_int_status_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">error_int_status_reg[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/normal_int_signal_enable_reg" type="array">
-      <obj_property name="ElementShortName">normal_int_signal_enable_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">normal_int_signal_enable_reg[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/error_int_signal_enable_reg" type="array">
-      <obj_property name="ElementShortName">error_int_signal_enable_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">error_int_signal_enable_reg[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/clock_divider" type="array">
-      <obj_property name="ElementShortName">clock_divider[7:0]</obj_property>
-      <obj_property name="ObjectShortName">clock_divider[7:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/Bd_Status_reg" type="array">
-      <obj_property name="ElementShortName">Bd_Status_reg[15:0]</obj_property>
-      <obj_property name="ObjectShortName">Bd_Status_reg[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/Bd_isr_reg" type="array">
-      <obj_property name="ElementShortName">Bd_isr_reg[7:0]</obj_property>
-      <obj_property name="ObjectShortName">Bd_isr_reg[7:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/Bd_isr_enable_reg" type="array">
-      <obj_property name="ElementShortName">Bd_isr_enable_reg[7:0]</obj_property>
-      <obj_property name="ObjectShortName">Bd_isr_enable_reg[7:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/Bd_isr_reset" type="logic">
-      <obj_property name="ElementShortName">Bd_isr_reset</obj_property>
-      <obj_property name="ObjectShortName">Bd_isr_reset</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/normal_isr_reset" type="logic">
-      <obj_property name="ElementShortName">normal_isr_reset</obj_property>
-      <obj_property name="ObjectShortName">normal_isr_reset</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/error_isr_reset" type="logic">
-      <obj_property name="ElementShortName">error_isr_reset</obj_property>
-      <obj_property name="ObjectShortName">error_isr_reset</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/dat_in_m_rx_bd" type="array">
-      <obj_property name="ElementShortName">dat_in_m_rx_bd[15:0]</obj_property>
-      <obj_property name="ObjectShortName">dat_in_m_rx_bd[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/dat_in_m_tx_bd" type="array">
-      <obj_property name="ElementShortName">dat_in_m_tx_bd[15:0]</obj_property>
-      <obj_property name="ObjectShortName">dat_in_m_tx_bd[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sdModelTB0/FLASHmem" type="array">
-      <obj_property name="ElementShortName">FLASHmem[0:8191][7:0]</obj_property>
-      <obj_property name="ObjectShortName">FLASHmem[0:8191][7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/sd_controller_top_tb/sdModelTB0/Inbuff" type="array">
-      <obj_property name="ElementShortName">Inbuff[0:511][7:0]</obj_property>
-      <obj_property name="ObjectShortName">Inbuff[0:511][7:0]</obj_property>
+   <wvobject fp_name="group11107" type="group">
+      <obj_property name="label">Registers</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/argument_reg" type="array">
+         <obj_property name="ElementShortName">argument_reg[31:0]</obj_property>
+         <obj_property name="ObjectShortName">argument_reg[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/cmd_setting_reg" type="array">
+         <obj_property name="ElementShortName">cmd_setting_reg[15:0]</obj_property>
+         <obj_property name="ObjectShortName">cmd_setting_reg[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/status_reg" type="array">
+         <obj_property name="ElementShortName">status_reg[15:0]</obj_property>
+         <obj_property name="ObjectShortName">status_reg[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/cmd_resp_1" type="array">
+         <obj_property name="ElementShortName">cmd_resp_1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cmd_resp_1[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/software_reset_reg" type="array">
+         <obj_property name="ElementShortName">software_reset_reg[7:0]</obj_property>
+         <obj_property name="ObjectShortName">software_reset_reg[7:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/time_out_reg" type="array">
+         <obj_property name="ElementShortName">time_out_reg[15:0]</obj_property>
+         <obj_property name="ObjectShortName">time_out_reg[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/normal_int_status_reg" type="array">
+         <obj_property name="ElementShortName">normal_int_status_reg[15:0]</obj_property>
+         <obj_property name="ObjectShortName">normal_int_status_reg[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/error_int_status_reg" type="array">
+         <obj_property name="ElementShortName">error_int_status_reg[15:0]</obj_property>
+         <obj_property name="ObjectShortName">error_int_status_reg[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/normal_int_signal_enable_reg" type="array">
+         <obj_property name="ElementShortName">normal_int_signal_enable_reg[15:0]</obj_property>
+         <obj_property name="ObjectShortName">normal_int_signal_enable_reg[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/error_int_signal_enable_reg" type="array">
+         <obj_property name="ElementShortName">error_int_signal_enable_reg[15:0]</obj_property>
+         <obj_property name="ObjectShortName">error_int_signal_enable_reg[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/clock_divider" type="array">
+         <obj_property name="ElementShortName">clock_divider[7:0]</obj_property>
+         <obj_property name="ObjectShortName">clock_divider[7:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/Bd_Status_reg" type="array">
+         <obj_property name="ElementShortName">Bd_Status_reg[15:0]</obj_property>
+         <obj_property name="ObjectShortName">Bd_Status_reg[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/Bd_isr_reg" type="array">
+         <obj_property name="ElementShortName">Bd_isr_reg[7:0]</obj_property>
+         <obj_property name="ObjectShortName">Bd_isr_reg[7:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/Bd_isr_enable_reg" type="array">
+         <obj_property name="ElementShortName">Bd_isr_enable_reg[7:0]</obj_property>
+         <obj_property name="ObjectShortName">Bd_isr_enable_reg[7:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/Bd_isr_reset" type="logic">
+         <obj_property name="ElementShortName">Bd_isr_reset</obj_property>
+         <obj_property name="ObjectShortName">Bd_isr_reset</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/normal_isr_reset" type="logic">
+         <obj_property name="ElementShortName">normal_isr_reset</obj_property>
+         <obj_property name="ObjectShortName">normal_isr_reset</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/error_isr_reset" type="logic">
+         <obj_property name="ElementShortName">error_isr_reset</obj_property>
+         <obj_property name="ObjectShortName">error_isr_reset</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/dat_in_m_rx_bd" type="array">
+         <obj_property name="ElementShortName">dat_in_m_rx_bd[15:0]</obj_property>
+         <obj_property name="ObjectShortName">dat_in_m_rx_bd[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/sd_controller_top_tb/sd_controller_top_0/sd_controller_wb0/dat_in_m_tx_bd" type="array">
+         <obj_property name="ElementShortName">dat_in_m_tx_bd[15:0]</obj_property>
+         <obj_property name="ObjectShortName">dat_in_m_tx_bd[15:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>

@@ -227,19 +227,19 @@ begin
 		--Insert stimuli here
 		wait until sd_ready = '1' or error = '1' for 10 ms;
 		wait for clk_period/2;
-		assert sd_ready = '1' report "Init error" severity failure;
+		assert error = '0' report "Init error" severity failure;
 		wait for clk_period*3;
 		
 		read_valid <= '1';
 		wait for clk_period;
 		read_valid <= '0';
 		
-		wait for 3ms;
-		assert false report "Ending early..." severity failure;
+--		wait for 3ms;
+--		assert false report "Ending early..." severity failure;
 		
 		wait until sd_ready = '1' or error = '1' for 10 ms;
 		wait for clk_period/2;
-		assert sd_ready = '1' report "Read error" severity failure;
+		assert error = '0' report "Read error" severity failure;
 		wait for clk_period*3;
 		
 		write_valid <= '1';
@@ -248,9 +248,33 @@ begin
 		
 		wait until sd_ready = '1' or error = '1' for 10 ms;
 		wait for clk_period/2;
-		assert sd_ready = '1' report "Write error" severity failure;
+		assert error = '0' report "Write error" severity failure;
 		wait for clk_period*3;
 		
+		for i in 1 to 512 loop
+		
+            sd_block_addr <= std_logic_vector(to_unsigned(i, 32));
+            read_valid <= '1';
+            wait for clk_period;
+            read_valid <= '0';
+            
+            wait until sd_ready = '1' or error = '1' for 10 ms;
+            wait for clk_period/2;
+            assert error = '0' report "Read error" severity failure;
+            wait for clk_period*3;
+            
+            sd_block_addr <= std_logic_vector(to_unsigned(0, 32));
+            write_valid <= '1';
+            wait for clk_period;
+            write_valid <= '0';
+            
+            wait until sd_ready = '1' or error = '1' for 10 ms;
+            wait for clk_period/2;
+            assert error = '0' report "Write error" severity failure;
+            wait for clk_period*3;
+            
+		end loop;
+
 		assert false report "End Simulation" severity failure;
 		
 		-- Not strictly necessary, but prevents process from looping 

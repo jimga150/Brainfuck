@@ -76,6 +76,7 @@ architecture Behavioral of sdc_cont_axi_converter is
         SEND_RD_CMD_2,
         SEND_WR_CMD_1,
         SEND_WR_CMD_2,
+        CHECK_RD_WR_ACK,
         REQ_DATA_INT,
         CHECK_DATA_INT,
         CLEAR_DATA_INT,
@@ -214,15 +215,40 @@ begin
                 first_io_op_done <= '0';
             else
                 
+--                if state = PAUSE or 
+--                        next_state = WAIT_ACK or 
+--                        next_state = SD_RDY or 
+--                        next_state = ERR or 
+--                        next_state = DATA_ERR or 
+--                        (state = SEND_RD_CMD_1 and next_state = SEND_RD_CMD_1) or 
+--                        (state = SEND_RD_CMD_2 and next_state = SEND_RD_CMD_2) or 
+--                        (state = SEND_WR_CMD_1 and next_state = SEND_WR_CMD_1) or 
+--                        (state = SEND_WR_CMD_2 and next_state = SEND_WR_CMD_2) then
+--                    state <= next_state;
+--                else
+--                    state <= PAUSE;
+--                end if;
+
+--                if state = PAUSE or 
+--                        next_state = WAIT_ACK or 
+--                        next_state = SD_RDY or 
+--                        next_state = ERR or 
+--                        next_state = DATA_ERR or 
+--                        (next_state = SEND_RD_CMD_1) or 
+--                        (next_state = SEND_RD_CMD_2) or 
+--                        (next_state = SEND_WR_CMD_1) or 
+--                        (next_state = SEND_WR_CMD_2) then
+--                    state <= next_state;
+--                else
+--                    state <= PAUSE;
+--                end if;
+                
                 if state = PAUSE or 
                         next_state = WAIT_ACK or 
                         next_state = SD_RDY or 
                         next_state = ERR or 
                         next_state = DATA_ERR or 
-                        next_state = SEND_RD_CMD_1 or 
-                        next_state = SEND_RD_CMD_2 or 
-                        next_state = SEND_WR_CMD_1 or 
-                        next_state = SEND_WR_CMD_2 then
+                        next_state = CHECK_RD_WR_ACK then
                     state <= next_state;
                 else
                     state <= PAUSE;
@@ -267,6 +293,10 @@ begin
                     when REQ_RESP => saved_state <= READ_RESP;
                     when REQ_DATA_INT => saved_state <= CHECK_DATA_INT;
                     when CLEAR_DATA_INT => saved_state <= REQ_DATA_INT;
+                    when SEND_RD_CMD_1 => saved_state <= SEND_RD_CMD_1;
+                    when SEND_RD_CMD_2 => saved_state <= SEND_RD_CMD_2;
+                    when SEND_WR_CMD_1 => saved_state <= SEND_WR_CMD_1;
+                    when SEND_WR_CMD_2 => saved_state <= SEND_WR_CMD_2;
                     when others => saved_state <= saved_state;
                 end case;
                 
@@ -320,29 +350,21 @@ begin
                 else 
                     next_state <= SD_RDY;
                 end if;
-            when SEND_RD_CMD_1 =>
+            when SEND_RD_CMD_1 => next_state <= CHECK_RD_WR_ACK;
+            when SEND_RD_CMD_2 => next_state <= CHECK_RD_WR_ACK;
+            when SEND_WR_CMD_1 => next_state <= CHECK_RD_WR_ACK;
+            when SEND_WR_CMD_2 => next_state <= CHECK_RD_WR_ACK;
+            when CHECK_RD_WR_ACK =>
                 if wb_ack = '1' then
-                    next_state <= SEND_RD_CMD_2;
+                    case saved_state is
+                        when SEND_RD_CMD_1 => next_state <= SEND_RD_CMD_2;
+                        when SEND_RD_CMD_2 => next_state <= CLEAR_DATA_INT;
+                        when SEND_WR_CMD_1 => next_state <= SEND_WR_CMD_2;
+                        when SEND_WR_CMD_2 => next_state <= CLEAR_DATA_INT;
+                        when others => 
+                    end case;
                 else
-                    next_state <= SEND_RD_CMD_1;
-                end if;
-            when SEND_RD_CMD_2 =>
-                if wb_ack = '1' then
-                    next_state <= CLEAR_DATA_INT;
-                else
-                    next_state <= SEND_RD_CMD_2;
-                end if;
-            when SEND_WR_CMD_1 =>
-                if wb_ack = '1' then
-                    next_state <= SEND_WR_CMD_2;
-                else
-                    next_state <= SEND_WR_CMD_1;
-                end if;
-            when SEND_WR_CMD_2 =>
-                if wb_ack = '1' then
-                    next_state <= CLEAR_DATA_INT;
-                else
-                    next_state <= SEND_WR_CMD_2;
+                    next_state <= saved_state;
                 end if;
             when REQ_DATA_INT => next_state <= WAIT_ACK;
             when CHECK_DATA_INT =>
@@ -428,7 +450,7 @@ begin
         case state is
             when IDLE | WAIT_ACK | CHECK_INT | ERR | 
                     READ_RESP | SD_RDY | CHECK_DATA_INT | 
-                    DATA_ERR | PAUSE => 
+                    DATA_ERR | PAUSE | CHECK_RD_WR_ACK => 
                 
                 wb_cyc_stb <= '0';
                 

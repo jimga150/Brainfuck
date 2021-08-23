@@ -2052,6 +2052,7 @@ begin
        wbm_write(addr, data, 4'hF, 1, wbm_init_waits, wbm_subseq_waits);
       //Argument settings 
        addr = `SD_BASE + `argument  ; 
+       data = 0;
        data[31:16] = card_rca; //CMD index 0, Erro check =0, rsp = 0;
        wbm_write(addr, data, 4'hF, 1, wbm_init_waits, wbm_subseq_waits);
         //wait for response or timeout

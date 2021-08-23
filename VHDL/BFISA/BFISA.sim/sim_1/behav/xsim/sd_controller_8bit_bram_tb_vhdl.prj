@@ -2,6 +2,7 @@
 vhdl xil_defaultlib  \
 "../../../../BFISA.srcs/sources_1/imports/rtl/convert_pack.vhd" \
 "../../../../BFISA.srcs/sim_1/imports/rtl/block_ram_pack.vhd" \
+"../../../../BFISA.srcs/sources_1/imports/rtl/block_ram_pack.vhd" \
 "../../../../BFISA.srcs/sources_1/imports/rtl/dds_pack.vhd" \
 "../../../../BFISA.srcs/sources_1/imports/rtl/fifo_pack.vhd" \
 "../../../../BFISA.srcs/sources_1/imports/rtl/ucrc_pack.vhd" \

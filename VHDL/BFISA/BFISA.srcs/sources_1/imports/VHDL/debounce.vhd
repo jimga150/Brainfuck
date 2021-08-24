@@ -30,7 +30,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 ENTITY debounce IS
   GENERIC(
-    clk_freq    : INTEGER := 50_000_000;  --system clock frequency in Hz
+    clk_freq    : INTEGER := 100_000_000;  --system clock frequency in Hz
     stable_time : INTEGER := 1);         --time button must remain stable in ms
   PORT(
     clk     : IN  STD_LOGIC;  --input clock

@@ -3,16 +3,16 @@
 `define BIG_ENDIAN
 //`define LITLE_ENDIAN
 
-`define SIM
-//`define SYN
+//`define SIM
+`define SYN
 
 `define SDC_IRQ_ENABLE
 
-`define ACTEL
+//`define ACTEL
 
 //`define CUSTOM
 //`define ALTERA
-//`define XLINX
+`define XILINX
 //`define SIMULATOR
 
 `define RESEND_MAX_CNT 3
@@ -21,6 +21,14 @@
 //BD size/4 
 
 `ifdef ACTEL
+	`define BD_WIDTH 5
+	`define BD_SIZE 32      
+	`define RAM_MEM_WIDTH_16
+	`define RAM_MEM_WIDTH 16
+  
+`endif
+
+`ifdef XILINX
 	`define BD_WIDTH 5
 	`define BD_SIZE 32      
 	`define RAM_MEM_WIDTH_16

@@ -1,0 +1,16 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib "C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.srcs/sources_1/imports/verilog/timescale.v" "C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.srcs/sources_1/imports/verilog/sd_defines.v" --include "../../../../../BFISA.srcs/sources_1/imports/verilog" --include "../../../../../BFISA.srcs/sim_1/imports/trunk/bench/sdc_dma/verilog" --include "../../../../../BFISA.srcs/sim_1/imports/verilog" --include "../../../../../BFISA.gen/sources_1/ip/vga_clk_wiz" --include "../../../../../BFISA.gen/sources_1/ip/clk_wiz_1" \
+"../../../../../BFISA.srcs/sim_1/imports/trunk/bench/sdc_dma/verilog/sdModel.v" \
+"../../../../../BFISA.srcs/sources_1/imports/verilog/sd_crc_16.v" \
+"../../../../../BFISA.srcs/sources_1/imports/verilog/sd_crc_7.v" \
+"../../../../../BFISA.srcs/sim_1/imports/trunk/bench/sdc_dma/verilog/wb_bus_mon.v" \
+"../../../../../BFISA.srcs/sim_1/imports/trunk/bench/sdc_dma/verilog/wb_master32.v" \
+"../../../../../BFISA.srcs/sim_1/imports/trunk/bench/sdc_dma/verilog/wb_master_behavioral.v" \
+"../../../../../BFISA.srcs/sim_1/imports/trunk/bench/sdc_dma/verilog/wb_slave_behavioral.v" \
+"../../../../../BFISA.srcs/sim_1/imports/trunk/bench/sdc_dma/verilog/sd_controller_top_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

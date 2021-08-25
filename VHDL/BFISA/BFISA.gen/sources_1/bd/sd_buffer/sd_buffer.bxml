@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="39">
   <CompositeFile CompositeFileTopName="sd_buffer" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="STALE" Timestamp="1628809689"/>
-    <Generation Name="IMPLEMENTATION" State="STALE" Timestamp="1628809689"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1628809689"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1628809689"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1629784607"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1629784607"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1629784607"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1629784607"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth\sd_buffer.vhd" Type="VHDL">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>

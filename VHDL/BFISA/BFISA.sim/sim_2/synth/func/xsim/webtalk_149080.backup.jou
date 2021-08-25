@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Tue Aug 24 02:00:47 2021
+# Process ID: 149080
+# Current directory: C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_2/synth/func/xsim
+# Command line: wbtcv.exe -mode batch -source C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_2/synth/func/xsim/xsim.dir/sd_axi_tester_tb_func_synth/webtalk/xsim_webtalk.tcl -notrace
+# Log file: C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_2/synth/func/xsim/webtalk.log
+# Journal file: C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_2/synth/func/xsim\webtalk.jou
+#-----------------------------------------------------------
+source C:/Users/Jim/Desktop/Code/Brainfuck/VHDL/BFISA/BFISA.sim/sim_2/synth/func/xsim/xsim.dir/sd_axi_tester_tb_func_synth/webtalk/xsim_webtalk.tcl -notrace

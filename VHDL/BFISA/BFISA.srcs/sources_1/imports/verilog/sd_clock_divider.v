@@ -20,6 +20,11 @@ module sd_clock_divider (
  `ifdef SIM
    assign SD_CLK = SD_CLK_O;
 `endif 
+ `ifdef XILINX 
+    //cause xilinx clock domains dont have a component for routing from the general net layer to the clock layer. 
+    //let the syntrhesis tool just use general purpose routing and deal with it.
+   assign SD_CLK = SD_CLK_O;
+`endif 
  
 always @ (posedge CLK or posedge RST)
 begin
